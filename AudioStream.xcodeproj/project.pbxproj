@@ -1,0 +1,329 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4C01E49E15C66DB600E94343 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01E49D15C66DB600E94343 /* UIKit.framework */; };
+		4C01E4A015C66DB600E94343 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01E49F15C66DB600E94343 /* Foundation.framework */; };
+		4C01E4A215C66DB600E94343 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01E4A115C66DB600E94343 /* CoreGraphics.framework */; };
+		4C01E4A815C66DB600E94343 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C01E4A615C66DB600E94343 /* InfoPlist.strings */; };
+		4C01E4AA15C66DB600E94343 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4A915C66DB600E94343 /* main.m */; };
+		4C01E4AE15C66DB600E94343 /* ASAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4AD15C66DB600E94343 /* ASAppDelegate.m */; };
+		4C01E4B115C66DB600E94343 /* ASMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4B015C66DB600E94343 /* ASMasterViewController.m */; };
+		4C01E4B415C66DB600E94343 /* ASDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4B315C66DB600E94343 /* ASDetailViewController.m */; };
+		4C01E4B715C66DB600E94343 /* ASMasterViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C01E4B515C66DB600E94343 /* ASMasterViewController_iPhone.xib */; };
+		4C01E4BA15C66DB600E94343 /* ASMasterViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C01E4B815C66DB600E94343 /* ASMasterViewController_iPad.xib */; };
+		4C01E4BD15C66DB600E94343 /* ASDetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C01E4BB15C66DB600E94343 /* ASDetailViewController_iPhone.xib */; };
+		4C01E4C015C66DB600E94343 /* ASDetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C01E4BE15C66DB600E94343 /* ASDetailViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4C01E49915C66DB600E94343 /* AudioStream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioStream.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C01E49D15C66DB600E94343 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4C01E49F15C66DB600E94343 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4C01E4A115C66DB600E94343 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4C01E4A515C66DB600E94343 /* AudioStream-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AudioStream-Info.plist"; sourceTree = "<group>"; };
+		4C01E4A715C66DB600E94343 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4C01E4A915C66DB600E94343 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4C01E4AB15C66DB600E94343 /* AudioStream-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AudioStream-Prefix.pch"; sourceTree = "<group>"; };
+		4C01E4AC15C66DB600E94343 /* ASAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASAppDelegate.h; sourceTree = "<group>"; };
+		4C01E4AD15C66DB600E94343 /* ASAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASAppDelegate.m; sourceTree = "<group>"; };
+		4C01E4AF15C66DB600E94343 /* ASMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASMasterViewController.h; sourceTree = "<group>"; };
+		4C01E4B015C66DB600E94343 /* ASMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASMasterViewController.m; sourceTree = "<group>"; };
+		4C01E4B215C66DB600E94343 /* ASDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASDetailViewController.h; sourceTree = "<group>"; };
+		4C01E4B315C66DB600E94343 /* ASDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASDetailViewController.m; sourceTree = "<group>"; };
+		4C01E4B615C66DB600E94343 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMasterViewController_iPhone.xib; sourceTree = "<group>"; };
+		4C01E4B915C66DB600E94343 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMasterViewController_iPad.xib; sourceTree = "<group>"; };
+		4C01E4BC15C66DB600E94343 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASDetailViewController_iPhone.xib; sourceTree = "<group>"; };
+		4C01E4BF15C66DB600E94343 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASDetailViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4C01E49615C66DB600E94343 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C01E49E15C66DB600E94343 /* UIKit.framework in Frameworks */,
+				4C01E4A015C66DB600E94343 /* Foundation.framework in Frameworks */,
+				4C01E4A215C66DB600E94343 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4C01E48E15C66DB600E94343 = {
+			isa = PBXGroup;
+			children = (
+				4C01E4A315C66DB600E94343 /* AudioStream */,
+				4C01E49C15C66DB600E94343 /* Frameworks */,
+				4C01E49A15C66DB600E94343 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4C01E49A15C66DB600E94343 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4C01E49915C66DB600E94343 /* AudioStream.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4C01E49C15C66DB600E94343 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C01E49D15C66DB600E94343 /* UIKit.framework */,
+				4C01E49F15C66DB600E94343 /* Foundation.framework */,
+				4C01E4A115C66DB600E94343 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4C01E4A315C66DB600E94343 /* AudioStream */ = {
+			isa = PBXGroup;
+			children = (
+				4C01E4AC15C66DB600E94343 /* ASAppDelegate.h */,
+				4C01E4AD15C66DB600E94343 /* ASAppDelegate.m */,
+				4C01E4AF15C66DB600E94343 /* ASMasterViewController.h */,
+				4C01E4B015C66DB600E94343 /* ASMasterViewController.m */,
+				4C01E4B215C66DB600E94343 /* ASDetailViewController.h */,
+				4C01E4B315C66DB600E94343 /* ASDetailViewController.m */,
+				4C01E4B515C66DB600E94343 /* ASMasterViewController_iPhone.xib */,
+				4C01E4B815C66DB600E94343 /* ASMasterViewController_iPad.xib */,
+				4C01E4BB15C66DB600E94343 /* ASDetailViewController_iPhone.xib */,
+				4C01E4BE15C66DB600E94343 /* ASDetailViewController_iPad.xib */,
+				4C01E4A415C66DB600E94343 /* Supporting Files */,
+			);
+			path = AudioStream;
+			sourceTree = "<group>";
+		};
+		4C01E4A415C66DB600E94343 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4C01E4A515C66DB600E94343 /* AudioStream-Info.plist */,
+				4C01E4A615C66DB600E94343 /* InfoPlist.strings */,
+				4C01E4A915C66DB600E94343 /* main.m */,
+				4C01E4AB15C66DB600E94343 /* AudioStream-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4C01E49815C66DB600E94343 /* AudioStream */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C01E4C315C66DB600E94343 /* Build configuration list for PBXNativeTarget "AudioStream" */;
+			buildPhases = (
+				4C01E49515C66DB600E94343 /* Sources */,
+				4C01E49615C66DB600E94343 /* Frameworks */,
+				4C01E49715C66DB600E94343 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AudioStream;
+			productName = AudioStream;
+			productReference = 4C01E49915C66DB600E94343 /* AudioStream.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4C01E49015C66DB600E94343 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AS;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Michael Kolesov";
+			};
+			buildConfigurationList = 4C01E49315C66DB600E94343 /* Build configuration list for PBXProject "AudioStream" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4C01E48E15C66DB600E94343;
+			productRefGroup = 4C01E49A15C66DB600E94343 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4C01E49815C66DB600E94343 /* AudioStream */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4C01E49715C66DB600E94343 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C01E4A815C66DB600E94343 /* InfoPlist.strings in Resources */,
+				4C01E4B715C66DB600E94343 /* ASMasterViewController_iPhone.xib in Resources */,
+				4C01E4BA15C66DB600E94343 /* ASMasterViewController_iPad.xib in Resources */,
+				4C01E4BD15C66DB600E94343 /* ASDetailViewController_iPhone.xib in Resources */,
+				4C01E4C015C66DB600E94343 /* ASDetailViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4C01E49515C66DB600E94343 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C01E4AA15C66DB600E94343 /* main.m in Sources */,
+				4C01E4AE15C66DB600E94343 /* ASAppDelegate.m in Sources */,
+				4C01E4B115C66DB600E94343 /* ASMasterViewController.m in Sources */,
+				4C01E4B415C66DB600E94343 /* ASDetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4C01E4A615C66DB600E94343 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C01E4A715C66DB600E94343 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4C01E4B515C66DB600E94343 /* ASMasterViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C01E4B615C66DB600E94343 /* en */,
+			);
+			name = ASMasterViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		4C01E4B815C66DB600E94343 /* ASMasterViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C01E4B915C66DB600E94343 /* en */,
+			);
+			name = ASMasterViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		4C01E4BB15C66DB600E94343 /* ASDetailViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C01E4BC15C66DB600E94343 /* en */,
+			);
+			name = ASDetailViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		4C01E4BE15C66DB600E94343 /* ASDetailViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C01E4BF15C66DB600E94343 /* en */,
+			);
+			name = ASDetailViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4C01E4C115C66DB600E94343 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4C01E4C215C66DB600E94343 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4C01E4C415C66DB600E94343 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AudioStream/AudioStream-Prefix.pch";
+				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4C01E4C515C66DB600E94343 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AudioStream/AudioStream-Prefix.pch";
+				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4C01E49315C66DB600E94343 /* Build configuration list for PBXProject "AudioStream" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C01E4C115C66DB600E94343 /* Debug */,
+				4C01E4C215C66DB600E94343 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C01E4C315C66DB600E94343 /* Build configuration list for PBXNativeTarget "AudioStream" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C01E4C415C66DB600E94343 /* Debug */,
+				4C01E4C515C66DB600E94343 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4C01E49015C66DB600E94343 /* Project object */;
+}
