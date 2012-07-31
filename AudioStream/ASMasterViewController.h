@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import "AudioPart.h"
+
 
 @class ASDetailViewController;
 
-@interface ASMasterViewController : UITableViewController
+@interface ASMasterViewController : UITableViewController <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
+{
+    NSURLConnection *conn;
+    //AudioQueueRef audioQueue;
+}
 
 @property (strong, nonatomic) ASDetailViewController *detailViewController;
 

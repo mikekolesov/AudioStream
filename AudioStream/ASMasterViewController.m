@@ -39,6 +39,36 @@
 
 - (void)viewDidLoad
 {
+    //NSURL *url = [NSURL URLWithString: @"http://91.190.117.131:8000/live"];
+    //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8100/rr_ogg"];
+    
+    NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8100/rr_aac"];
+    
+    
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL: url];
+    
+    //allow background http streaming
+    [req setNetworkServiceType:NSURLNetworkServiceTypeVoIP];
+    
+    //[req addValue: @"1" forHTTPHeaderField: @"Icy-MetaData"];
+    
+    //[req addValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    //NSLog( @"request method: %@", [req HTTPMethod]);
+    //NSLog( @"request: %@", [req allHTTPHeaderFields]);
+    //NSLog( @"request body: %@", [req HTTPBody]);
+    //[req setHTTPMethod: @"GET"];
+    
+    conn = [[NSURLConnection alloc] initWithRequest: req delegate: self];
+    if (!conn)
+    {
+        NSLog( @"Connection failed" );
+    }
+    else
+    {
+        NSLog( @"Connection OK" );
+    }
+
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -148,5 +178,38 @@
         self.detailViewController.detailItem = object;
     }
 }
+
+- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog( @"Error: %@", [error localizedDescription] );
+    [conn release];
+}
+
+- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSLog( @"Response");
+    
+    NSHTTPURLResponse *http_resp = ( NSHTTPURLResponse *) response;
+    NSLog( @"%@", [http_resp allHeaderFields]);
+}
+
+- (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    NSLog( @"Data, %d", [data length] );
+    
+    /*NSString *html = [[NSString alloc] initWithData: data encoding:NSUTF8StringEncoding];
+     NSLog( @"%@", html );
+     [html release];*/
+    
+    AudioPartParser([data bytes], [data length]);
+}
+
+- (void) connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSLog( @"Finished" );
+    [conn release];
+}
+
+
 
 @end
