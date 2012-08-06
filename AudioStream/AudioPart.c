@@ -76,7 +76,6 @@ void MyPacketsProc(				void *							inClientData,
 	// this is called by audio file stream when it finds packets of audio
 	MyData* myData = (MyData*)inClientData;
 	printf("got data.  bytes: %ld  packets: %ld\n", inNumberBytes, inNumberPackets);
-    
 	// the following code assumes we're streaming VBR data. for CBR data, you'd need another code branch here.
     
 	for (int i = 0; i < inNumberPackets; ++i) {
@@ -85,9 +84,11 @@ void MyPacketsProc(				void *							inClientData,
 		
 		// if the space remaining in the buffer is not enough for this packet, then enqueue the buffer.
 		size_t bufSpaceRemaining = kAQBufSize - myData->bytesFilled;
-		if (bufSpaceRemaining < packetSize) {
-			MyEnqueueBuffer(myData);
-			WaitForFreeBuffer(myData);
+		if (bufSpaceRemaining < packetSize)
+        {
+            printf("buffer space ended\n");
+			MyEnqueueBuffer(myData); 
+			WaitForFreeBuffer(myData); 
 		}
 		
 		// copy data to the audio queue buffer
@@ -102,7 +103,9 @@ void MyPacketsProc(				void *							inClientData,
 		
 		// if that was the last free packet description, then enqueue the buffer.
 		size_t packetsDescsRemaining = kAQMaxPacketDescs - myData->packetsFilled;
-		if (packetsDescsRemaining == 0) {
+		if (packetsDescsRemaining == 0)
+        {
+            printf("max packet descs reached\n");
 			MyEnqueueBuffer(myData);
 			WaitForFreeBuffer(myData);
 		}
@@ -129,10 +132,17 @@ OSStatus MyEnqueueBuffer(MyData* myData)
 	// enqueue buffer
 	AudioQueueBufferRef fillBuf = myData->audioQueueBuffer[myData->fillBufferIndex];
 	fillBuf->mAudioDataByteSize = myData->bytesFilled;
-	err = AudioQueueEnqueueBuffer(myData->audioQueue, fillBuf, myData->packetsFilled, myData->packetDescs);
+    err = AudioQueueEnqueueBuffer(myData->audioQueue, fillBuf, myData->packetsFilled, myData->packetDescs);
 	if (err) { PRINTERROR("AudioQueueEnqueueBuffer"); myData->failed = true; return err; }
+    printf("enqueued %d packets %d bytes ", myData->packetsFilled, myData->bytesFilled );
+    printf("%d-%d-%d\n",
+           myData->inuse[0],
+           myData->inuse[1],
+           myData->inuse[2]/*,
+           myData->inuse[3],
+           myData->inuse[4]*/);
 	
-	StartQueueIfNeeded(myData);
+    StartQueueIfNeeded(myData);
 	
 	return err;
 }
@@ -154,6 +164,7 @@ void WaitForFreeBuffer(MyData* myData)
 	}
 	pthread_mutex_unlock(&myData->mutex);
 	printf("<-unlock\n");
+  
 }
 
 int MyFindQueueBuffer(MyData* myData, AudioQueueBufferRef inBuffer)
@@ -173,14 +184,19 @@ void MyAudioQueueOutputCallback(	void*					inClientData,
 	// this is called by the audio queue when it has finished decoding our data.
 	// The buffer is now free to be reused.
 	MyData* myData = (MyData*)inClientData;
+    int err, size = 4;
     
 	unsigned int bufIndex = MyFindQueueBuffer(myData, inBuffer);
 	
 	// signal waiting thread that the buffer is free.
 	pthread_mutex_lock(&myData->mutex);
 	myData->inuse[bufIndex] = false;
+    printf("%d free\n", bufIndex);
 	pthread_cond_signal(&myData->cond);
 	pthread_mutex_unlock(&myData->mutex);
+    
+    AudioQueueGetProperty(inAQ, kAudioQueueProperty_ConverterError, &err, &size);
+    printf("--------------conv err=%d\n", err);
 }
 
 void MyAudioQueueIsRunningCallback(		void*					inClientData,
@@ -194,6 +210,7 @@ void MyAudioQueueIsRunningCallback(		void*					inClientData,
 	OSStatus err = AudioQueueGetProperty(inAQ, kAudioQueueProperty_IsRunning, &running, &size);
 	if (err) { PRINTERROR("get kAudioQueueProperty_IsRunning"); return; }
 	if (!running) {
+        printf("---------not running\n");
 		pthread_mutex_lock(&myData->mutex);
 		pthread_cond_signal(&myData->done);
 		pthread_mutex_unlock(&myData->mutex);
@@ -305,22 +322,24 @@ int AudioPartInit()
 	pthread_cond_init(&myAudioPartData->cond, NULL);
 	pthread_cond_init(&myAudioPartData->done, NULL);
 	
-	// get connected
-	/*int connection_socket = MyConnectSocket();
-	if (connection_socket < 0) return 1;
-	printf("connected\n");
-    
-	// allocate a buffer for reading data from a socket
-	const size_t kRecvBufSize = 40000;
-	char* buf = (char*)malloc(kRecvBufSize * sizeof(char));*/
-    
-	// create an audio file stream parser
-	OSStatus err = AudioFileStreamOpen(myAudioPartData, MyPropertyListenerProc, MyPacketsProc,
-                                       0, &myAudioPartData->audioFileStream);
-	if (err) { PRINTERROR("AudioFileStreamOpen"); return 1; }
     return 0;
 }
 
+int AudioPartNewStream ( AudioFileTypeID inStreamTypeHint )
+{
+    // create an audio file stream parser
+	OSStatus err = AudioFileStreamOpen(myAudioPartData, MyPropertyListenerProc, MyPacketsProc,
+                                       inStreamTypeHint, &myAudioPartData->audioFileStream);
+	if (err)
+    {
+        PRINTERROR("AudioFileStreamOpen");
+        return 1;
+    }
+    
+    return 0;
+}
+                        
+                        
 int AudioPartParser( const void * buf, ssize_t bytesRecvd )
 {
     
@@ -372,7 +391,6 @@ int AudioPartFinish()
 	//free(buf);
 	err = AudioFileStreamClose(myAudioPartData->audioFileStream);
 	err = AudioQueueDispose(myAudioPartData->audioQueue, false);
-	//close(connection_socket);
 	free(myAudioPartData);
 	
     return 0;

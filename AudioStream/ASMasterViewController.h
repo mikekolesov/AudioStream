@@ -9,16 +9,18 @@
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "AudioPart.h"
+#import "ASStreamThread.h"
 
 
 @class ASDetailViewController;
 
 @interface ASMasterViewController : UITableViewController <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 {
-    NSURLConnection *conn;
-    //AudioQueueRef audioQueue;
+    ASStreamThread *streamThread;
 }
 
 @property (strong, nonatomic) ASDetailViewController *detailViewController;
+
+-(void) runAudioStream;
 
 @end

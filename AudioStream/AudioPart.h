@@ -68,5 +68,7 @@ int AudioPartInit();
 int AudioPartToForeground();
 int AudioPartParser( const void * buf, ssize_t bytesRecvd );
 int AudioPartFinish();
+int AudioPartNewStream ( AudioFileTypeID inStreamTypeHint );
+
 
 #endif
