@@ -21,6 +21,5 @@
 
 @property (strong, nonatomic) ASDetailViewController *detailViewController;
 
--(void) runAudioStream;
 
 @end

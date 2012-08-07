@@ -18,13 +18,20 @@ void MyPropertyListenerProc(	void *							inClientData,
 	// this is called by audio file stream when it finds property values
 	MyData* myData = (MyData*)inClientData;
 	OSStatus err = noErr;
+    UInt32 bitRate = 0;
+    UInt32 bitRateSize = 4;
     
 	printf("found property '%c%c%c%c'\n", (char)((inPropertyID>>24)&255), (char)((inPropertyID>>16)&255), (char)((inPropertyID>>8)&255), (char)(inPropertyID&255));
     
 	switch (inPropertyID) {
+  
 		case kAudioFileStreamProperty_ReadyToProducePackets :
 		{
-			// the file stream parser is now ready to produce audio packets.
+            err = AudioFileStreamGetProperty(inAudioFileStream, kAudioFileStreamProperty_BitRate, &bitRateSize, &bitRate);
+            if (err) { PRINTERROR("get AudioFileStreamGetProperty");  }
+            printf("bitrate %ld\n", bitRate);
+			
+            // the file stream parser is now ready to produce audio packets.
 			// get the stream format.
 			AudioStreamBasicDescription asbd;
 			UInt32 asbdSize = sizeof(asbd);
@@ -40,6 +47,9 @@ void MyPropertyListenerProc(	void *							inClientData,
 				err = AudioQueueAllocateBuffer(myData->audioQueue, kAQBufSize, &myData->audioQueueBuffer[i]);
 				if (err) { PRINTERROR("AudioQueueAllocateBuffer"); myData->failed = true; break; }
 			}
+            
+            // setup minimum pre-streamed buffers
+            myData->preStreamedBuffers = kPreStreamedBufs;
             
 			// get the cookie size
 			UInt32 cookieSize;
@@ -115,11 +125,38 @@ void MyPacketsProc(				void *							inClientData,
 OSStatus StartQueueIfNeeded(MyData* myData)
 {
 	OSStatus err = noErr;
+    int curPreStreamed;
+    
 	if (!myData->started) {		// start the queue if it has not been started already
-		err = AudioQueueStart(myData->audioQueue, NULL);
-		if (err) { PRINTERROR("AudioQueueStart"); myData->failed = true; return err; }
-		myData->started = true;
-		printf("started\n");
+        
+        // check of currently pre-streamed buffers
+        pthread_mutex_lock(&myData->mutex);
+ 
+        curPreStreamed = 0;
+        for (int a = 0; a < kNumAQBufs ; a++)
+        {
+            if (myData->inuse[a])
+            {
+                curPreStreamed++;
+            }
+        }
+        pthread_mutex_unlock(&myData->mutex);
+        
+        if (curPreStreamed >= myData->preStreamedBuffers )
+        {
+            err = AudioQueueStart(myData->audioQueue, NULL);
+            if (err) { PRINTERROR("AudioQueueStart"); myData->failed = true; return err; }
+            myData->started = true;
+            printf("started\n");
+        }
+        else
+        {
+            printf("not started. not enough buffers.. %d\n", curPreStreamed );
+        }
+   
+
+        
+	
 	}
 	return err;
 }
@@ -134,13 +171,12 @@ OSStatus MyEnqueueBuffer(MyData* myData)
 	fillBuf->mAudioDataByteSize = myData->bytesFilled;
     err = AudioQueueEnqueueBuffer(myData->audioQueue, fillBuf, myData->packetsFilled, myData->packetDescs);
 	if (err) { PRINTERROR("AudioQueueEnqueueBuffer"); myData->failed = true; return err; }
-    printf("enqueued %d packets %d bytes ", myData->packetsFilled, myData->bytesFilled );
-    printf("%d-%d-%d\n",
-           myData->inuse[0],
-           myData->inuse[1],
-           myData->inuse[2]/*,
-           myData->inuse[3],
-           myData->inuse[4]*/);
+    
+    printf("enqueued %zd packets %zd bytes ", myData->packetsFilled, myData->bytesFilled );
+    for (int a = 0; a < kNumAQBufs; a++) {
+        printf("%d ", myData->inuse[a]);
+    }
+    printf("\n");
 	
     StartQueueIfNeeded(myData);
 	
@@ -184,19 +220,33 @@ void MyAudioQueueOutputCallback(	void*					inClientData,
 	// this is called by the audio queue when it has finished decoding our data.
 	// The buffer is now free to be reused.
 	MyData* myData = (MyData*)inClientData;
-    int err, size = 4;
-    
+
+    int moreToPlay;
 	unsigned int bufIndex = MyFindQueueBuffer(myData, inBuffer);
 	
 	// signal waiting thread that the buffer is free.
 	pthread_mutex_lock(&myData->mutex);
 	myData->inuse[bufIndex] = false;
     printf("%d free\n", bufIndex);
-	pthread_cond_signal(&myData->cond);
+    
+    moreToPlay = 0;
+    for (int a = 0; a < kNumAQBufs ; a++)
+    {
+        if (myData->inuse[a])
+        {
+            moreToPlay = 1;
+        }
+    }
+    if (!moreToPlay)
+    {
+        myData->started = 0;
+        AudioQueuePause(myData->audioQueue);
+        printf(">>paused\n");
+    }
+	
+    pthread_cond_signal(&myData->cond);
 	pthread_mutex_unlock(&myData->mutex);
     
-    AudioQueueGetProperty(inAQ, kAudioQueueProperty_ConverterError, &err, &size);
-    printf("--------------conv err=%d\n", err);
 }
 
 void MyAudioQueueIsRunningCallback(		void*					inClientData,
@@ -210,7 +260,6 @@ void MyAudioQueueIsRunningCallback(		void*					inClientData,
 	OSStatus err = AudioQueueGetProperty(inAQ, kAudioQueueProperty_IsRunning, &running, &size);
 	if (err) { PRINTERROR("get kAudioQueueProperty_IsRunning"); return; }
 	if (!running) {
-        printf("---------not running\n");
 		pthread_mutex_lock(&myData->mutex);
 		pthread_cond_signal(&myData->done);
 		pthread_mutex_unlock(&myData->mutex);

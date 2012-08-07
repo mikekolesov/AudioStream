@@ -64,7 +64,7 @@
     
     //NSURL *url = [NSURL URLWithString: @"http://91.190.117.131:8000/live"];
     //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8100/rr_ogg"];
-    NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8100/rr_aac"];
+    //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8100/rr_aac"];
     //NSURL *url = [NSURL URLWithString: @"http://79.143.70.114:8000/detifm-onair-64k.aac"];
     //NSURL *url = [NSURL URLWithString: @"http://79.143.70.114:8000/detifm-dvbs-64k.aac"];
     //NSURL *url = [NSURL URLWithString: @"http://radiovkontakte.ru:8000/rvkaac"];
@@ -73,14 +73,14 @@
     //NSURL *url = [NSURL URLWithString: @"http://listen.radiogora.ru:8000/electro192"];
     //NSURL *url = [NSURL URLWithString: @"http://listen.radiogora.ru:8000/electro320"];
     
-    //AAN PURE ROCK
+    //AAN PURE ROCK SHOUTast
     //NSURL *url = [NSURL URLWithString: @"http://174.37.159.206:9000/"];
     
-    //A-All Metal Radio
+    //A-All Metal Radio SHOUTast
     //NSURL *url = [NSURL URLWithString: @"http://173.192.224.123:8543/"];
 
     //SKY.FM SMOOTH LOUNGE
-    //NSURL *url = [NSURL URLWithString: @"http://u16b.sky.fm:80/sky_smoothlounge_aac"];
+    NSURL *url = [NSURL URLWithString: @"http://u16b.sky.fm:80/sky_smoothlounge_aac"];
     
     //SKY.FM Modern Rock Alternative
     //NSURL *url = [NSURL URLWithString: @"http://u16b.sky.fm:80/sky_hardrock_aacplus"];
@@ -92,10 +92,10 @@
     
     //[req addValue: @"1" forHTTPHeaderField: @"Icy-MetaData"];
     
-    //[req addValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    //NSLog( @"request method: %@", [req HTTPMethod]);
-    //NSLog( @"request: %@", [req allHTTPHeaderFields]);
-    //NSLog( @"request body: %@", [req HTTPBody]);
+    [req addValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    NSLog( @"request method:\n %@", [req HTTPMethod]);
+    NSLog( @"request: %@", [req allHTTPHeaderFields]);
+    NSLog( @"request body: %@", [req HTTPBody]);
     //[req setHTTPMethod: @"GET"];
     
     //conn = [[NSURLConnection alloc] initWithRequest: req delegate: self];
@@ -168,7 +168,8 @@
     
     AudioPartParser([data bytes], [data length]);
     
-    [NSThread sleepForTimeInterval:0.2];
+    // call us every.. seconds 
+    [NSThread sleepForTimeInterval:0.5];
 }
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
