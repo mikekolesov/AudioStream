@@ -18,10 +18,10 @@
 
 #define PRINTERROR(LABEL)	printf("%s err %4.4s %ld\n", LABEL, (char*)&err, err)
 
-#define kNumAQBufs  6			// number of audio queue buffers we allocate
-#define kAQBufSize (12 * 1024)		// number of bytes in each audio queue buffer
+#define kNumAQBufs  4			// number of audio queue buffers we allocate
+//#define kAQBufSize (12 * 1024)		// number of bytes in each audio queue buffer
 #define kAQMaxPacketDescs 512		// number of packet descriptions in our array
-#define kPreStreamedBufs  2         // minimum recommended pre-streamed buffers
+#define kPreStreamedBufs  3         // minimum recommended pre-streamed buffers
 
 
 struct MyData
@@ -34,6 +34,8 @@ struct MyData
 	AudioStreamPacketDescription packetDescs[kAQMaxPacketDescs];	// packet descriptions for enqueuing audio
 	
     int preStreamedBuffers;         // number of buffers downloaded before start playing
+    int bitRate;                    // stream bitrate in Kbps
+    int bufSize;                    // size of audio buffer
     
 	unsigned int fillBufferIndex;	// the index of the audioQueueBuffer that is being filled
 	size_t bytesFilled;				// how many bytes have been filled
@@ -72,7 +74,7 @@ int AudioPartInit();
 int AudioPartToForeground();
 int AudioPartParser( const void * buf, ssize_t bytesRecvd );
 int AudioPartFinish();
-int AudioPartNewStream ( AudioFileTypeID inStreamTypeHint );
+int AudioPartNewStream ( AudioFileTypeID inStreamTypeHint, int bitRate );
 
 
 #endif

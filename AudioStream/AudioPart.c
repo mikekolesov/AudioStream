@@ -18,8 +18,6 @@ void MyPropertyListenerProc(	void *							inClientData,
 	// this is called by audio file stream when it finds property values
 	MyData* myData = (MyData*)inClientData;
 	OSStatus err = noErr;
-    UInt32 bitRate = 0;
-    UInt32 bitRateSize = 4;
     
 	printf("found property '%c%c%c%c'\n", (char)((inPropertyID>>24)&255), (char)((inPropertyID>>16)&255), (char)((inPropertyID>>8)&255), (char)(inPropertyID&255));
     
@@ -27,10 +25,6 @@ void MyPropertyListenerProc(	void *							inClientData,
   
 		case kAudioFileStreamProperty_ReadyToProducePackets :
 		{
-            err = AudioFileStreamGetProperty(inAudioFileStream, kAudioFileStreamProperty_BitRate, &bitRateSize, &bitRate);
-            if (err) { PRINTERROR("get AudioFileStreamGetProperty");  }
-            printf("bitrate %ld\n", bitRate);
-			
             // the file stream parser is now ready to produce audio packets.
 			// get the stream format.
 			AudioStreamBasicDescription asbd;
@@ -40,11 +34,14 @@ void MyPropertyListenerProc(	void *							inClientData,
 			
 			// create the audio queue
 			err = AudioQueueNewOutput(&asbd, MyAudioQueueOutputCallback, myData, NULL, NULL, 0, &myData->audioQueue);
-			if (err) { PRINTERROR("AudioQueueNewOutput"); myData->failed = true; break; }
+			if (err) { PRINTERROR("AudioQueueNewOutput"); myData->failed = true;
+                //FIXME stop all on fmt? or we will crash later
+                break; }
 			
 			// allocate audio queue buffers
+            myData->bufSize = (myData->bitRate / 8) * 1024;
 			for (unsigned int i = 0; i < kNumAQBufs; ++i) {
-				err = AudioQueueAllocateBuffer(myData->audioQueue, kAQBufSize, &myData->audioQueueBuffer[i]);
+				err = AudioQueueAllocateBuffer(myData->audioQueue, myData->bufSize, &myData->audioQueueBuffer[i]);
 				if (err) { PRINTERROR("AudioQueueAllocateBuffer"); myData->failed = true; break; }
 			}
             
@@ -93,7 +90,7 @@ void MyPacketsProc(				void *							inClientData,
 		SInt64 packetSize   = inPacketDescriptions[i].mDataByteSize;
 		
 		// if the space remaining in the buffer is not enough for this packet, then enqueue the buffer.
-		size_t bufSpaceRemaining = kAQBufSize - myData->bytesFilled;
+		size_t bufSpaceRemaining = myData->bufSize - myData->bytesFilled;
 		if (bufSpaceRemaining < packetSize)
         {
             printf("buffer space ended\n");
@@ -374,11 +371,12 @@ int AudioPartInit()
     return 0;
 }
 
-int AudioPartNewStream ( AudioFileTypeID inStreamTypeHint )
+int AudioPartNewStream ( AudioFileTypeID inStreamTypeHint, int bitRate )
 {
     // create an audio file stream parser
 	OSStatus err = AudioFileStreamOpen(myAudioPartData, MyPropertyListenerProc, MyPacketsProc,
                                        inStreamTypeHint, &myAudioPartData->audioFileStream);
+    myAudioPartData->bitRate = bitRate;
 	if (err)
     {
         PRINTERROR("AudioFileStreamOpen");
@@ -395,7 +393,7 @@ int AudioPartParser( const void * buf, ssize_t bytesRecvd )
     OSStatus err = 0;
 	//while (!myData->failed) {
 		// read data from the socket
-		printf("->recv\n");
+		printf("->parser recv\n");
 	/*	ssize_t bytesRecvd = recv(connection_socket, buf, kRecvBufSize, 0);
 		printf("bytesRecvd %d\n", bytesRecvd);
 	*/

@@ -44,9 +44,10 @@
 {
     streamThread = [ASStreamThread new];
     [streamThread start];
+    /*
     [NSThread sleepForTimeInterval:2.0];
     [streamThread performSelector:@selector(performTest) onThread: streamThread.thread withObject:nil waitUntilDone:NO];
-    
+    */
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
