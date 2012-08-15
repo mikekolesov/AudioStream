@@ -42,8 +42,19 @@
 
 - (void)viewDidLoad
 {
-    streamThread = [ASStreamThread new];
+    streamThread = [[ASStreamThread alloc] init];
     [streamThread start];
+    [NSThread sleepForTimeInterval:10.0];
+    [streamThread stop];
+    [NSThread sleepForTimeInterval:1.0];
+    [streamThread start];
+    [NSThread sleepForTimeInterval:10.0];
+    [streamThread stop];
+    [NSThread sleepForTimeInterval:1.0];
+    [streamThread start];
+    [NSThread sleepForTimeInterval:10.0];
+    [streamThread stop];
+
     /*
     [NSThread sleepForTimeInterval:2.0];
     [streamThread performSelector:@selector(performTest) onThread: streamThread.thread withObject:nil waitUntilDone:NO];

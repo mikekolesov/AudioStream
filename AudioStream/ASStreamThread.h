@@ -13,8 +13,13 @@
 {
     NSThread *thread;
     NSURLConnection *conn;
-    BOOL finish;
+    
+    BOOL finishing;             // flag to finish audio processing
+    BOOL readyToFinish;         // ack flag of finishing
+    
     BOOL playing;
+    
+    
     
     BOOL checkIfShoutcast;      // check if server is SHOUTcast
     BOOL textHtml;              // text instead of audio in response
@@ -36,9 +41,12 @@
 }
 
 -(void) start;
+-(void) stop;
 -(void) test;
 -(void) performTest;
 
 @property (retain, nonatomic) NSThread *thread;
+@property (assign, nonatomic) BOOL playing;
+@property (retain, nonatomic) NSString *streamTitle;
 
 @end

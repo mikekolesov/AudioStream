@@ -49,6 +49,8 @@ struct MyData
 	pthread_mutex_t mutex;			// a mutex to protect the inuse flags
 	pthread_cond_t cond;			// a condition varable for handling the inuse flags
 	pthread_cond_t done;			// a condition varable for handling the inuse flags
+    bool finishing;                 // flag to finish audio data processing
+    bool finishingReady;            // flag to show finishing is ready
 };
 typedef struct MyData MyData;
 
@@ -71,6 +73,7 @@ OSStatus MyEnqueueBuffer(MyData* myData);
 void WaitForFreeBuffer(MyData* myData);
 
 int AudioPartInit();
+int AudioPartInitAudioSession();
 int AudioPartToForeground();
 int AudioPartParser( const void * buf, ssize_t bytesRecvd );
 int AudioPartFinish();

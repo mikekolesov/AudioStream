@@ -11,40 +11,84 @@
 
 @implementation ASStreamThread
 
+@synthesize thread;
+@synthesize playing;
+@synthesize streamTitle;
+
+- (id) init
+{
+    self = [super init];
+    if (self != nil) {
+        self->playing = NO;
+    }
+    return self;
+}
+
 -(void) start
 {
-    playing = NO;
-    finish = NO;
+    if (playing)
+    {
+        // stop and flush data
+        [self stop];
+    }
     
     thread = [[NSThread alloc] initWithTarget:self selector:@selector(streamThread) object:nil];
     [thread setName:@"Stream Thread"];
     [thread start];
-    //[NSThread detachNewThreadSelector:@selector(streamThread) toTarget:self withObject:nil];
+}
+
+-(void) stop
+{
+    finishing = YES;
+    
+    // stopping connection
+    [conn cancel];
+
+    // finishing audio playback
+    AudioPartFinish();
+    
+    // waiting connection callback exit
+    while (!readyToFinish) {
+        [NSThread sleepForTimeInterval: 0.2];
+    }
+    // cleanup
+    if (streamTitle) [streamTitle release];
+    //if (metaData) free(metaData);
+    if (contentType) [contentType release];
+    if (bitRate) [bitRate release];
+    if (icyMetaInt) [icyMetaInt release];
+        
+    // Exit run loop
+    [conn unscheduleFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [conn release];
+    
+    // Waiting for finishing thread method
+    while (![thread isFinished]) {
+        [NSThread sleepForTimeInterval: 0.2];
+    }
+    [thread release];
+    
+    playing = NO;
 }
 
 -(void) streamThread
 {
-    NSLog(@"Enter thread");
+    NSLog(@"Enter streamThread");
     NSAutoreleasePool *topPool = [[NSAutoreleasePool alloc] init];
     
     
     [self runAudioStream];
     
-    while (!finish)
-    {
-       // block here to monitor and handle NSURLConnection [performselector] methods..
-        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
-        
-    }
-    
+    // block here to monitor and handle NSURLConnection [performselector] methods..
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
     
     [topPool release];
-    NSLog(@"Exit thread");
+    NSLog(@"Exit streamThread");
 }
 
 -(void) test
 {
-    NSLog(@"Test, %d", finish);
+    NSLog(@"Test, %d", finishing);
 }
 
 -(void) performTest
@@ -54,23 +98,25 @@
 
 - (void) runAudioStream
 {
-    if (playing)
-    {
-        playing = NO;
-        // stop and flush data
-    }
+    // init audio data
+    
+    AudioPartInit();
     
     // configure network connection
     
     //NSURL *url = [NSURL URLWithString: @"http://91.190.117.131:8000/live"];
     //NSURL *url = [NSURL URLWithString: @"http://91.190.117.131:8000/64"];
     //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8100/rr_ogg"];
-    NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8100/rr_aac"];
+    //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8100/rr_aac"];
+    //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8102/brks_128"];
+    //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8102/brks_aac"];
+    //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8102/club_128"];
+    //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8101/rr_128"];
     //NSURL *url = [NSURL URLWithString: @"http://79.143.70.114:8000/detifm-onair-64k.aac"];
     //NSURL *url = [NSURL URLWithString: @"http://79.143.70.114:8000/detifm-dvbs-64k.aac"];
     //NSURL *url = [NSURL URLWithString: @"http://radiovkontakte.ru:8000/rvkaac"];
     //NSURL *url = [NSURL URLWithString: @"http://radiovkontakte.ru:8000/rvkmp3"];
-    //NSURL *url = [NSURL URLWithString: @"http://serveur.wanastream.com:24100"];
+    NSURL *url = [NSURL URLWithString: @"http://serveur.wanastream.com:24100"];
     //NSURL *url = [NSURL URLWithString: @"http://listen.radiogora.ru:8000/electro192"];
     //NSURL *url = [NSURL URLWithString: @"http://listen.radiogora.ru:8000/electro320"];
     
@@ -114,21 +160,12 @@
         NSLog( @"Connection OK" );
     }
     
-    // Defaults
     
-    
-    
-    
+    // states
+    finishing = NO;
+    readyToFinish = NO;
     playing = YES;
 }
-
-- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog( @"Error: %@", [error localizedDescription] );
-    [conn release];
-    // FIXME try runAudioStream again
-}
-
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -235,6 +272,10 @@
     char *originCutData = NULL;
     int cutDataLen = 0;
     
+    if (finishing) {
+        readyToFinish = YES;
+        return;
+    }
     
     allData = [data bytes];
     allDataLen = [data length];
@@ -304,15 +345,7 @@
             // cutting the second part of metadata
             NSLog(@"Torn data, second part");
             memcpy(metaData + (metaSize - tornMetaSize), allData, tornMetaSize); 
-            NSString *md = [[NSString alloc] initWithBytes:metaData length:metaSize encoding:NSASCIIStringEncoding];
-            //NSLog(@"FullMetaString=<%@>", md);
-            NSArray *mdSeparated = [md componentsSeparatedByString:@"'"];
-            if (streamTitle) [streamTitle release];
-            streamTitle = [mdSeparated objectAtIndex:1];
-            [streamTitle retain];
-            NSLog(@"StreamTitle=<%@>", streamTitle);
-            
-            [md release];
+            [self getStreamTitle];
             free(metaData);
             
             allData += tornMetaSize; // increase address, shift to next audio data part
@@ -338,15 +371,7 @@
                         // cutting metadata
                         metaData = calloc(1, metaSize);
                         memcpy(metaData, allData + dataRest + 1, metaSize);
-                        NSString *md = [[NSString alloc] initWithBytes:metaData length:metaSize encoding:NSASCIIStringEncoding];
-                        //NSLog(@"FullMetaString=<%@>", md);
-                        NSArray *mdSeparated = [md componentsSeparatedByString:@"'"];
-                        if (streamTitle) [streamTitle release];
-                        streamTitle = [mdSeparated objectAtIndex:1];
-                        [streamTitle retain];
-                        NSLog(@"StreamTitle=%@", streamTitle);
-                        
-                        [md release];
+                        [self getStreamTitle];                       
                         free(metaData);
                         
                         // cutting audio data
@@ -360,7 +385,7 @@
                         dataRest = metaInterval; // reset audio data counter
                     }
                     else { //torn metadata. just for sure
-                        //NSLog(@"torn metadata");
+                        NSLog(@"torn metadata");
                         
                         // cutting first part of metadata
                         metaData = calloc(1, metaSize);
@@ -415,6 +440,35 @@
       
     // call us ~ every 300 miliseconds
     //[NSThread sleepForTimeInterval:0.3];
+    
+    if (finishing) {
+        readyToFinish = YES;
+    }
+}
+
+- (void) getStreamTitle
+{
+    NSString *md = [[NSString alloc] initWithBytes:metaData length:metaSize encoding:NSASCIIStringEncoding];
+    //NSLog(@"FullMetaString=<%@>", md);
+    NSRange tagBeggining ={0};
+    NSRange tagEnding = {0};
+    NSRange tagRange;
+    tagBeggining = [md rangeOfString:@"StreamTitle='"];
+    tagEnding = [md rangeOfString:@"';"];
+    // FIXME add streamTitle as property ?? if (streamTitle != nil) [streamTitle release];
+    if (tagBeggining.location == NSNotFound || tagEnding.location == NSNotFound) {
+        streamTitle = [NSString stringWithFormat:@""];
+    }
+    else {
+        tagRange.location = tagBeggining.location + tagBeggining.length;
+        tagRange.length = tagEnding.location - tagRange.location;
+        streamTitle = [md substringWithRange:tagRange];
+    }
+    
+    NSLog(@"StreamTitle=%@", streamTitle);
+    
+    [streamTitle retain];
+    [md release];
 }
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
@@ -425,6 +479,14 @@
         textHtml = NO;
     }
     [conn release];
+}
+
+- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog( @"Error: %@", [error localizedDescription] );
+    [conn unscheduleFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [conn release];
+    // FIXME try runAudioStream again
 }
 
 

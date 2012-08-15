@@ -14,7 +14,6 @@
 
 #import "AudioPart.h"
 
-//int counter = 0;
 
 @implementation ASAppDelegate
 
@@ -29,7 +28,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // setup audio session
-    AudioPartInit();
+    AudioPartInitAudioSession();
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
@@ -70,22 +69,18 @@
     
    
     // set alive handler for voip socket (for sure)
-    BOOL backAlive = [[UIApplication sharedApplication] setKeepAliveTimeout: 600.0 handler:
-               ^{
-                   NSLog(@"keepAliveHandler called");
-                   // FIXME make some re-establish with conn
-               }];
+    // + info.plist has been set with audio and voip background keys
+    BOOL backAlive = [[UIApplication sharedApplication] setKeepAliveTimeout: 600.0 handler: ^{
+        NSLog(@"keepAliveHandler called");
+        // FIXME make some re-establish with conn
+        }];
     
-    if ( backAlive )
-    {
+    if ( backAlive ) {
         NSLog(@"setKeepAliveTimeout handler set");
     }
-    else
-    {
+    else {
         NSLog(@"setKeepAliveTimeout handler not set");
     }
-     
-    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -93,12 +88,18 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 
     // unset voip alive handler
+    NSLog(@"clearKeepAliveTimeout");
     [[UIApplication sharedApplication] clearKeepAliveTimeout];
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    // start audio queue
+    //AudioPartToForeground();
+    //NSLog(@"applicationDidBecomeActive");
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
