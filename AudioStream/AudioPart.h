@@ -19,7 +19,6 @@
 #define PRINTERROR(LABEL)	printf("%s err %4.4s %ld\n", LABEL, (char*)&err, err)
 
 #define kNumAQBufs  4			// number of audio queue buffers we allocate
-//#define kAQBufSize (12 * 1024)		// number of bytes in each audio queue buffer
 #define kAQMaxPacketDescs 512		// number of packet descriptions in our array
 #define kPreStreamedBufs  3         // minimum recommended pre-streamed buffers
 
@@ -58,14 +57,14 @@ typedef struct MyData MyData;
 void MyAudioQueueOutputCallback(void* inClientData, AudioQueueRef inAQ, AudioQueueBufferRef inBuffer);
 void MyAudioQueueIsRunningCallback(void *inUserData, AudioQueueRef inAQ, AudioQueuePropertyID inID);
 
-void MyPropertyListenerProc(	void *							inClientData,
+void MyPropertyListenerProc( void *							inClientData,
                             AudioFileStreamID				inAudioFileStream,
                             AudioFileStreamPropertyID		inPropertyID,
                             UInt32 *						ioFlags);
 
-void MyPacketsProc(				void *							inClientData,
-                   UInt32							inNumberBytes,
-                   UInt32							inNumberPackets,
+void MyPacketsProc(	void *						inClientData,
+                   UInt32						inNumberBytes,
+                   UInt32						inNumberPackets,
                    const void *					inInputData,
                    AudioStreamPacketDescription	*inPacketDescriptions);
 
@@ -73,10 +72,8 @@ OSStatus MyEnqueueBuffer(MyData* myData);
 void WaitForFreeBuffer(MyData* myData);
 
 int AudioPartInit();
-int AudioPartInitAudioSession();
-int AudioPartToForeground();
 int AudioPartParser( const void * buf, ssize_t bytesRecvd );
-int AudioPartFinish();
+int AudioPartFinish( bool immediate );
 int AudioPartNewStream ( AudioFileTypeID inStreamTypeHint, int bitRate );
 
 

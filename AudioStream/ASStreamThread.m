@@ -14,17 +14,26 @@
 @synthesize thread;
 @synthesize playing;
 @synthesize streamTitle;
+@synthesize urlString;
 
 - (id) init
 {
     self = [super init];
     if (self != nil) {
         self->playing = NO;
+        self->finishing = NO;
     }
     return self;
 }
 
--(void) start
+-(void) dealloc
+{
+    [streamTitle release];
+    [thread release];
+    [super dealloc];
+}
+
+-(void) startWithURL:(NSString *) url
 {
     if (playing)
     {
@@ -32,8 +41,10 @@
         [self stop];
     }
     
+    urlString = url;
+  
     thread = [[NSThread alloc] initWithTarget:self selector:@selector(streamThread) object:nil];
-    [thread setName:@"Stream Thread"];
+    [thread setName:@"StreamThread"];
     [thread start];
 }
 
@@ -45,29 +56,38 @@
     [conn cancel];
 
     // finishing audio playback
-    AudioPartFinish();
+    AudioPartFinish(callbackFinished);
     
     // waiting connection callback exit
-    while (!readyToFinish) {
+    while (!callbackFinished) {
         [NSThread sleepForTimeInterval: 0.2];
     }
     // cleanup
-    if (streamTitle) [streamTitle release];
-    //if (metaData) free(metaData);
     if (contentType) [contentType release];
     if (bitRate) [bitRate release];
     if (icyMetaInt) [icyMetaInt release];
-        
+    
     // Exit run loop
     [conn unscheduleFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [conn release];
     
-    // Waiting for finishing thread method
-    while (![thread isFinished]) {
-        [NSThread sleepForTimeInterval: 0.2];
+    D1 NSLog(@"thread finished? %d", [thread isFinished]);
+   
+    // waiting for finishing thread body method
+    [NSThread sleepForTimeInterval: 0.2];
+    
+    if (![thread isFinished]) { // run loop unblock
+        if (CFRunLoopIsWaiting(runLoop)) {
+            D1 NSLog(@"RunLoopIsWaiting.. Force to stop it");
+            D1 CFShow(runLoop);
+            CFRunLoopStop(runLoop);
+        }
+
     }
+      
     [thread release];
     
+    finishing = NO;
     playing = NO;
 }
 
@@ -78,6 +98,8 @@
     
     
     [self runAudioStream];
+    
+    runLoop = [[NSRunLoop currentRunLoop] getCFRunLoop];
     
     // block here to monitor and handle NSURLConnection [performselector] methods..
     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
@@ -104,6 +126,9 @@
     
     // configure network connection
     
+    NSURL *url = [NSURL URLWithString: urlString];
+
+    
     //NSURL *url = [NSURL URLWithString: @"http://91.190.117.131:8000/live"];
     //NSURL *url = [NSURL URLWithString: @"http://91.190.117.131:8000/64"];
     //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8100/rr_ogg"];
@@ -116,7 +141,7 @@
     //NSURL *url = [NSURL URLWithString: @"http://79.143.70.114:8000/detifm-dvbs-64k.aac"];
     //NSURL *url = [NSURL URLWithString: @"http://radiovkontakte.ru:8000/rvkaac"];
     //NSURL *url = [NSURL URLWithString: @"http://radiovkontakte.ru:8000/rvkmp3"];
-    NSURL *url = [NSURL URLWithString: @"http://serveur.wanastream.com:24100"];
+    //NSURL *url = [NSURL URLWithString: @"http://serveur.wanastream.com:24100"];
     //NSURL *url = [NSURL URLWithString: @"http://listen.radiogora.ru:8000/electro192"];
     //NSURL *url = [NSURL URLWithString: @"http://listen.radiogora.ru:8000/electro320"];
     
@@ -163,12 +188,12 @@
     
     // states
     finishing = NO;
-    readyToFinish = NO;
     playing = YES;
 }
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
+    callbackFinished = NO;
     NSLog( @"Response");
     
     NSHTTPURLResponse *http_resp = ( NSHTTPURLResponse *) response;
@@ -201,6 +226,8 @@
     
     
     AudioPartNewStream(streamType, br);
+    
+    callbackFinished = YES;
 }
 
 
@@ -272,15 +299,12 @@
     char *originCutData = NULL;
     int cutDataLen = 0;
     
-    if (finishing) {
-        readyToFinish = YES;
-        return;
-    }
+    callbackFinished = NO;
     
     allData = [data bytes];
     allDataLen = [data length];
     
-    NSLog( @"Data, %d", allDataLen );
+    D1 NSLog( @"Data, %d", allDataLen );
     
     if (checkIfShoutcast) { // parse SHOUTcast http header
         NSString *dataWithHeader = [[NSString alloc] initWithBytes:allData length:allDataLen encoding:NSASCIIStringEncoding];
@@ -441,9 +465,7 @@
     // call us ~ every 300 miliseconds
     //[NSThread sleepForTimeInterval:0.3];
     
-    if (finishing) {
-        readyToFinish = YES;
-    }
+    callbackFinished = YES;
 }
 
 - (void) getStreamTitle
@@ -467,26 +489,32 @@
     
     NSLog(@"StreamTitle=%@", streamTitle);
     
-    [streamTitle retain];
     [md release];
 }
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    callbackFinished = NO;
+    
     NSLog( @"Finished" );
     if (textHtml) {
         NSLog(@"server mountpoint down");
         textHtml = NO;
     }
     [conn release];
+    
+    callbackFinished = YES;
 }
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+    callbackFinished = NO;
+    
     NSLog( @"Error: %@", [error localizedDescription] );
     [conn unscheduleFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [conn release];
     // FIXME try runAudioStream again
+    callbackFinished = YES;
 }
 
 

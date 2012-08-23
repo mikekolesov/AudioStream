@@ -22,6 +22,9 @@
 		4C01E4CB15C66ECE00E94343 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01E4CA15C66ECE00E94343 /* AudioToolbox.framework */; };
 		4C01E4CE15C6719F00E94343 /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4CD15C6719F00E94343 /* AudioPart.c */; };
 		4C01E4E715CBDE1500E94343 /* ASStreamThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4E615CBDE1500E94343 /* ASStreamThread.m */; };
+		4C020FFD15E62AD20087C9A2 /* Challenges.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4C020FFC15E62AD20087C9A2 /* Challenges.txt */; };
+		4C69B89115E3B8B300EADFCF /* ASEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */; };
+		4C69B89215E3B8B300EADFCF /* ASEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,10 @@
 		4C01E4CD15C6719F00E94343 /* AudioPart.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AudioPart.c; sourceTree = "<group>"; };
 		4C01E4E515CBDE1500E94343 /* ASStreamThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ASStreamThread.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C01E4E615CBDE1500E94343 /* ASStreamThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ASStreamThread.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4C020FFC15E62AD20087C9A2 /* Challenges.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Challenges.txt; sourceTree = "<group>"; };
+		4C69B88E15E3B8B300EADFCF /* ASEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASEditViewController.h; sourceTree = "<group>"; };
+		4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASEditViewController.m; sourceTree = "<group>"; };
+		4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASEditViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,16 +107,20 @@
 				4C01E4AD15C66DB600E94343 /* ASAppDelegate.m */,
 				4C01E4AF15C66DB600E94343 /* ASMasterViewController.h */,
 				4C01E4B015C66DB600E94343 /* ASMasterViewController.m */,
-				4C01E4E515CBDE1500E94343 /* ASStreamThread.h */,
-				4C01E4E615CBDE1500E94343 /* ASStreamThread.m */,
-				4C01E4B215C66DB600E94343 /* ASDetailViewController.h */,
-				4C01E4B315C66DB600E94343 /* ASDetailViewController.m */,
 				4C01E4B515C66DB600E94343 /* ASMasterViewController_iPhone.xib */,
 				4C01E4B815C66DB600E94343 /* ASMasterViewController_iPad.xib */,
+				4C01E4B215C66DB600E94343 /* ASDetailViewController.h */,
+				4C01E4B315C66DB600E94343 /* ASDetailViewController.m */,
 				4C01E4BB15C66DB600E94343 /* ASDetailViewController_iPhone.xib */,
 				4C01E4BE15C66DB600E94343 /* ASDetailViewController_iPad.xib */,
+				4C69B88E15E3B8B300EADFCF /* ASEditViewController.h */,
+				4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */,
+				4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */,
+				4C01E4E515CBDE1500E94343 /* ASStreamThread.h */,
+				4C01E4E615CBDE1500E94343 /* ASStreamThread.m */,
 				4C01E4CC15C6717700E94343 /* AudioPart.h */,
 				4C01E4CD15C6719F00E94343 /* AudioPart.c */,
+				4C020FFC15E62AD20087C9A2 /* Challenges.txt */,
 				4C01E4A415C66DB600E94343 /* Supporting Files */,
 			);
 			path = AudioStream;
@@ -183,6 +194,8 @@
 				4C01E4BA15C66DB600E94343 /* ASMasterViewController_iPad.xib in Resources */,
 				4C01E4BD15C66DB600E94343 /* ASDetailViewController_iPhone.xib in Resources */,
 				4C01E4C015C66DB600E94343 /* ASDetailViewController_iPad.xib in Resources */,
+				4C69B89215E3B8B300EADFCF /* ASEditViewController.xib in Resources */,
+				4C020FFD15E62AD20087C9A2 /* Challenges.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +212,7 @@
 				4C01E4B415C66DB600E94343 /* ASDetailViewController.m in Sources */,
 				4C01E4CE15C6719F00E94343 /* AudioPart.c in Sources */,
 				4C01E4E715CBDE1500E94343 /* ASStreamThread.m in Sources */,
+				4C69B89115E3B8B300EADFCF /* ASEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +319,7 @@
 				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -317,6 +332,7 @@
 				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

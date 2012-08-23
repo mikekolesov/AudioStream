@@ -10,6 +10,8 @@
 
 #import "ASDetailViewController.h"
 
+#import "ASEditViewController.h"
+
 
 @interface ASMasterViewController () {
     NSMutableArray *_objects;
@@ -23,7 +25,13 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Master", @"Master");
+        //self.title = NSLocalizedString(@"Master", @"Master");
+        self.title = @"Audio Stream";
+        
+        // change back title
+        UIBarButtonItem *bb = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+        self.navigationItem.backBarButtonItem = bb;
+        
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             self.clearsSelectionOnViewWillAppear = NO;
             self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
@@ -42,8 +50,14 @@
 
 - (void)viewDidLoad
 {
-    streamThread = [[ASStreamThread alloc] init];
-    [streamThread start];
+    
+    //self.editViewController->streamThread = streamThread;
+    
+    
+    
+    //[streamThread startWithURL:@"http://online.radiorecord.ru:8101/rr_128"];
+    
+    /*
     [NSThread sleepForTimeInterval:10.0];
     [streamThread stop];
     [NSThread sleepForTimeInterval:1.0];
@@ -54,7 +68,7 @@
     [streamThread start];
     [NSThread sleepForTimeInterval:10.0];
     [streamThread stop];
-
+*/
     /*
     [NSThread sleepForTimeInterval:2.0];
     [streamThread performSelector:@selector(performTest) onThread: streamThread.thread withObject:nil waitUntilDone:NO];
@@ -88,9 +102,16 @@
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
-    [_objects insertObject:[NSDate date] atIndex:0];
+    NSMutableDictionary *dic = [[[NSMutableDictionary alloc] init] autorelease];
+    [dic setValue:@"New stream" forKey:@"StreamName"];
+    [_objects insertObject:dic atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView insertRowsAtIndexPaths: @[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    //[NSThread sleepForTimeInterval:0.3];
+    [self.navigationController pushViewController:self.detailViewController animated:NO];
+    //[NSThread sleepForTimeInterval:0.3];
+    [self.navigationController pushViewController:self.detailViewController.editViewController animated:YES];
+    
 }
 
 #pragma mark - Table View
@@ -115,14 +136,17 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            //cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         }
     }
 
 
-    NSDate *object = [_objects objectAtIndex:indexPath.row];
-    cell.textLabel.text = [object description];
+    //NSDate *object = [_objects objectAtIndex:indexPath.row];
+    NSDictionary *object = [_objects objectAtIndex:indexPath.row];
+    cell.textLabel.text = [object objectForKey:@"StreamName"];
     return cell;
 }
+
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -158,13 +182,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDate *object = [_objects objectAtIndex:indexPath.row];
+    NSDictionary *object = [_objects objectAtIndex:indexPath.row];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-	    if (!self.detailViewController) {
-	        self.detailViewController = [[[ASDetailViewController alloc] initWithNibName:@"ASDetailViewController_iPhone" bundle:nil] autorelease];
-	    }
-	    self.detailViewController.detailItem = object;
+        
+        self.detailViewController.detailItem = [object objectForKey:@"StreamName"];
         [self.navigationController pushViewController:self.detailViewController animated:YES];
+        NSLog(@"DetailViewController pushed");
     } else {
         self.detailViewController.detailItem = object;
     }

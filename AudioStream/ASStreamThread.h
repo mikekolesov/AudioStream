@@ -7,15 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AudioPart.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface ASStreamThread : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 {
-    NSThread *thread;
-    NSURLConnection *conn;
+    NSThread *thread;           // stream thread object
+    CFRunLoopRef runLoop;       // run loop
+    NSURLConnection *conn;      // stream connection 
+    NSString *urlString;        // stream url string
     
     BOOL finishing;             // flag to finish audio processing
-    BOOL readyToFinish;         // ack flag of finishing
+    BOOL callbackFinished;       // exit of connection callback
     
     BOOL playing;
     
@@ -40,7 +42,7 @@
     int tornMetaSize;           // size of torn (second) portion of metadata
 }
 
--(void) start;
+-(void) startWithURL: (NSString *) url;
 -(void) stop;
 -(void) test;
 -(void) performTest;
@@ -48,5 +50,6 @@
 @property (retain, nonatomic) NSThread *thread;
 @property (assign, nonatomic) BOOL playing;
 @property (retain, nonatomic) NSString *streamTitle;
+@property (retain, nonatomic) NSString *urlString;
 
 @end

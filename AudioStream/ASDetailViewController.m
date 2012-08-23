@@ -7,6 +7,7 @@
 //
 
 #import "ASDetailViewController.h"
+#import "ASEditViewController.h"
 
 @interface ASDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -17,10 +18,12 @@
 
 - (void)dealloc
 {
+    [_editViewController release];
     [_detailItem release];
     [_detailDescriptionLabel release];
     [_masterPopoverController release];
     [super dealloc];
+    NSLog(@"DetailViewController dealloc");
 }
 
 #pragma mark - Managing the detail item
@@ -53,8 +56,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+
+    
     [self configureView];
 }
+
 
 - (void)viewDidUnload
 {
@@ -76,11 +82,27 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Detail", @"Detail");
+        //self.title = NSLocalizedString(@"Detail", @"Detail");
+        self.title = @"Station";
+        //UIImage *settingsImage = [UIImage imageNamed:@"SettingsIcon.icns"];
+//        UIBarButtonItem * settingsButton = [[[UIBarButtonItem alloc] initWithImage:settingsImage style:UIBarButtonItemStylePlain target:self action:@selector(editSettings)] autorelease ];
+        
+        // change back title
+        UIBarButtonItem *bb = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+        self.navigationItem.backBarButtonItem = bb;
+        
+        UIBarButtonItem * settingsButton = [[[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(editSettings)] autorelease];
+        self.navigationItem.rightBarButtonItem = settingsButton;
     }
     return self;
 }
-							
+	
+-(void) editSettings
+{
+    [self.navigationController pushViewController:self.editViewController animated:YES];
+}
+
+
 #pragma mark - Split view
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController

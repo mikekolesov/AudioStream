@@ -12,7 +12,7 @@
 
 #import "ASDetailViewController.h"
 
-#import "AudioPart.h"
+#import "ASEditViewController.h"
 
 
 @implementation ASAppDelegate
@@ -22,19 +22,42 @@
     [_window release];
     [_navigationController release];
     [_splitViewController release];
+    [_streamThread release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // setup audio session
-    AudioPartInitAudioSession();
+    // set up audio session
+    CheckError(AudioSessionInitialize(NULL,
+                                      kCFRunLoopDefaultMode,
+                                      MyInterruptionListener,
+                                      self),
+               "couldn't initialize audio session");
     
+    UInt32 category = kAudioSessionCategory_MediaPlayback;
+    CheckError(AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,
+                                       sizeof(category),
+                                       &category),
+               "Couldn't set category on audio session");
+
+    
+    // stream alloc
+    self.streamThread = [[ASStreamThread alloc] init];
+    
+
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         ASMasterViewController *masterViewController = [[[ASMasterViewController alloc] initWithNibName:@"ASMasterViewController_iPhone" bundle:nil] autorelease];
         self.navigationController = [[[UINavigationController alloc] initWithRootViewController:masterViewController] autorelease];
+        ASDetailViewController *detailViewController = [[[ASDetailViewController alloc] initWithNibName:@"ASDetailViewController_iPhone" bundle:nil] autorelease];
+        
+        masterViewController.detailViewController = detailViewController;
+        
+        ASEditViewController *evc = [[[ASEditViewController alloc] initWithNibName:@"ASEditViewController" bundle:nil] autorelease];
+        masterViewController.detailViewController.editViewController = evc;
+        
         self.window.rootViewController = self.navigationController;
     } else {
         ASMasterViewController *masterViewController = [[[ASMasterViewController alloc] initWithNibName:@"ASMasterViewController_iPad" bundle:nil] autorelease];
@@ -106,5 +129,69 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+// generic error handler - if err is nonzero, prints error message and exits program.
+static void CheckError(OSStatus error, const char *operation)
+{
+	if (error == noErr) return;
+	
+	char str[20];
+	// see if it appears to be a 4-char-code
+	*(UInt32 *)(str + 1) = CFSwapInt32HostToBig(error);
+	if (isprint(str[1]) && isprint(str[2]) && isprint(str[3]) && isprint(str[4])) {
+		str[0] = str[5] = '\'';
+		str[6] = '\0';
+	} else
+		// no, format it as an integer
+		sprintf(str, "%d", (int)error);
+    
+	fprintf(stderr, "Error: %s (%s)\n", operation, str);
+    
+	//exit(1); FIXME
+}
+
+static void MyInterruptionListener (void *inUserData, UInt32 inInterruptionState) {
+	
+    OSStatus propertySetError = 0;
+    UInt32 allowMixing = true;
+    ASAppDelegate *app = (ASAppDelegate *)inUserData;
+    
+	D3 printf ("Interrupted! inInterruptionState=%ld\n", inInterruptionState);
+    
+    
+	switch (inInterruptionState) {
+		case kAudioSessionBeginInterruption:
+            D3 printf("kAudioSession_Begin_Interruption\n");
+            [app.streamThread stop];
+            break;
+            
+		case kAudioSessionEndInterruption:
+            printf("kAudioSession_End_Interruption\n");
+            
+            // backgroung interrupt workaround. part 1
+            if ( [[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground ) {
+             allowMixing = true;
+             propertySetError = AudioSessionSetProperty( kAudioSessionProperty_OverrideCategoryMixWithOthers,
+                                                        sizeof (allowMixing),
+                                                        &allowMixing);
+            }
+            
+            [app.streamThread startWithURL: app.streamThread.urlString];
+            
+            // backgroung interrupt workaround. part 2
+            if ( [[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground ) {
+                allowMixing = false;
+                propertySetError = AudioSessionSetProperty( kAudioSessionProperty_OverrideCategoryMixWithOthers,
+                                                            sizeof (allowMixing),
+                                                            &allowMixing);
+            }
+			
+            break;
+            
+		default:
+			break;
+	};
+}
+
 
 @end

@@ -10,7 +10,7 @@
 
 MyData* myAudioPartData;
 
-void MyPropertyListenerProc(	void *							inClientData,
+void MyPropertyListenerProc(void *							inClientData,
                             AudioFileStreamID				inAudioFileStream,
                             AudioFileStreamPropertyID		inPropertyID,
                             UInt32 *						ioFlags)
@@ -19,16 +19,14 @@ void MyPropertyListenerProc(	void *							inClientData,
 	MyData* myData = (MyData*)inClientData;
 	OSStatus err = noErr;
     
-	printf("found property '%c%c%c%c'\n", (char)((inPropertyID>>24)&255), (char)((inPropertyID>>16)&255), (char)((inPropertyID>>8)&255), (char)(inPropertyID&255));
+	printf("found property '%c%c%c%c'\n", (char)((inPropertyID>>24)&255),
+           (char)((inPropertyID>>16)&255), (char)((inPropertyID>>8)&255),
+           (char)(inPropertyID&255));
     
 	switch (inPropertyID) {
   
 		case kAudioFileStreamProperty_ReadyToProducePackets :
 		{
-            // states
-            myData->finishing = false;
-            myData->finishingReady = false;
-            
             // the file stream parser is now ready to produce audio packets.
 			// get the stream format.
 			AudioStreamBasicDescription asbd;
@@ -44,7 +42,7 @@ void MyPropertyListenerProc(	void *							inClientData,
 			
 			// allocate audio queue buffers
             myData->bufSize = (myData->bitRate / 8) * 1024;
-			for (unsigned int i = 0; i < kNumAQBufs; ++i) {
+            for (unsigned int i = 0; i < kNumAQBufs; ++i) {
 				err = AudioQueueAllocateBuffer(myData->audioQueue, myData->bufSize, &myData->audioQueueBuffer[i]);
 				if (err) { PRINTERROR("AudioQueueAllocateBuffer"); myData->failed = true; break; }
 			}
@@ -78,7 +76,7 @@ void MyPropertyListenerProc(	void *							inClientData,
 	}
 }
 
-void MyPacketsProc(				void *							inClientData,
+void MyPacketsProc(	void *							inClientData,
                    UInt32							inNumberBytes,
                    UInt32							inNumberPackets,
                    const void *					inInputData,
@@ -86,7 +84,12 @@ void MyPacketsProc(				void *							inClientData,
 {
 	// this is called by audio file stream when it finds packets of audio
 	MyData* myData = (MyData*)inClientData;
-	printf("got data.  bytes: %ld  packets: %ld\n", inNumberBytes, inNumberPackets);
+	
+    if (myData->finishing) {
+        myData->finishingReady = true;
+        return;
+    }
+    D1 printf("got data.  bytes: %ld  packets: %ld\n", inNumberBytes, inNumberPackets);
 	// the following code assumes we're streaming VBR data. for CBR data, you'd need another code branch here.
     
 	for (int i = 0; i < inNumberPackets; ++i) {
@@ -97,11 +100,14 @@ void MyPacketsProc(				void *							inClientData,
 		size_t bufSpaceRemaining = myData->bufSize - myData->bytesFilled;
 		if (bufSpaceRemaining < packetSize)
         {
-            printf("buffer space ended\n");
+            D1 printf("buffer space ended\n");
 			MyEnqueueBuffer(myData); 
 			WaitForFreeBuffer(myData); 
 		}
-		
+		if (myData->finishing) {
+            myData->finishingReady = true;
+            return;
+        }
 		// copy data to the audio queue buffer
 		AudioQueueBufferRef fillBuf = myData->audioQueueBuffer[myData->fillBufferIndex];
 		memcpy((char*)fillBuf->mAudioData + myData->bytesFilled, (const char*)inInputData + packetOffset, packetSize);
@@ -116,7 +122,7 @@ void MyPacketsProc(				void *							inClientData,
 		size_t packetsDescsRemaining = kAQMaxPacketDescs - myData->packetsFilled;
 		if (packetsDescsRemaining == 0)
         {
-            printf("max packet descs reached\n");
+            D1 printf("max packet descs reached\n");
 			MyEnqueueBuffer(myData);
 			WaitForFreeBuffer(myData);
 		}
@@ -152,16 +158,12 @@ OSStatus StartQueueIfNeeded(MyData* myData)
             err = AudioQueueStart(myData->audioQueue, NULL);
             if (err) { PRINTERROR("AudioQueueStart"); myData->failed = true; return err; }
             myData->started = true;
-            printf("started\n");
+            D1 printf("started\n");
         }
         else
         {
-            printf("not started. not enough buffers.. %d\n", curPreStreamed );
+            D1 printf("not started. not enough buffers.. %d\n", curPreStreamed );
         }
-   
-
-        
-	
 	}
 	return err;
 }
@@ -177,11 +179,11 @@ OSStatus MyEnqueueBuffer(MyData* myData)
     err = AudioQueueEnqueueBuffer(myData->audioQueue, fillBuf, myData->packetsFilled, myData->packetDescs);
 	if (err) { PRINTERROR("AudioQueueEnqueueBuffer"); myData->failed = true; return err; }
     
-    printf("enqueued %zd packets %zd bytes ", myData->packetsFilled, myData->bytesFilled );
+    D2 printf("enqueued %zd packets %zd bytes ", myData->packetsFilled, myData->bytesFilled );
     for (int a = 0; a < kNumAQBufs; a++) {
-        printf("%d ", myData->inuse[a]);
+        D2 printf("%d ", myData->inuse[a]);
     }
-    printf("\n");
+    D2 printf("\n");
 	
     StartQueueIfNeeded(myData);
 	
@@ -197,10 +199,10 @@ void WaitForFreeBuffer(MyData* myData)
 	myData->packetsFilled = 0;		// reset packets filled
     
 	// wait until next buffer is not in use
-	printf("->lock\n");
+	D1 printf("->lock\n");
 	pthread_mutex_lock(&myData->mutex);
 	while (myData->inuse[myData->fillBufferIndex]) {
-		printf("... WAITING ...\n");
+		D1 printf("... WAITING ...\n");
 		pthread_cond_wait(&myData->cond, &myData->mutex);
         if (myData->finishing) {
             pthread_mutex_unlock(&myData->mutex);
@@ -209,7 +211,7 @@ void WaitForFreeBuffer(MyData* myData)
         
 	}
 	pthread_mutex_unlock(&myData->mutex);
-	printf("<-unlock\n");
+	D1 printf("<-unlock\n");
   
 }
 
@@ -223,7 +225,7 @@ int MyFindQueueBuffer(MyData* myData, AudioQueueBufferRef inBuffer)
 }
 
 
-void MyAudioQueueOutputCallback(	void*					inClientData,
+void MyAudioQueueOutputCallback(void*					inClientData,
                                 AudioQueueRef			inAQ,
                                 AudioQueueBufferRef		inBuffer)
 {
@@ -237,7 +239,7 @@ void MyAudioQueueOutputCallback(	void*					inClientData,
 	// signal waiting thread that the buffer is free.
 	pthread_mutex_lock(&myData->mutex);
 	myData->inuse[bufIndex] = false;
-    printf("%d free\n", bufIndex);
+    D1 printf("%d free\n", bufIndex);
     
     moreToPlay = 0;
     for (int a = 0; a < kNumAQBufs ; a++)
@@ -251,7 +253,7 @@ void MyAudioQueueOutputCallback(	void*					inClientData,
     {
         myData->started = 0;
         AudioQueuePause(myData->audioQueue);
-        printf(">>paused\n");
+        D1 printf(">>paused\n");
     }
 	
     pthread_cond_signal(&myData->cond);
@@ -259,8 +261,8 @@ void MyAudioQueueOutputCallback(	void*					inClientData,
     
 }
 
-void MyAudioQueueIsRunningCallback(		void*					inClientData,
-                                   AudioQueueRef			inAQ,
+void MyAudioQueueIsRunningCallback(	void*				inClientData,
+                                   AudioQueueRef		inAQ,
                                    AudioQueuePropertyID	inID)
 {
 	MyData* myData = (MyData*)inClientData;
@@ -276,92 +278,6 @@ void MyAudioQueueIsRunningCallback(		void*					inClientData,
 	}
 }
 
-// generic error handler - if err is nonzero, prints error message and exits program.
-static void CheckError(OSStatus error, const char *operation)
-{
-	if (error == noErr) return;
-	
-	char str[20];
-	// see if it appears to be a 4-char-code
-	*(UInt32 *)(str + 1) = CFSwapInt32HostToBig(error);
-	if (isprint(str[1]) && isprint(str[2]) && isprint(str[3]) && isprint(str[4])) {
-		str[0] = str[5] = '\'';
-		str[6] = '\0';
-	} else
-		// no, format it as an integer
-		sprintf(str, "%d", (int)error);
-    
-	fprintf(stderr, "Error: %s (%s)\n", operation, str);
-    
-	exit(1);
-}
-
-static void MyInterruptionListener (void *inUserData,
-                                    UInt32 inInterruptionState) {
-	
-    OSStatus propertySetError = 0;
-    UInt32 allowMixing = true;
-    MyData* myData = (MyData*)inUserData;
-    
-	printf ("Interrupted! inInterruptionState=%ld\n", inInterruptionState);
-    
-    /*FIXME
-     
-     CH10_iOSBackgroundingToneAppDelegate *appDelegate = (CH10_iOSBackgroundingToneAppDelegate*)inUserData;*/
-    
-	switch (inInterruptionState) {
-		case kAudioSessionBeginInterruption:
-            printf("kAudioSession_Begin_Interruption\n");
-			break;
-		case kAudioSessionEndInterruption:
-            printf("kAudioSession_End_Interruption\n");
-           // backgroung interrupt workaround. part 1
-  /*          if ( [[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground )
-            {*/
-                /*
-                allowMixing = true;
-                propertySetError = AudioSessionSetProperty
-                ( kAudioSessionProperty_OverrideCategoryMixWithOthers,
-                 sizeof (allowMixing),
-                 &allowMixing);*/
-            //}*/
-            
-            //CheckError(AudioQueueStart(myData->audioQueue, 0),
-             //"Couldn't restart audio queue");
-            
-            
-            //AudioPartToForeground();
-            
-            
-   /*FIXME         // backgroung interrupt workaround. part 2
-            if ( [[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground )
-            {*/
-                
-            /*allowMixing = false;
-                propertySetError = AudioSessionSetProperty
-                ( kAudioSessionProperty_OverrideCategoryMixWithOthers,
-                 sizeof (allowMixing),
-                 &allowMixing);*/
-           // }*/
-			
-            break;
-		default:
-			break;
-	};
-}
-
-int AudioPartToForeground()
-{
-    CheckError(AudioSessionSetActive(true), "Couldn't re-set audio session active");
-
-    
-    if (myAudioPartData->started) {
-        CheckError(AudioQueueStart(myAudioPartData->audioQueue, 0), "Couldn't restart audio queue");
-    }
-    
-    
-    return 0;
-}
 
 int AudioPartInit()
 {
@@ -373,24 +289,6 @@ int AudioPartInit()
 	pthread_cond_init(&myAudioPartData->cond, NULL);
 	pthread_cond_init(&myAudioPartData->done, NULL);
 	
-    return 0;
-}
-
-int AudioPartInitAudioSession()
-{
-    // set up audio session
-    CheckError(AudioSessionInitialize(NULL,
-                                      kCFRunLoopDefaultMode,
-                                      MyInterruptionListener,
-                                      &myAudioPartData),
-               "couldn't initialize audio session");
-    
-    UInt32 category = kAudioSessionCategory_MediaPlayback;
-    CheckError(AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,
-                                       sizeof(category),
-                                       &category),
-               "Couldn't set category on audio session");
-    
     return 0;
 }
 
@@ -418,38 +316,37 @@ int AudioPartParser( const void * buf, ssize_t bytesRecvd )
 {
     
     OSStatus err = 0;
-	//while (!myData->failed) {
-		// read data from the socket
-		printf("->parser recv\n");
-	/*	ssize_t bytesRecvd = recv(connection_socket, buf, kRecvBufSize, 0);
-		printf("bytesRecvd %d\n", bytesRecvd);
-	*/
+	
+    D1 printf("->parser recv\n");
+	
     if (bytesRecvd <= 0)
     {
         PRINTERROR("AudioPartParser");
         return 1;
-    } // eof or failure
+    } 
 		
-		// parse the data. this will call MyPropertyListenerProc and MyPacketsProc
-		err = AudioFileStreamParseBytes(myAudioPartData->audioFileStream, bytesRecvd, buf, 0);
-		if (err) { PRINTERROR("AudioFileStreamParseBytes"); return 1; }
-	//}
+    // parse the data. this will call MyPropertyListenerProc and MyPacketsProc
+    err = AudioFileStreamParseBytes(myAudioPartData->audioFileStream, bytesRecvd, buf, 0);
+    if (err) { PRINTERROR("AudioFileStreamParseBytes"); return 1; }
+	
     return 0;
 }
 
 
-int AudioPartFinish()
+int AudioPartFinish( bool immediate )
 {
     OSStatus err = 0;
     
-    myAudioPartData->finishing = true;
-    pthread_mutex_lock(&myAudioPartData->mutex);
-    pthread_cond_signal(&myAudioPartData->cond);
-    pthread_mutex_unlock(&myAudioPartData->mutex);
-    
-    while (!myAudioPartData->finishingReady) {
-        // wait for ending processing
-        usleep(200);
+    if (!immediate) {
+        myAudioPartData->finishing = true;
+        pthread_mutex_lock(&myAudioPartData->mutex);
+        pthread_cond_signal(&myAudioPartData->cond);
+        pthread_mutex_unlock(&myAudioPartData->mutex);
+        
+        while (!myAudioPartData->finishingReady) {
+            // wait for ending processing
+            usleep(200*1000);
+        }
     }
 
 	printf("flushing\n");
