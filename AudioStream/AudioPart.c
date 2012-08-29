@@ -10,6 +10,7 @@
 
 MyData* myAudioPartData;
 
+
 void MyPropertyListenerProc(void *							inClientData,
                             AudioFileStreamID				inAudioFileStream,
                             AudioFileStreamPropertyID		inPropertyID,
@@ -137,6 +138,8 @@ OSStatus StartQueueIfNeeded(MyData* myData)
 {
 	OSStatus err = noErr;
     int curPreStreamed;
+    UInt32 allow = true;
+
     
 	if (!myData->started) {		// start the queue if it has not been started already
         
@@ -155,8 +158,26 @@ OSStatus StartQueueIfNeeded(MyData* myData)
         
         if (curPreStreamed >= myData->preStreamedBuffers )
         {
+            if (myData->allowMixing) { // backgroung interrupt workaround. part 1
+                D3 printf("allow mixing workaround\n");
+                allow = true;
+                err = AudioSessionSetProperty( kAudioSessionProperty_OverrideCategoryMixWithOthers,
+                                                sizeof (allow),
+                                                &allow);
+                err = AudioSessionSetActive(true);
+            }
+            
             err = AudioQueueStart(myData->audioQueue, NULL);
             if (err) { PRINTERROR("AudioQueueStart"); myData->failed = true; return err; }
+            
+            if (myData->allowMixing) { // backgroung interrupt workaround. part 2
+                allow = false;
+                err = AudioSessionSetProperty( kAudioSessionProperty_OverrideCategoryMixWithOthers,
+                                                sizeof (allow),
+                                                &allow);
+                myData->allowMixing = false;
+            }
+            
             myData->started = true;
             D1 printf("started\n");
         }
@@ -279,10 +300,13 @@ void MyAudioQueueIsRunningCallback(	void*				inClientData,
 }
 
 
-int AudioPartInit()
+int AudioPartInit(bool allowMixing)
 {
 	// allocate a struct for storing our state
 	myAudioPartData = (MyData*)calloc(1, sizeof(MyData));
+    
+    // allow mixing with other apps for a moment
+    myAudioPartData->allowMixing = allowMixing;
 	
 	// initialize a mutex and condition so that we can block on buffers in use.
 	pthread_mutex_init(&myAudioPartData->mutex, NULL);

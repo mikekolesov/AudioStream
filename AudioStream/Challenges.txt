@@ -1,6 +1,6 @@
 Tasks
-Check start/stop audio engine with phone call interruption. Profile. Commit.
 Add temporary icon
+Replace PRINTERROR by CheckError
 
 Problems
 320 kbps stream pauses rarely. Net speed is enogth..

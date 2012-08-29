@@ -152,8 +152,6 @@ static void CheckError(OSStatus error, const char *operation)
 
 static void MyInterruptionListener (void *inUserData, UInt32 inInterruptionState) {
 	
-    OSStatus propertySetError = 0;
-    UInt32 allowMixing = true;
     ASAppDelegate *app = (ASAppDelegate *)inUserData;
     
 	D3 printf ("Interrupted! inInterruptionState=%ld\n", inInterruptionState);
@@ -166,26 +164,13 @@ static void MyInterruptionListener (void *inUserData, UInt32 inInterruptionState
             break;
             
 		case kAudioSessionEndInterruption:
-            printf("kAudioSession_End_Interruption\n");
-            
-            // backgroung interrupt workaround. part 1
-            if ( [[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground ) {
-             allowMixing = true;
-             propertySetError = AudioSessionSetProperty( kAudioSessionProperty_OverrideCategoryMixWithOthers,
-                                                        sizeof (allowMixing),
-                                                        &allowMixing);
-            }
+            D3 printf("kAudioSession_End_Interruption\n");
+
+            D3 NSLog(@"set allow mixining");
+            app.streamThread.allowMixing = TRUE;
             
             [app.streamThread startWithURL: app.streamThread.urlString];
-            
-            // backgroung interrupt workaround. part 2
-            if ( [[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground ) {
-                allowMixing = false;
-                propertySetError = AudioSessionSetProperty( kAudioSessionProperty_OverrideCategoryMixWithOthers,
-                                                            sizeof (allowMixing),
-                                                            &allowMixing);
-            }
-			
+
             break;
             
 		default:

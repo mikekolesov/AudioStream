@@ -15,6 +15,7 @@
 @synthesize playing;
 @synthesize streamTitle;
 @synthesize urlString;
+@synthesize allowMixing;
 
 - (id) init
 {
@@ -87,6 +88,7 @@
       
     [thread release];
     
+    allowMixing = NO;
     finishing = NO;
     playing = NO;
 }
@@ -122,7 +124,7 @@
 {
     // init audio data
     
-    AudioPartInit();
+    AudioPartInit(allowMixing);
     
     // configure network connection
     
@@ -516,6 +518,7 @@
     // FIXME try runAudioStream again
     callbackFinished = YES;
 }
+
 
 
 @end

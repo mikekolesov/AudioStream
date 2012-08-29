@@ -50,6 +50,9 @@ struct MyData
 	pthread_cond_t done;			// a condition varable for handling the inuse flags
     bool finishing;                 // flag to finish audio data processing
     bool finishingReady;            // flag to show finishing is ready
+    
+    bool allowMixing;               // allow app mixing with others in background mode
+                                    // when phone interruption ended
 };
 typedef struct MyData MyData;
 
@@ -71,10 +74,9 @@ void MyPacketsProc(	void *						inClientData,
 OSStatus MyEnqueueBuffer(MyData* myData);
 void WaitForFreeBuffer(MyData* myData);
 
-int AudioPartInit();
+int AudioPartInit(bool allowMixing);
 int AudioPartParser( const void * buf, ssize_t bytesRecvd );
 int AudioPartFinish( bool immediate );
 int AudioPartNewStream ( AudioFileTypeID inStreamTypeHint, int bitRate );
-
 
 #endif
