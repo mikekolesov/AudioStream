@@ -22,7 +22,7 @@
 		4C01E4CB15C66ECE00E94343 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01E4CA15C66ECE00E94343 /* AudioToolbox.framework */; };
 		4C01E4CE15C6719F00E94343 /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4CD15C6719F00E94343 /* AudioPart.c */; };
 		4C01E4E715CBDE1500E94343 /* ASStreamThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4E615CBDE1500E94343 /* ASStreamThread.m */; };
-		4C020FFD15E62AD20087C9A2 /* Challenges.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4C020FFC15E62AD20087C9A2 /* Challenges.txt */; };
+		4C020FFD15E62AD20087C9A2 /* Project Plan in Resources */ = {isa = PBXBuildFile; fileRef = 4C020FFC15E62AD20087C9A2 /* Project Plan */; };
 		4C0E44DD15F21D2C00865541 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44D915F21D2C00865541 /* Icon-72.png */; };
 		4C0E44DE15F21D2C00865541 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44DA15F21D2C00865541 /* Icon-72@2x.png */; };
 		4C0E44DF15F21D2C00865541 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44DB15F21D2C00865541 /* Icon@2x.png */; };
@@ -55,7 +55,7 @@
 		4C01E4CD15C6719F00E94343 /* AudioPart.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AudioPart.c; sourceTree = "<group>"; };
 		4C01E4E515CBDE1500E94343 /* ASStreamThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ASStreamThread.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C01E4E615CBDE1500E94343 /* ASStreamThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ASStreamThread.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4C020FFC15E62AD20087C9A2 /* Challenges.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Challenges.txt; sourceTree = "<group>"; };
+		4C020FFC15E62AD20087C9A2 /* Project Plan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Project Plan"; sourceTree = "<group>"; };
 		4C0E44D915F21D2C00865541 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		4C0E44DA15F21D2C00865541 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		4C0E44DB15F21D2C00865541 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
@@ -111,6 +111,7 @@
 		4C01E4A315C66DB600E94343 /* AudioStream */ = {
 			isa = PBXGroup;
 			children = (
+				4C020FFC15E62AD20087C9A2 /* Project Plan */,
 				4C01E4AC15C66DB600E94343 /* ASAppDelegate.h */,
 				4C01E4AD15C66DB600E94343 /* ASAppDelegate.m */,
 				4C01E4AF15C66DB600E94343 /* ASMasterViewController.h */,
@@ -128,7 +129,6 @@
 				4C01E4E615CBDE1500E94343 /* ASStreamThread.m */,
 				4C01E4CC15C6717700E94343 /* AudioPart.h */,
 				4C01E4CD15C6719F00E94343 /* AudioPart.c */,
-				4C020FFC15E62AD20087C9A2 /* Challenges.txt */,
 				4C01E4A415C66DB600E94343 /* Supporting Files */,
 			);
 			path = AudioStream;
@@ -207,7 +207,7 @@
 				4C01E4BD15C66DB600E94343 /* ASDetailViewController_iPhone.xib in Resources */,
 				4C01E4C015C66DB600E94343 /* ASDetailViewController_iPad.xib in Resources */,
 				4C69B89215E3B8B300EADFCF /* ASEditViewController.xib in Resources */,
-				4C020FFD15E62AD20087C9A2 /* Challenges.txt in Resources */,
+				4C020FFD15E62AD20087C9A2 /* Project Plan in Resources */,
 				4C0E44DD15F21D2C00865541 /* Icon-72.png in Resources */,
 				4C0E44DE15F21D2C00865541 /* Icon-72@2x.png in Resources */,
 				4C0E44DF15F21D2C00865541 /* Icon@2x.png in Resources */,

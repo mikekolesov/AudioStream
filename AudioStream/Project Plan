@@ -1,0 +1,47 @@
+Problems
+--------
+320 kbps stream pauses rarely. Net speed is enogth..
+
+
+Tasks v1.0 (non-commercial)
+----------
+Add code for stress pushing play/stop button
+
+Add error handling and displaying it to user
+Replace PRINTERROR by CheckError
+
+Design UI views
+Add stream title representing
+
+Add storing to file and loading at start up
+
+Add iCloud support
+Add Mail support and open in-app capability 
+
+Design app icon with audio styled
+Replace temporary app icon with audio styled one
+
+Prepare and submit v1.0 to AppStore
+
+
+Planning in v1.x branch
+-----------------------
+Bug fixing
+
+Add backup and restore previous version of file
+Add restore 'factory' file
+
+Add other icon's sizes (for the spotlight and so on)
+
+In-App purchase of update to v2.x (after 2.0 release)
+
+
+Planning in v2.0 (new branch, commercial)
+----------------
+iPad support
+
+Ogg Vorbis stream support (Tremor decoder)
+
+Landscape mode support
+
+New view controller with UIWebView to show stream server status page
