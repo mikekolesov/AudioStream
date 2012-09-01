@@ -23,6 +23,10 @@
 		4C01E4CE15C6719F00E94343 /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4CD15C6719F00E94343 /* AudioPart.c */; };
 		4C01E4E715CBDE1500E94343 /* ASStreamThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4E615CBDE1500E94343 /* ASStreamThread.m */; };
 		4C020FFD15E62AD20087C9A2 /* Challenges.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4C020FFC15E62AD20087C9A2 /* Challenges.txt */; };
+		4C0E44DD15F21D2C00865541 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44D915F21D2C00865541 /* Icon-72.png */; };
+		4C0E44DE15F21D2C00865541 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44DA15F21D2C00865541 /* Icon-72@2x.png */; };
+		4C0E44DF15F21D2C00865541 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44DB15F21D2C00865541 /* Icon@2x.png */; };
+		4C0E44E115F223A000865541 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44E015F223A000865541 /* Icon.png */; };
 		4C69B89115E3B8B300EADFCF /* ASEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */; };
 		4C69B89215E3B8B300EADFCF /* ASEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */; };
 /* End PBXBuildFile section */
@@ -52,6 +56,10 @@
 		4C01E4E515CBDE1500E94343 /* ASStreamThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ASStreamThread.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C01E4E615CBDE1500E94343 /* ASStreamThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ASStreamThread.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C020FFC15E62AD20087C9A2 /* Challenges.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Challenges.txt; sourceTree = "<group>"; };
+		4C0E44D915F21D2C00865541 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		4C0E44DA15F21D2C00865541 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		4C0E44DB15F21D2C00865541 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		4C0E44E015F223A000865541 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		4C69B88E15E3B8B300EADFCF /* ASEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASEditViewController.h; sourceTree = "<group>"; };
 		4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASEditViewController.m; sourceTree = "<group>"; };
 		4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASEditViewController.xib; sourceTree = "<group>"; };
@@ -129,6 +137,10 @@
 		4C01E4A415C66DB600E94343 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4C0E44E015F223A000865541 /* Icon.png */,
+				4C0E44D915F21D2C00865541 /* Icon-72.png */,
+				4C0E44DA15F21D2C00865541 /* Icon-72@2x.png */,
+				4C0E44DB15F21D2C00865541 /* Icon@2x.png */,
 				4C01E4A515C66DB600E94343 /* AudioStream-Info.plist */,
 				4C01E4A615C66DB600E94343 /* InfoPlist.strings */,
 				4C01E4A915C66DB600E94343 /* main.m */,
@@ -196,6 +208,10 @@
 				4C01E4C015C66DB600E94343 /* ASDetailViewController_iPad.xib in Resources */,
 				4C69B89215E3B8B300EADFCF /* ASEditViewController.xib in Resources */,
 				4C020FFD15E62AD20087C9A2 /* Challenges.txt in Resources */,
+				4C0E44DD15F21D2C00865541 /* Icon-72.png in Resources */,
+				4C0E44DE15F21D2C00865541 /* Icon-72@2x.png in Resources */,
+				4C0E44DF15F21D2C00865541 /* Icon@2x.png in Resources */,
+				4C0E44E115F223A000865541 /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
