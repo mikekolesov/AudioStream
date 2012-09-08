@@ -51,6 +51,10 @@ void MyPropertyListenerProc(void *							inClientData,
             // setup minimum pre-streamed buffers
             myData->preStreamedBuffers = kPreStreamedBufs;
             
+            // preparing state ended, next is playing state
+            myData->preparing = false;
+
+            
 			// get the cookie size
 			UInt32 cookieSize;
 			Boolean writable;
@@ -305,6 +309,8 @@ int AudioPartInit(bool allowMixing)
 	// allocate a struct for storing our state
 	myAudioPartData = (MyData*)calloc(1, sizeof(MyData));
     
+    myAudioPartData->preparing = true;
+    
     // allow mixing with other apps for a moment
     myAudioPartData->allowMixing = allowMixing;
 	
@@ -393,4 +399,7 @@ int AudioPartFinish( bool immediate )
     return 0;
 }
 
-
+bool AudioPartIsPreparing()
+{
+    return myAudioPartData->preparing;
+}

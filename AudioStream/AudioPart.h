@@ -53,6 +53,7 @@ struct MyData
     
     bool allowMixing;               // allow app mixing with others in background mode
                                     // when phone interruption ended
+    bool preparing;                 // prepare for start or stop flag
 };
 typedef struct MyData MyData;
 
@@ -78,5 +79,6 @@ int AudioPartInit(bool allowMixing);
 int AudioPartParser( const void * buf, ssize_t bytesRecvd );
 int AudioPartFinish( bool immediate );
 int AudioPartNewStream ( AudioFileTypeID inStreamTypeHint, int bitRate );
+bool AudioPartIsPreparing();
 
 #endif

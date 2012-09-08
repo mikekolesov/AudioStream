@@ -164,7 +164,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUIText">http://172.20.10.3:8000/listen</string>
+						<string key="IBUIText">http://172.20.10.3:8002/listen</string>
 						<int key="IBUIBorderStyle">3</int>
 						<string key="IBUIPlaceholder">http://streamserver:8000/newstream</string>
 						<object class="NSColor" key="IBUITextColor">
@@ -174,7 +174,6 @@
 								<int key="NSID">2</int>
 							</object>
 						</object>
-						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIAutocorrectionType">1</int>
@@ -258,6 +257,14 @@
 					<int key="connectionID">15</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">checkButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="392058594"/>
+					</object>
+					<int key="connectionID">19</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">soundCheck:</string>
 						<reference key="source" ref="392058594"/>
@@ -300,9 +307,9 @@
 							<reference ref="195532037"/>
 							<reference ref="498426110"/>
 							<reference ref="375707195"/>
-							<reference ref="323251484"/>
 							<reference ref="392058594"/>
 							<reference ref="771573977"/>
+							<reference ref="323251484"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -366,7 +373,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">18</int>
+			<int key="maxID">19</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -387,17 +394,20 @@
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">streamURLString</string>
-						<string key="NS.object.0">UITextField</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">streamURLString</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="checkButton">UIButton</string>
+						<string key="streamURLString">UITextField</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="checkButton">
+							<string key="name">checkButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="streamURLString">
 							<string key="name">streamURLString</string>
 							<string key="candidateClassName">UITextField</string>
 						</object>
-					</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/ASEditViewController.h</string>

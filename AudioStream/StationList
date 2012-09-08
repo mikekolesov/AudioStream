@@ -1,0 +1,41 @@
+
+// Radio Hermotage 90.1 FM Sain-Petersberg
+http://91.190.117.131:8000/live
+http://91.190.117.131:8000/64
+
+// Radio Record
+http://online.radiorecord.ru:8101/rr_128
+http://online.radiorecord.ru:8101/rr_320
+http://online.radiorecord.ru:8100/rr_aac
+http://online.radiorecord.ru:8100/rr_ogg
+http://online.radiorecord.ru:8102/brks_128
+http://online.radiorecord.ru:8102/brks_aac
+http://online.radiorecord.ru:8102/club_128
+
+//SKY.FM SMOOTH LOUNGE
+http://u16b.sky.fm:80/sky_smoothlounge_aac 
+
+//SKY.FM Modern Rock Alternative
+http://u16b.sky.fm:80/sky_hardrock_aacplus 
+
+// Deti FM
+http://79.143.70.114:8000/detifm-onair-64k.aac 
+http://79.143.70.114:8000/detifm-dvbs-64k.aac 
+
+// Radio VKontakte
+http://radiovkontakte.ru:8000/rvkaac
+http://radiovkontakte.ru:8000/rvkmp3 
+
+// Chanal 7 SHOUTast
+http://serveur.wanastream.com:24100 
+
+// Electro
+http://listen.radiogora.ru:8000/electro192 
+http://listen.radiogora.ru:8000/electro320 
+    
+//AAN PURE ROCK SHOUTast
+http://174.37.159.206:9000/ 
+    
+//A-All Metal Radio SHOUTast
+http://173.192.224.123:8543/
+

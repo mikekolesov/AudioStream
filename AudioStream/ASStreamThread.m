@@ -8,21 +8,26 @@
 
 #import "ASStreamThread.h"
 #import "AudioPart.h"
+#import <pthread.h>
 
 @implementation ASStreamThread
 
 @synthesize thread;
+@synthesize preparing;
 @synthesize playing;
+@synthesize finishing;
 @synthesize streamTitle;
 @synthesize urlString;
 @synthesize allowMixing;
+
 
 - (id) init
 {
     self = [super init];
     if (self != nil) {
-        self->playing = NO;
-        self->finishing = NO;
+        self.preparing = NO;
+        self.playing = NO;
+        self.finishing = NO;
     }
     return self;
 }
@@ -36,16 +41,19 @@
 
 -(void) startWithURL:(NSString *) url
 {
-    if (playing)
-    {
-        // stop and flush data
-        [self stop];
-    }
+    preparing = TRUE;
+    
+//    if (playing)
+//    {
+//        // stop and flush data
+//        [self stop];
+//    }
     
     urlString = url;
   
     thread = [[NSThread alloc] initWithTarget:self selector:@selector(streamThread) object:nil];
     [thread setName:@"StreamThread"];
+    NSLog(@"Thread name:%@", thread.name);
     [thread start];
 }
 
@@ -98,6 +106,8 @@
     NSLog(@"Enter streamThread");
     NSAutoreleasePool *topPool = [[NSAutoreleasePool alloc] init];
     
+    // set pthread name to show in debugger
+    pthread_setname_np([[[NSThread currentThread] name] UTF8String]);
     
     [self runAudioStream];
     
@@ -110,55 +120,13 @@
     NSLog(@"Exit streamThread");
 }
 
--(void) test
-{
-    NSLog(@"Test, %d", finishing);
-}
-
--(void) performTest
-{
-   NSLog(@"Perform Test");
-}
-
 - (void) runAudioStream
 {
     // init audio data
-    
     AudioPartInit(allowMixing);
     
     // configure network connection
-    
     NSURL *url = [NSURL URLWithString: urlString];
-
-    
-    //NSURL *url = [NSURL URLWithString: @"http://91.190.117.131:8000/live"];
-    //NSURL *url = [NSURL URLWithString: @"http://91.190.117.131:8000/64"];
-    //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8100/rr_ogg"];
-    //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8100/rr_aac"];
-    //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8102/brks_128"];
-    //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8102/brks_aac"];
-    //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8102/club_128"];
-    //NSURL *url = [NSURL URLWithString: @"http://online.radiorecord.ru:8101/rr_128"];
-    //NSURL *url = [NSURL URLWithString: @"http://79.143.70.114:8000/detifm-onair-64k.aac"];
-    //NSURL *url = [NSURL URLWithString: @"http://79.143.70.114:8000/detifm-dvbs-64k.aac"];
-    //NSURL *url = [NSURL URLWithString: @"http://radiovkontakte.ru:8000/rvkaac"];
-    //NSURL *url = [NSURL URLWithString: @"http://radiovkontakte.ru:8000/rvkmp3"];
-    //NSURL *url = [NSURL URLWithString: @"http://serveur.wanastream.com:24100"];
-    //NSURL *url = [NSURL URLWithString: @"http://listen.radiogora.ru:8000/electro192"];
-    //NSURL *url = [NSURL URLWithString: @"http://listen.radiogora.ru:8000/electro320"];
-    
-    //AAN PURE ROCK SHOUTast
-    //NSURL *url = [NSURL URLWithString: @"http://174.37.159.206:9000/"];
-    
-    //A-All Metal Radio SHOUTast
-    //NSURL *url = [NSURL URLWithString: @"http://173.192.224.123:8543/"];
-
-    //SKY.FM SMOOTH LOUNGE
-    //NSURL *url = [NSURL URLWithString: @"http://u16b.sky.fm:80/sky_smoothlounge_aac"];
-    
-    //SKY.FM Modern Rock Alternative
-    //NSURL *url = [NSURL URLWithString: @"http://u16b.sky.fm:80/sky_hardrock_aacplus"];
-    
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL: url];
     
     //allow background http streaming
@@ -187,11 +155,8 @@
         NSLog( @"Connection OK" );
     }
     
-    
-    // states
-    finishing = NO;
-    playing = YES;
 }
+
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -467,6 +432,15 @@
     // call us ~ every 300 miliseconds
     //[NSThread sleepForTimeInterval:0.3];
     
+    
+    // reset preparing state once at start
+    if (preparing) {
+        if (!AudioPartIsPreparing()) {
+            preparing = FALSE;
+            playing = YES;
+        }
+    }
+    
     callbackFinished = YES;
 }
 
@@ -518,7 +492,5 @@
     // FIXME try runAudioStream again
     callbackFinished = YES;
 }
-
-
 
 @end

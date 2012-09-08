@@ -29,6 +29,7 @@
 		4C0E44E115F223A000865541 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44E015F223A000865541 /* Icon.png */; };
 		4C69B89115E3B8B300EADFCF /* ASEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */; };
 		4C69B89215E3B8B300EADFCF /* ASEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */; };
+		4CFBB50415FBAC5F00297852 /* StationList in Resources */ = {isa = PBXBuildFile; fileRef = 4CFBB50315FBAC5F00297852 /* StationList */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +56,7 @@
 		4C01E4CD15C6719F00E94343 /* AudioPart.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AudioPart.c; sourceTree = "<group>"; };
 		4C01E4E515CBDE1500E94343 /* ASStreamThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ASStreamThread.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C01E4E615CBDE1500E94343 /* ASStreamThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ASStreamThread.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4C020FFC15E62AD20087C9A2 /* Project Plan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Project Plan"; sourceTree = "<group>"; };
+		4C020FFC15E62AD20087C9A2 /* Project Plan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Project Plan"; path = "AudioStream/Project Plan"; sourceTree = "<group>"; };
 		4C0E44D915F21D2C00865541 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		4C0E44DA15F21D2C00865541 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		4C0E44DB15F21D2C00865541 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 		4C69B88E15E3B8B300EADFCF /* ASEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASEditViewController.h; sourceTree = "<group>"; };
 		4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASEditViewController.m; sourceTree = "<group>"; };
 		4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASEditViewController.xib; sourceTree = "<group>"; };
+		4CFBB50315FBAC5F00297852 /* StationList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = StationList; path = AudioStream/StationList; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,8 @@
 		4C01E48E15C66DB600E94343 = {
 			isa = PBXGroup;
 			children = (
+				4C020FFC15E62AD20087C9A2 /* Project Plan */,
+				4CFBB50315FBAC5F00297852 /* StationList */,
 				4C01E4A315C66DB600E94343 /* AudioStream */,
 				4C01E49C15C66DB600E94343 /* Frameworks */,
 				4C01E49A15C66DB600E94343 /* Products */,
@@ -111,7 +115,6 @@
 		4C01E4A315C66DB600E94343 /* AudioStream */ = {
 			isa = PBXGroup;
 			children = (
-				4C020FFC15E62AD20087C9A2 /* Project Plan */,
 				4C01E4AC15C66DB600E94343 /* ASAppDelegate.h */,
 				4C01E4AD15C66DB600E94343 /* ASAppDelegate.m */,
 				4C01E4AF15C66DB600E94343 /* ASMasterViewController.h */,
@@ -212,6 +215,7 @@
 				4C0E44DE15F21D2C00865541 /* Icon-72@2x.png in Resources */,
 				4C0E44DF15F21D2C00865541 /* Icon@2x.png in Resources */,
 				4C0E44E115F223A000865541 /* Icon.png in Resources */,
+				4CFBB50415FBAC5F00297852 /* StationList in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +303,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -319,7 +323,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -333,7 +337,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioStream/AudioStream-Prefix.pch";
 				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -346,7 +350,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioStream/AudioStream-Prefix.pch";
 				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

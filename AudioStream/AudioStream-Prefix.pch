@@ -16,11 +16,11 @@
 // caveman debuging method
 #define CAVEMAN_DEBUG(DEBUG_LAYER) if(DEBUG_LAYER) 
 
-//#define D1 CAVEMAN_DEBUG(1) // data layer
-#define D1 CAVEMAN_DEBUG(0) // don't printf or nslog
+#define D1 CAVEMAN_DEBUG(1) // data layer
+//#define D1 CAVEMAN_DEBUG(0) // don't printf or nslog
 
-//#define D2 CAVEMAN_DEBUG(2) // enqueued buffers mask
-#define D2 CAVEMAN_DEBUG(0) // don't printf or nslog
+#define D2 CAVEMAN_DEBUG(2) // enqueued buffers mask
+//#define D2 CAVEMAN_DEBUG(0) // don't printf or nslog
 
-//#define D3 CAVEMAN_DEBUG(3) // enqueued buffers mask
-#define D3 CAVEMAN_DEBUG(0) // don't printf or nslog
+#define D3 CAVEMAN_DEBUG(3) // enqueued buffers mask
+//#define D3 CAVEMAN_DEBUG(0) // don't printf or nslog

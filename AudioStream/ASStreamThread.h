@@ -40,17 +40,20 @@
     
     BOOL tornMetaData;          // flag set when metadata tears between packets
     int tornMetaSize;           // size of torn (second) portion of metadata
+
+    BOOL preparing;             // start/stop preparing flag
 }
 
 -(void) startWithURL: (NSString *) url;
 -(void) stop;
--(void) test;
--(void) performTest;
 
 @property (retain, nonatomic) NSThread *thread;
+@property (assign, nonatomic) BOOL preparing;
 @property (assign, nonatomic) BOOL playing;
+@property (assign, nonatomic) BOOL finishing;
 @property (retain, nonatomic) NSString *streamTitle;
 @property (retain, nonatomic) NSString *urlString;
 @property (assign, nonatomic) BOOL allowMixing;
+
 
 @end

@@ -16,6 +16,8 @@
 
 @implementation ASDetailViewController
 
+@synthesize playStopButton;
+
 - (void)dealloc
 {
     [_editViewController release];
@@ -71,11 +73,12 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    /*if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
     } else {
         return YES;
-    }
+    }*/
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -117,6 +120,14 @@
     // Called when the view is shown again in the split view, invalidating the button and popover controller.
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
+}
+
+- (IBAction) playOrStop:(id)sender
+{
+    NSLog(@"got new touch");
+    playStopButton.userInteractionEnabled = NO;
+    [NSThread sleepForTimeInterval:2];
+    playStopButton.userInteractionEnabled = YES;
 }
 
 @end
