@@ -42,6 +42,8 @@
     int tornMetaSize;           // size of torn (second) portion of metadata
 
     BOOL preparing;             // start/stop preparing flag
+    
+    BOOL releaseThread;         // release thread if error occured before
 }
 
 -(void) startWithURL: (NSString *) url;
@@ -54,6 +56,9 @@
 @property (retain, nonatomic) NSString *streamTitle;
 @property (retain, nonatomic) NSString *urlString;
 @property (assign, nonatomic) BOOL allowMixing;
+@property (retain, nonatomic) NSString *contentType;
+@property (retain, nonatomic) NSString *bitRate;
+@property (retain, nonatomic) NSString *icyMetaInt;
 
 
 @end

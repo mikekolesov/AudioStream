@@ -95,7 +95,6 @@
     // + info.plist has been set with audio and voip background keys
     BOOL backAlive = [[UIApplication sharedApplication] setKeepAliveTimeout: 600.0 handler: ^{
         NSLog(@"keepAliveHandler called");
-        // FIXME make some re-establish with conn
         }];
     
     if ( backAlive ) {
@@ -119,10 +118,6 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
-    // start audio queue
-    //AudioPartToForeground();
-    //NSLog(@"applicationDidBecomeActive");
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -130,7 +125,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-// generic error handler - if err is nonzero, prints error message and exits program.
+// generic error handler - if err is nonzero, prints error message
 static void CheckError(OSStatus error, const char *operation)
 {
 	if (error == noErr) return;
@@ -146,27 +141,26 @@ static void CheckError(OSStatus error, const char *operation)
 		sprintf(str, "%d", (int)error);
     
 	fprintf(stderr, "Error: %s (%s)\n", operation, str);
-    
-	//exit(1); FIXME
+
 }
 
 static void MyInterruptionListener (void *inUserData, UInt32 inInterruptionState) {
 	
     ASAppDelegate *app = (ASAppDelegate *)inUserData;
     
-	D3 printf ("Interrupted! inInterruptionState=%ld\n", inInterruptionState);
+	printf ("Interrupted! inInterruptionState=%ld\n", inInterruptionState);
     
     
 	switch (inInterruptionState) {
 		case kAudioSessionBeginInterruption:
-            D3 printf("kAudioSession_Begin_Interruption\n");
+            printf("kAudioSession_Begin_Interruption\n");
             [app.streamThread stop];
             break;
             
 		case kAudioSessionEndInterruption:
-            D3 printf("kAudioSession_End_Interruption\n");
+            printf("kAudioSession_End_Interruption\n");
 
-            D3 NSLog(@"set allow mixining");
+            NSLog(@"set allow mixining");
             app.streamThread.allowMixing = TRUE;
             
             [app.streamThread startWithURL: app.streamThread.urlString];

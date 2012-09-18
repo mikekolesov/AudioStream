@@ -2,7 +2,9 @@
 Tasks v1.0 (non-commercial)
 ----------
 Add error handling and displaying it to user
-Replace PRINTERROR by CheckError
+AudioPart Error return 
+Timeout error - intermidiate Cancel button state?
+Resolve FIXME
 
 Design UI views
 Add stream title representing

@@ -19,7 +19,9 @@
 @synthesize streamTitle;
 @synthesize urlString;
 @synthesize allowMixing;
-
+@synthesize contentType;
+@synthesize bitRate;
+@synthesize icyMetaInt;
 
 - (id) init
 {
@@ -28,6 +30,7 @@
         self.preparing = NO;
         self.playing = NO;
         self.finishing = NO;
+        self->releaseThread = NO;
     }
     return self;
 }
@@ -35,27 +38,42 @@
 -(void) dealloc
 {
     [streamTitle release];
-    [thread release];
     [super dealloc];
+}
+
+-(void) displayError: (NSString*)title withMessage: (NSString*)msg
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+    [alert release];
 }
 
 -(void) startWithURL:(NSString *) url
 {
     preparing = TRUE;
-    
-//    if (playing)
-//    {
-//        // stop and flush data
-//        [self stop];
-//    }
-    
+        
     urlString = url;
   
+    if (releaseThread) {
+        // cleaning previous thread breaking
+        [thread release];
+        releaseThread = NO;
+    }
+    
     thread = [[NSThread alloc] initWithTarget:self selector:@selector(streamThread) object:nil];
-    [thread setName:@"StreamThread"];
-    NSLog(@"Thread name:%@", thread.name);
-    [thread start];
+    if (thread != nil ) {
+        [thread setName:@"StreamThread"];
+        NSLog(@"Thread name:%@", thread.name);
+        [thread start];
+    }
+    else {
+        [self displayError:@"Start Error" withMessage: @"Thread init failed"];
+        preparing = NO;
+    }
+   
 }
+
+
 
 -(void) stop
 {
@@ -71,24 +89,22 @@
     while (!callbackFinished) {
         [NSThread sleepForTimeInterval: 0.2];
     }
-    // cleanup
-    if (contentType) [contentType release];
-    if (bitRate) [bitRate release];
-    if (icyMetaInt) [icyMetaInt release];
     
     // Exit run loop
     [conn unscheduleFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [conn release];
     
-    D1 NSLog(@"thread finished? %d", [thread isFinished]);
+    NSLog(@"thread finished? %d", [thread isFinished]);
    
     // waiting for finishing thread body method
     [NSThread sleepForTimeInterval: 0.2];
     
     if (![thread isFinished]) { // run loop unblock
         if (CFRunLoopIsWaiting(runLoop)) {
-            D1 NSLog(@"RunLoopIsWaiting.. Force to stop it");
-            D1 CFShow(runLoop);
+            NSLog(@"RunLoopIsWaiting.. Force to stop it");
+            #ifdef DEBUG
+                CFShow(runLoop);
+            #endif
             CFRunLoopStop(runLoop);
         }
 
@@ -99,6 +115,7 @@
     allowMixing = NO;
     finishing = NO;
     playing = NO;
+    preparing = NO;
 }
 
 -(void) streamThread
@@ -109,21 +126,31 @@
     // set pthread name to show in debugger
     pthread_setname_np([[[NSThread currentThread] name] UTF8String]);
     
-    [self runAudioStream];
+    if ([self runAudioStream] == -1) {
+        [topPool release];
+        allowMixing = NO;
+        preparing = NO;
+        releaseThread = YES;
+        return; // breaking thread
+    }
     
     runLoop = [[NSRunLoop currentRunLoop] getCFRunLoop];
     
-    // block here to monitor and handle NSURLConnection [performselector] methods..
+    // block here to monitor and handle NSURLConnection methods
     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
     
     [topPool release];
     NSLog(@"Exit streamThread");
 }
 
-- (void) runAudioStream
+- (int) runAudioStream
 {
     // init audio data
-    AudioPartInit(allowMixing);
+    if ( AudioPartInit(allowMixing) == -1 )
+    {
+        [self displayError:@"Audio Error" withMessage:@"Audio init failed"];
+        return -1;
+    }
     
     // configure network connection
     NSURL *url = [NSURL URLWithString: urlString];
@@ -135,26 +162,25 @@
     // for getting song title
     [req addValue: @"1" forHTTPHeaderField: @"Icy-MetaData"];
     
-    //[req addValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     NSLog( @"request method:\n %@", [req HTTPMethod]);
     NSLog( @"request header: %@", [req allHTTPHeaderFields]);
-    //NSLog( @"request body: %@", [req HTTPBody]);
-    //[req setHTTPMethod: @"GET"];
     
-    //conn = [[NSURLConnection alloc] initWithRequest: req delegate: self];
     conn = [[NSURLConnection alloc] initWithRequest:req delegate:self startImmediately:NO];
+    
+    if (!conn) {
+        NSLog( @"Connection init failed" );
+        [self displayError:@"Connection Error" withMessage:@"Connection init failed"];
+        AudioPartInitClean();
+        return -1;
+    }
+    else {
+        NSLog( @"Connection init OK" );
+    }
+
     [conn scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [conn start];
     
-    if (!conn)
-    {
-        NSLog( @"Connection failed" );
-    }
-    else
-    {
-        NSLog( @"Connection OK" );
-    }
-    
+    return 0;
 }
 
 
@@ -192,12 +218,15 @@
     [self parseMetaInterval];
     
     
-    AudioPartNewStream(streamType, br);
+    if ( AudioPartNewStream(streamType, br) == -1 )
+    {
+        [self displayError:@"Audio Error" withMessage:@"Audio stream open failed"];
+        [self cancelStream];
+        return;
+    }
     
     callbackFinished = YES;
 }
-
-
 
 - (void) parseStreamType
 {
@@ -224,7 +253,7 @@
         
     }
     
-    [contentType retain];
+    //[contentType retain];
 }
 
 -(void) parseStreamBitrate
@@ -242,7 +271,7 @@
         NSLog(@"Bitrate is %d", br);
     }
     
-     [bitRate retain];
+     //[bitRate retain];
 }
 
 -(void) parseMetaInterval
@@ -254,7 +283,7 @@
     metaSize = 0;
     tornMetaData = 0;
     
-    [icyMetaInt retain];
+    //[icyMetaInt retain];
 }
 
 - (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -271,7 +300,7 @@
     allData = [data bytes];
     allDataLen = [data length];
     
-    D1 NSLog( @"Data, %d", allDataLen );
+    NSLog( @"Data, %d", allDataLen );
     
     if (checkIfShoutcast) { // parse SHOUTcast http header
         NSString *dataWithHeader = [[NSString alloc] initWithBytes:allData length:allDataLen encoding:NSASCIIStringEncoding];
@@ -320,7 +349,12 @@
             NSLog(@"ICY not found");
         }
 
-        AudioPartNewStream(streamType, br);
+        if ( AudioPartNewStream(streamType, br) == -1 )
+        {
+            [self displayError:@"Audio Error" withMessage:@"SHOUTcast audio stream open failed"];
+            [self cancelStream];
+            return;
+        }
         
         [dataWithHeader release];
         checkIfShoutcast = NO; // check for the first time only
@@ -421,12 +455,21 @@
         
         //NSLog(@"Finally parse %d bytes", cutDataLen);
         if (cutDataLen)
-            AudioPartParser(originCutData, cutDataLen);
+            if ( AudioPartParser(originCutData, cutDataLen) == -1 ) {
+                [self displayError:@"Audio Error" withMessage:@"Audio parser failed"];
+                free(originCutData);
+                [self cancelStream];
+                return;
+            }
         
         free(originCutData);
     }
     else {
-        AudioPartParser(allData, allDataLen);
+        if ( AudioPartParser(allData, allDataLen) == -1 ) {
+            [self displayError:@"Audio Error" withMessage:@"Audio parser failed"];
+            [self cancelStream];
+            return;
+        }
     }
       
     // call us ~ every 300 miliseconds
@@ -441,6 +484,13 @@
         }
     }
     
+    // check if audio engine error occured
+    if ( AudioPartIsEngineError() ) {
+        NSString *err = [NSString stringWithCString:AudioPartEngineErrorDescription() encoding:NSASCIIStringEncoding];
+        [self displayError:@"Audio Error" withMessage:err];
+        [self cancelStream];
+    }
+    
     callbackFinished = YES;
 }
 
@@ -453,7 +503,6 @@
     NSRange tagRange;
     tagBeggining = [md rangeOfString:@"StreamTitle='"];
     tagEnding = [md rangeOfString:@"';"];
-    // FIXME add streamTitle as property ?? if (streamTitle != nil) [streamTitle release];
     if (tagBeggining.location == NSNotFound || tagEnding.location == NSNotFound) {
         streamTitle = [NSString stringWithFormat:@""];
     }
@@ -477,7 +526,9 @@
         NSLog(@"server mountpoint down");
         textHtml = NO;
     }
-    [conn release];
+    
+    [self displayError:@"Connection Error" withMessage:@"Connection finished. Check stream availability"];
+    [self cancelStream];
     
     callbackFinished = YES;
 }
@@ -487,10 +538,34 @@
     callbackFinished = NO;
     
     NSLog( @"Error: %@", [error localizedDescription] );
+    NSString *errmsg = [NSString stringWithFormat:@"%@ Check URL port and address", [error localizedDescription]];
+    [self displayError:@"Connection Error" withMessage:errmsg];
+    [self cancelStream];
+       
+    callbackFinished = YES;
+}
+
+- (void) cancelStream
+{
+    // stopping connection
+    [conn cancel];
+    
     [conn unscheduleFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [conn release];
-    // FIXME try runAudioStream again
-    callbackFinished = YES;
+    
+    if (playing) // finishing audio playback
+        AudioPartFinish(YES);
+    
+    // unblock loop
+    CFRunLoopStop(runLoop);
+    
+    // release thread instance later
+    releaseThread = YES;
+    
+    allowMixing = NO;
+    finishing = NO;
+    playing = NO;
+    preparing = NO;
 }
 
 @end

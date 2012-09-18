@@ -54,6 +54,9 @@ struct MyData
     bool allowMixing;               // allow app mixing with others in background mode
                                     // when phone interruption ended
     bool preparing;                 // prepare for start or stop flag
+    
+    bool engineError;               // indicate error in audio engine
+    char *engineErrorDescription;   // description of engine error
 };
 typedef struct MyData MyData;
 
@@ -80,5 +83,8 @@ int AudioPartParser( const void * buf, ssize_t bytesRecvd );
 int AudioPartFinish( bool immediate );
 int AudioPartNewStream ( AudioFileTypeID inStreamTypeHint, int bitRate );
 bool AudioPartIsPreparing();
+void AudioPartInitClean();
+bool AudioPartIsEngineError();
+char* AudioPartEngineErrorDescription();
 
 #endif

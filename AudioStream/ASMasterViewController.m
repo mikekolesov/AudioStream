@@ -50,30 +50,6 @@
 
 - (void)viewDidLoad
 {
-    
-    //self.editViewController->streamThread = streamThread;
-    
-    
-    
-    //[streamThread startWithURL:@"http://online.radiorecord.ru:8101/rr_128"];
-    
-    /*
-    [NSThread sleepForTimeInterval:10.0];
-    [streamThread stop];
-    [NSThread sleepForTimeInterval:1.0];
-    [streamThread start];
-    [NSThread sleepForTimeInterval:10.0];
-    [streamThread stop];
-    [NSThread sleepForTimeInterval:1.0];
-    [streamThread start];
-    [NSThread sleepForTimeInterval:10.0];
-    [streamThread stop];
-*/
-    /*
-    [NSThread sleepForTimeInterval:2.0];
-    [streamThread performSelector:@selector(performTest) onThread: streamThread.thread withObject:nil waitUntilDone:NO];
-    */
-    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -108,9 +84,7 @@
     [_objects insertObject:dic atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths: @[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    //[NSThread sleepForTimeInterval:0.3];
     [self.navigationController pushViewController:self.detailViewController animated:NO];
-    //[NSThread sleepForTimeInterval:0.3];
     [self.navigationController pushViewController:self.detailViewController.editViewController animated:YES];
     
 }

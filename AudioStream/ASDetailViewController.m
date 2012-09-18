@@ -87,8 +87,6 @@
     if (self) {
         //self.title = NSLocalizedString(@"Detail", @"Detail");
         self.title = @"Station";
-        //UIImage *settingsImage = [UIImage imageNamed:@"SettingsIcon.icns"];
-//        UIBarButtonItem * settingsButton = [[[UIBarButtonItem alloc] initWithImage:settingsImage style:UIBarButtonItemStylePlain target:self action:@selector(editSettings)] autorelease ];
         
         // change back title
         UIBarButtonItem *bb = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
