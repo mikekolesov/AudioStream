@@ -1,14 +1,6 @@
 
 Tasks v1.0 (non-commercial)
 ----------
-Add error handling and displaying it to user
-AudioPart Error return 
-Timeout error - intermidiate Cancel button state?
-Resolve FIXME
-
-Design UI views
-Add stream title representing
-
 Add storing to file and loading at start up
 
 Add iCloud support
@@ -22,15 +14,12 @@ Prepare and submit v1.0 to AppStore
 
 Planning in v1.x branch
 -----------------------
-Localization (Russian Language)
-
 Add Remote Control support
 
-Check and add support for new comming iOS 6.0 (if real device will be available)
-Check and add support for most old compatible iOS 4.x (if real device will be available)
+Localization (+Russian Language)
 
-Add backup and restore previous version of file
-Add restore 'factory' file
+Check and add support for new iOS 6.0 (if real device will be available)
+Check and add support for most old compatible iOS 4.x (if real device will be available)
 
 Add other icon's sizes (for the spotlight and so on)
 
@@ -46,5 +35,8 @@ Fullscreen iPad support
 Ogg Vorbis stream support (Tremor decoder)
 
 Landscape mode support
+
+Add backup and restore previous version of file
+Add restore 'factory' file
 
 New view controller with UIWebView to show stream server status page

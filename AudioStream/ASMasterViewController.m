@@ -7,25 +7,21 @@
 //
 
 #import "ASMasterViewController.h"
-
 #import "ASDetailViewController.h"
-
 #import "ASEditViewController.h"
+#import "ASDataModel.h"
 
-
-@interface ASMasterViewController () {
-    NSMutableArray *_objects;
-}
-@end
 
 @implementation ASMasterViewController
 
+@synthesize dataModel;
+@synthesize streamThread;
+@synthesize customCell;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //self.title = NSLocalizedString(@"Master", @"Master");
         self.title = @"Audio Stream";
         
         // change back title
@@ -43,7 +39,8 @@
 - (void)dealloc
 {
     [_detailViewController release];
-    [_objects release];
+    [dataModel release];
+    [streamThread release];
     [super dealloc];
 }
 
@@ -52,7 +49,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)] autorelease];
     self.navigationItem.rightBarButtonItem = addButton;
@@ -63,6 +61,18 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [dataModel resetSelectedState];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -76,17 +86,24 @@
 
 - (void)insertNewObject:(id)sender
 {
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
+    
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        // new button called this method
+        NSLog(@"klasse UIBarButtonItem");
+        [dataModel addNewEmptyObject];
     }
-    NSMutableDictionary *dic = [[[NSMutableDictionary alloc] init] autorelease];
-    [dic setValue:@"New stream" forKey:@"StreamName"];
-    [_objects insertObject:dic atIndex:0];
+    else {
+        // dataModel called this method
+        NSLog(@"klasse data");
+        //[dataModel addNewObjectWith...];
+    }
+
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths: @[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    
     [self.navigationController pushViewController:self.detailViewController animated:NO];
     [self.navigationController pushViewController:self.detailViewController.editViewController animated:YES];
-    
 }
 
 #pragma mark - Table View
@@ -98,7 +115,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return [dataModel countOfObjects];
 }
 
 // Customize the appearance of table view cells.
@@ -108,17 +125,15 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        [[NSBundle mainBundle] loadNibNamed:@"ASCustomTableViewCell" owner:self options:nil];
+        cell = customCell;
+        customCell = nil;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            //cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         }
     }
 
-
-    //NSDate *object = [_objects objectAtIndex:indexPath.row];
-    NSDictionary *object = [_objects objectAtIndex:indexPath.row];
-    cell.textLabel.text = [object objectForKey:@"StreamName"];
+    cell.textLabel.text = [dataModel valueForKey:@"StreamName" atObjectByIndex:indexPath.row];
     return cell;
 }
 
@@ -132,7 +147,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
+        [dataModel removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -157,18 +172,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *object = [_objects objectAtIndex:indexPath.row];
+    [dataModel selectObjectAtIndex:indexPath.row];
+   
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        
-        self.detailViewController.detailItem = [object objectForKey:@"StreamName"];
         [self.navigationController pushViewController:self.detailViewController animated:YES];
-        NSLog(@"DetailViewController pushed");
+        NSLog(@"DetailViewController pushed");        
     } else {
-        self.detailViewController.detailItem = object;
+        // for ipad
     }
 }
 
-
-
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"resetPlaying"]) {
+        //
+    }
+}
 
 @end
+
+
+

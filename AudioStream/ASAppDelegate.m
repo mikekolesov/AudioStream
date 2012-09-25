@@ -7,22 +7,23 @@
 //
 
 #import "ASAppDelegate.h"
-
 #import "ASMasterViewController.h"
-
 #import "ASDetailViewController.h"
-
 #import "ASEditViewController.h"
 
 
 @implementation ASAppDelegate
+
+@synthesize dataModel;
+@synthesize streamThread;
 
 - (void)dealloc
 {
     [_window release];
     [_navigationController release];
     [_splitViewController release];
-    [_streamThread release];
+    [streamThread release];
+    [dataModel release];
     [super dealloc];
 }
 
@@ -32,7 +33,7 @@
     CheckError(AudioSessionInitialize(NULL,
                                       kCFRunLoopDefaultMode,
                                       MyInterruptionListener,
-                                      self),
+                                      self.streamThread),
                "couldn't initialize audio session");
     
     UInt32 category = kAudioSessionCategory_MediaPlayback;
@@ -41,9 +42,12 @@
                                        &category),
                "Couldn't set category on audio session");
 
-    
-    // stream alloc
-    self.streamThread = [[ASStreamThread alloc] init];
+    // alloc data model
+    dataModel = [[ASDataModel alloc] init];
+       
+    // alloc stream 
+    streamThread = [[ASStreamThread alloc] init];
+    streamThread.dataModel = dataModel;
     
 
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
@@ -54,11 +58,22 @@
         ASDetailViewController *detailViewController = [[[ASDetailViewController alloc] initWithNibName:@"ASDetailViewController_iPhone" bundle:nil] autorelease];
         
         masterViewController.detailViewController = detailViewController;
+        masterViewController.dataModel = dataModel;
+        masterViewController.streamThread = streamThread;
+        [dataModel addObserver:masterViewController forKeyPath:@"resetPlaying" options:0 context:NULL];
+        
+        detailViewController.dataModel = dataModel;
+        detailViewController.streamThread = streamThread;
+        [dataModel addObserver:detailViewController forKeyPath:@"objectTitle" options:0 context:NULL];
+        [dataModel addObserver:detailViewController forKeyPath:@"resetPlaying" options:0 context:NULL];
         
         ASEditViewController *evc = [[[ASEditViewController alloc] initWithNibName:@"ASEditViewController" bundle:nil] autorelease];
+        evc.dataModel = dataModel;
+        evc.streamThread = streamThread;
         masterViewController.detailViewController.editViewController = evc;
         
         self.window.rootViewController = self.navigationController;
+        
     } else {
         ASMasterViewController *masterViewController = [[[ASMasterViewController alloc] initWithNibName:@"ASMasterViewController_iPad" bundle:nil] autorelease];
         UINavigationController *masterNavigationController = [[[UINavigationController alloc] initWithRootViewController:masterViewController] autorelease];
@@ -74,7 +89,11 @@
         
         self.window.rootViewController = self.splitViewController;
     }
+    
     [self.window makeKeyAndVisible];
+    
+    
+    
     return YES;
 }
 
@@ -95,6 +114,7 @@
     // + info.plist has been set with audio and voip background keys
     BOOL backAlive = [[UIApplication sharedApplication] setKeepAliveTimeout: 600.0 handler: ^{
         NSLog(@"keepAliveHandler called");
+        [self noop];
         }];
     
     if ( backAlive ) {
@@ -146,7 +166,7 @@ static void CheckError(OSStatus error, const char *operation)
 
 static void MyInterruptionListener (void *inUserData, UInt32 inInterruptionState) {
 	
-    ASAppDelegate *app = (ASAppDelegate *)inUserData;
+    ASStreamThread *stream = (ASStreamThread *) inUserData;
     
 	printf ("Interrupted! inInterruptionState=%ld\n", inInterruptionState);
     
@@ -154,16 +174,16 @@ static void MyInterruptionListener (void *inUserData, UInt32 inInterruptionState
 	switch (inInterruptionState) {
 		case kAudioSessionBeginInterruption:
             printf("kAudioSession_Begin_Interruption\n");
-            [app.streamThread stop];
+            [stream stop];
             break;
             
 		case kAudioSessionEndInterruption:
             printf("kAudioSession_End_Interruption\n");
 
-            NSLog(@"set allow mixining");
-            app.streamThread.allowMixing = TRUE;
+            NSLog(@"set allow mixing");
+            stream.allowMixing = TRUE;
             
-            [app.streamThread startWithURL: app.streamThread.urlString];
+            [stream startWithURL: stream.urlString];
 
             break;
             
@@ -172,5 +192,11 @@ static void MyInterruptionListener (void *inUserData, UInt32 inInterruptionState
 	};
 }
 
+- (int) noop // like no-op
+{
+    int a, b, c;
+    a = 1; b = 2; c = a + b;
+    return c;
+}
 
 @end

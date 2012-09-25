@@ -29,7 +29,9 @@
 		4C0E44E115F223A000865541 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44E015F223A000865541 /* Icon.png */; };
 		4C69B89115E3B8B300EADFCF /* ASEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */; };
 		4C69B89215E3B8B300EADFCF /* ASEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */; };
+		4CF12E981611A8FE00FB184C /* ASCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF12E961611A8FE00FB184C /* ASCustomTableViewCell.xib */; };
 		4CFBB50415FBAC5F00297852 /* StationList in Resources */ = {isa = PBXBuildFile; fileRef = 4CFBB50315FBAC5F00297852 /* StationList */; };
+		4CFD5CD6160B635600934805 /* ASDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD5CD5160B635500934805 /* ASDataModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +66,10 @@
 		4C69B88E15E3B8B300EADFCF /* ASEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASEditViewController.h; sourceTree = "<group>"; };
 		4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASEditViewController.m; sourceTree = "<group>"; };
 		4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASEditViewController.xib; sourceTree = "<group>"; };
+		4CF12E971611A8FE00FB184C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASCustomTableViewCell.xib; sourceTree = "<group>"; };
 		4CFBB50315FBAC5F00297852 /* StationList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = StationList; path = AudioStream/StationList; sourceTree = "<group>"; };
+		4CFD5CD4160B635500934805 /* ASDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDataModel.h; sourceTree = "<group>"; };
+		4CFD5CD5160B635500934805 /* ASDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASDataModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +125,7 @@
 				4C01E4AF15C66DB600E94343 /* ASMasterViewController.h */,
 				4C01E4B015C66DB600E94343 /* ASMasterViewController.m */,
 				4C01E4B515C66DB600E94343 /* ASMasterViewController_iPhone.xib */,
+				4CF12E961611A8FE00FB184C /* ASCustomTableViewCell.xib */,
 				4C01E4B815C66DB600E94343 /* ASMasterViewController_iPad.xib */,
 				4C01E4B215C66DB600E94343 /* ASDetailViewController.h */,
 				4C01E4B315C66DB600E94343 /* ASDetailViewController.m */,
@@ -132,6 +138,8 @@
 				4C01E4E615CBDE1500E94343 /* ASStreamThread.m */,
 				4C01E4CC15C6717700E94343 /* AudioPart.h */,
 				4C01E4CD15C6719F00E94343 /* AudioPart.c */,
+				4CFD5CD4160B635500934805 /* ASDataModel.h */,
+				4CFD5CD5160B635500934805 /* ASDataModel.m */,
 				4C01E4A415C66DB600E94343 /* Supporting Files */,
 			);
 			path = AudioStream;
@@ -216,6 +224,7 @@
 				4C0E44DF15F21D2C00865541 /* Icon@2x.png in Resources */,
 				4C0E44E115F223A000865541 /* Icon.png in Resources */,
 				4CFBB50415FBAC5F00297852 /* StationList in Resources */,
+				4CF12E981611A8FE00FB184C /* ASCustomTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +242,7 @@
 				4C01E4CE15C6719F00E94343 /* AudioPart.c in Sources */,
 				4C01E4E715CBDE1500E94343 /* ASStreamThread.m in Sources */,
 				4C69B89115E3B8B300EADFCF /* ASEditViewController.m in Sources */,
+				4CFD5CD6160B635600934805 /* ASDataModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +287,14 @@
 				4C01E4BF15C66DB600E94343 /* en */,
 			);
 			name = ASDetailViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		4CF12E961611A8FE00FB184C /* ASCustomTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CF12E971611A8FE00FB184C /* en */,
+			);
+			name = ASCustomTableViewCell.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

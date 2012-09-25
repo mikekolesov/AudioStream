@@ -8,20 +8,23 @@
 
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import "ASDataModel.h"
 
 @interface ASStreamThread : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 {
     NSThread *thread;           // stream thread object
-    CFRunLoopRef runLoop;       // run loop
-    NSURLConnection *conn;      // stream connection 
+    BOOL releaseThread;         // release thread if error occured before
+
+    CFRunLoopRef runLoop;       // secondary thread run loop
+    
+    NSURLConnection *conn;      // stream connection
     NSString *urlString;        // stream url string
     
+    BOOL preparing;             // start/stop preparing flag
     BOOL finishing;             // flag to finish audio processing
     BOOL callbackFinished;       // exit of connection callback
     
     BOOL playing;
-    
-    
     
     BOOL checkIfShoutcast;      // check if server is SHOUTcast
     BOOL textHtml;              // text instead of audio in response
@@ -40,24 +43,22 @@
     
     BOOL tornMetaData;          // flag set when metadata tears between packets
     int tornMetaSize;           // size of torn (second) portion of metadata
-
-    BOOL preparing;             // start/stop preparing flag
-    
-    BOOL releaseThread;         // release thread if error occured before
 }
 
--(void) startWithURL: (NSString *) url;
--(void) stop;
+- (void) startWithURL: (NSString *) url;
+- (void) stop;
+- (void) updateStreamTitle: (id) title;
 
+@property (retain, nonatomic) ASDataModel *dataModel; 
 @property (retain, nonatomic) NSThread *thread;
 @property (assign, nonatomic) BOOL preparing;
 @property (assign, nonatomic) BOOL playing;
 @property (assign, nonatomic) BOOL finishing;
-@property (retain, nonatomic) NSString *streamTitle;
+@property (copy, nonatomic) NSString *streamTitle;
 @property (retain, nonatomic) NSString *urlString;
 @property (assign, nonatomic) BOOL allowMixing;
-@property (retain, nonatomic) NSString *contentType;
-@property (retain, nonatomic) NSString *bitRate;
+@property (copy, nonatomic) NSString *contentType;
+@property (copy, nonatomic) NSString *bitRate;
 @property (retain, nonatomic) NSString *icyMetaInt;
 
 

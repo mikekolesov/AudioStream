@@ -17,13 +17,23 @@
 @implementation ASDetailViewController
 
 @synthesize playStopButton;
+@synthesize streamTitleLabel;
+@synthesize dataModel;
+@synthesize streamName;
+@synthesize streamThread;
+@synthesize editViewController;
+@synthesize activity;
+@synthesize streamBitRate;
+@synthesize streamFormat;
 
 - (void)dealloc
 {
-    [_editViewController release];
+    [editViewController release];
     [_detailItem release];
     [_detailDescriptionLabel release];
     [_masterPopoverController release];
+    [dataModel release];
+    [streamThread release];
     [super dealloc];
     NSLog(@"DetailViewController dealloc");
 }
@@ -58,9 +68,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-
     
     [self configureView];
+    
+
 }
 
 
@@ -69,6 +80,24 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     self.detailDescriptionLabel = nil;
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    // +FIXME show stream name
+    
+    if ([dataModel isSelectedObjectPlaying]) {
+        [streamTitleLabel setText:streamThread.streamTitle];
+        [playStopButton setTitle:@"Stop" forState:UIControlStateNormal];
+        [streamBitRate setText:streamThread.bitRate];
+        [streamFormat setText:streamThread.contentType];
+    } else {
+        [streamTitleLabel setText:@"..."];
+        [playStopButton setTitle:@"Play" forState:UIControlStateNormal];
+        [streamBitRate setText:@"..."];
+        [streamFormat setText:@"..."];
+    }
+        
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -92,7 +121,7 @@
         UIBarButtonItem *bb = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
         self.navigationItem.backBarButtonItem = bb;
         
-        UIBarButtonItem * settingsButton = [[[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(editSettings)] autorelease];
+        UIBarButtonItem * settingsButton = [[[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(editSettings)] autorelease];
         self.navigationItem.rightBarButtonItem = settingsButton;
     }
     return self;
@@ -120,12 +149,85 @@
     self.masterPopoverController = nil;
 }
 
-- (IBAction) playOrStop:(id)sender
+- (void) timerCallback
 {
-    NSLog(@"got new touch");
-    playStopButton.userInteractionEnabled = NO;
-    [NSThread sleepForTimeInterval:2];
-    playStopButton.userInteractionEnabled = YES;
+    // check audio part state
+    if ( !(streamThread.preparing || streamThread.finishing) ) {
+        [timer invalidate];
+        NSLog(@"Timer invalidated");
+        playStopButton.enabled = TRUE;
+        NSLog(@"Check button enabled");
+        
+        if (streamThread.playing) {
+            [streamTitleLabel setText:streamThread.streamTitle];
+            [playStopButton setTitle:@"Stop" forState: UIControlStateNormal];
+            [streamBitRate setText: streamThread.bitRate];
+            [streamFormat setText: streamThread.contentType];
+        }
+        else
+            [playStopButton setTitle:@"Play" forState: UIControlStateNormal];
+        
+        [activity stopAnimating];
+        playStopButton.hidden = NO;
+        
+    }
+    else {
+        NSLog(@"Timer goes on... preparing %d, finishing %d", streamThread.preparing, streamThread.finishing);
+    }
 }
 
+- (IBAction) playOrStop:(id)sender
+{
+    playStopButton.enabled = NO;
+    
+    NSLog(@"Button disabled");
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerCallback) userInfo:nil repeats:YES];
+    NSLog(@"Timer added");
+    
+    playStopButton.hidden = YES;
+    [activity startAnimating];
+    
+    
+    if (streamThread.playing) {
+        
+        if ([dataModel isSelectedObjectPlaying])
+            [streamThread stop];
+        else {
+            [streamThread stop];
+            //FIX ME. url from datamodel
+            [streamThread startWithURL:[editViewController.streamURLString text]];
+        }
+    }
+    else {
+        //NSDictionary *dic = [dataModel sel..]
+        [streamThread startWithURL:[editViewController.streamURLString text]];
+    }
+}
+
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    NSLog(@"Heard the var change!");
+    NSLog(@"Is Main thread? %d", [[NSThread currentThread] isMainThread] );
+    
+    if ([keyPath isEqualToString:@"objectTitle"]) {
+        NSString *title = [object valueForKey:keyPath];
+        NSLog(@"objectTitle: %@",title);
+        if ([dataModel isSelectedObjectPlaying])
+            [streamTitleLabel setText:title];
+    }
+    else if ([keyPath isEqualToString:@"resetPlaying"]) {
+        NSLog(@"resetPlaying");
+        [streamTitleLabel setText:@"..."];
+        [playStopButton setTitle:@"Play" forState:UIControlStateNormal];
+        [streamBitRate setText:@"..."];
+        [streamFormat setText:@"..."];
+    }
+    else {
+        // some another
+    }
+   
+}
+
+ 
 @end

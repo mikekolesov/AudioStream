@@ -10,8 +10,10 @@
 #import "AudioPart.h"
 #import <pthread.h>
 
+
 @implementation ASStreamThread
 
+@synthesize dataModel;
 @synthesize thread;
 @synthesize preparing;
 @synthesize playing;
@@ -37,6 +39,7 @@
 
 -(void) dealloc
 {
+    [dataModel release];
     [streamTitle release];
     [super dealloc];
 }
@@ -69,11 +72,10 @@
     else {
         [self displayError:@"Start Error" withMessage: @"Thread init failed"];
         preparing = NO;
+        [dataModel resetPlayingState];
     }
    
 }
-
-
 
 -(void) stop
 {
@@ -116,6 +118,8 @@
     finishing = NO;
     playing = NO;
     preparing = NO;
+    
+    [dataModel resetPlayingState];
 }
 
 -(void) streamThread
@@ -131,6 +135,7 @@
         allowMixing = NO;
         preparing = NO;
         releaseThread = YES;
+        [dataModel resetPlayingState];
         return; // breaking thread
     }
     
@@ -171,6 +176,7 @@
         NSLog( @"Connection init failed" );
         [self displayError:@"Connection Error" withMessage:@"Connection init failed"];
         AudioPartInitClean();
+        [dataModel resetPlayingState];
         return -1;
     }
     else {
@@ -195,9 +201,9 @@
     
     // Getting stream's type, bitrate and meta interval from http header
     NSDictionary *allHeaders = [http_resp allHeaderFields];
-    contentType = [allHeaders objectForKey: @"Content-Type"];
-    bitRate = [allHeaders objectForKey:@"icy-br"];
-    icyMetaInt = [allHeaders objectForKey:@"icy-metaint"];
+    self.contentType = [allHeaders objectForKey: @"Content-Type"];
+    self.bitRate = [allHeaders objectForKey:@"icy-br"];
+    self.icyMetaInt = [allHeaders objectForKey:@"icy-metaint"];
     
     // set default values
     streamType = 0; br = 128; metaInterval = 0;
@@ -370,7 +376,7 @@
             // cutting the second part of metadata
             NSLog(@"Torn data, second part");
             memcpy(metaData + (metaSize - tornMetaSize), allData, tornMetaSize); 
-            [self getStreamTitle];
+            [self cutStreamTitle];
             free(metaData);
             
             allData += tornMetaSize; // increase address, shift to next audio data part
@@ -396,7 +402,7 @@
                         // cutting metadata
                         metaData = calloc(1, metaSize);
                         memcpy(metaData, allData + dataRest + 1, metaSize);
-                        [self getStreamTitle];                       
+                        [self cutStreamTitle];
                         free(metaData);
                         
                         // cutting audio data
@@ -481,6 +487,7 @@
         if (!AudioPartIsPreparing()) {
             preparing = FALSE;
             playing = YES;
+            [dataModel makeSelectedObjectPlaying];
         }
     }
     
@@ -494,7 +501,7 @@
     callbackFinished = YES;
 }
 
-- (void) getStreamTitle
+- (void) cutStreamTitle
 {
     NSString *md = [[NSString alloc] initWithBytes:metaData length:metaSize encoding:NSASCIIStringEncoding];
     //NSLog(@"FullMetaString=<%@>", md);
@@ -504,17 +511,27 @@
     tagBeggining = [md rangeOfString:@"StreamTitle='"];
     tagEnding = [md rangeOfString:@"';"];
     if (tagBeggining.location == NSNotFound || tagEnding.location == NSNotFound) {
-        streamTitle = [NSString stringWithFormat:@""];
+        self.streamTitle = [NSString stringWithFormat:@"..."];
     }
     else {
         tagRange.location = tagBeggining.location + tagBeggining.length;
         tagRange.length = tagEnding.location - tagRange.location;
-        streamTitle = [md substringWithRange:tagRange];
+        self.streamTitle = [md substringWithRange:tagRange];
     }
     
     NSLog(@"StreamTitle=%@", streamTitle);
     
+    if (playing)
+        [self performSelectorOnMainThread:@selector(updateStreamTitle:) withObject:streamTitle waitUntilDone:NO];
+    
     [md release];
+}
+
+- (void) updateStreamTitle: (id) title
+{
+    // invokes key-value observing
+    dataModel.objectTitle = title;
+    NSLog(@"Updated to title: %@", dataModel.objectTitle);
 }
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
@@ -566,6 +583,10 @@
     finishing = NO;
     playing = NO;
     preparing = NO;
+    
+    [dataModel resetPlayingState];
 }
 
 @end
+
+

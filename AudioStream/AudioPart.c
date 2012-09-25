@@ -73,10 +73,6 @@ void MyPropertyListenerProc(void *							inClientData,
             // setup minimum pre-streamed buffers
             myData->preStreamedBuffers = kPreStreamedBufs;
             
-            // preparing state ended, next is playing state
-            myData->preparing = false;
-
-            
 			// get the cookie size
 			UInt32 cookieSize;
 			Boolean writable;
@@ -222,6 +218,12 @@ OSStatus StartQueueIfNeeded(MyData* myData)
                 myData->engineErrorDescription = "Audio queue start failed";
                 return err;
             }
+            
+            // preparing state ended, next is playing state
+            if ( myData->preparing )
+                myData->preparing = false;
+
+
             
             if (myData->allowMixing) { // backgroung interrupt workaround. part 2
                 allow = false;

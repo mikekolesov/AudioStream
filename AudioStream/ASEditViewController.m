@@ -9,16 +9,15 @@
 #import "ASEditViewController.h"
 #import "ASAppDelegate.h"
 
-@interface ASEditViewController ()
-
-@end
-
-
 
 @implementation ASEditViewController
 
+@synthesize streamName;
 @synthesize streamURLString;
 @synthesize checkButton;
+@synthesize activity;
+@synthesize dataModel;
+@synthesize streamThread;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,37 +41,56 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    if ([dataModel isSelectedObjectPlaying]) {
+        [checkButton setTitle:@"Stop" forState:UIControlStateNormal];
+        // + sibscribe to streamTitle updates
+    } else {
+        [checkButton setTitle:@"Sound Check" forState:UIControlStateNormal];
+    }
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    // unsibscribe of streamTitle updates
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [streamName becomeFirstResponder];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void) timerCallback
-{
-    ASAppDelegate *app = [[UIApplication sharedApplication] delegate];
-    
+{    
     // check audio part state
-    if ( !(app.streamThread.preparing || app.streamThread.finishing) ) {
+    if ( !(streamThread.preparing || streamThread.finishing) ) {
         [timer invalidate];
         NSLog(@"Timer invalidated");
         checkButton.enabled = TRUE;
         NSLog(@"Check button enabled");
         
-        if (app.streamThread.playing)
+        if (streamThread.playing)
             [checkButton setTitle:@"Stop" forState: UIControlStateNormal];
         else
             [checkButton setTitle:@"Sound Check" forState: UIControlStateNormal];
 
+        [activity stopAnimating];
+        checkButton.hidden = NO;
+        
     }
     else {
-    NSLog(@"Timer goes on... preparing %d, finishing %d", app.streamThread.preparing, app.streamThread.finishing);
+    NSLog(@"Timer goes on... preparing %d, finishing %d", streamThread.preparing, streamThread.finishing);
     }
 }
 
 - (IBAction) soundCheck: (id) sender
-{
-    ASAppDelegate *app = [[UIApplication sharedApplication] delegate];
-    
+{    
     
     checkButton.enabled = NO;
     
@@ -80,11 +98,21 @@
     timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerCallback) userInfo:nil repeats:YES];
     NSLog(@"Timer added");
     
+    checkButton.hidden = YES;
+    [activity startAnimating];
+        
     
-    if (app.streamThread.playing)
-        [app.streamThread stop];
+    if (streamThread.playing) {
+        
+        if ([dataModel isSelectedObjectPlaying])
+            [streamThread stop];
+        else {
+            [streamThread stop];
+            [streamThread startWithURL:[streamURLString text]];
+        }
+    }
     else
-        [app.streamThread startWithURL:[streamURLString text]];
+        [streamThread startWithURL:[streamURLString text]];
 }
 
 - (IBAction) doneKeyboard:(id)sender

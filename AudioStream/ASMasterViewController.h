@@ -8,14 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
-
+#import "ASDataModel.h"
+#import "ASStreamThread.h"
 
 @class ASDetailViewController;
 
-@interface ASMasterViewController : UITableViewController <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
+@interface ASMasterViewController : UITableViewController
 
 @property (strong, nonatomic) ASDetailViewController *detailViewController;
-
-
+@property (strong, nonatomic) ASDataModel *dataModel;
+@property (strong, nonatomic) ASStreamThread *streamThread;
+@property (assign, nonatomic) IBOutlet UITableViewCell *customCell;
 
 @end
