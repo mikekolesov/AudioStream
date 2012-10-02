@@ -8,28 +8,38 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ASDataModel : NSObject
+@interface ASDataModel : NSObject <UIAlertViewDelegate>
 {
     NSMutableArray* streamObjects;
+    int selectedIndex;
+    int playingIndex;
+    int confirmed;
+    
     NSDictionary *selDic;
     NSDictionary *playDic;
 }
 
-- (NSUInteger) indexOfSelectedObject;
-- (void) selectObjectAtIndex: (NSUInteger) index;
-- (void) resetSelectedState;
-- (BOOL) isSelectedObjectPlaying;
+- (void) addNewEmptyObject;
 - (void) makeSelectedObjectPlaying;
 - (void) resetPlayingState;
-- (NSUInteger) indexOfPlayingObject;
-- (NSDictionary *) objectAtIndex: (NSUInteger) index;
+- (BOOL) isSelectedObjectPlaying;
+- (void) selectObjectAtIndex: (NSUInteger) index;
 - (NSUInteger) countOfObjects;
-- (void) insertObject:(id)anObject atIndex:(NSUInteger)index;
-- (void) removeObjectAtIndex:(NSUInteger)index;
 - (NSString *) valueForKey: (NSString *) keyName atObjectByIndex: (NSUInteger) index;
-- (void) addNewEmptyObject;
+- (NSUInteger) indexOfPlayingObject;
+- (BOOL) removeObjectAtIndex:(NSUInteger)index;
 
+
+/*
+- (NSUInteger) indexOfSelectedObject;
+- (void) resetSelectedState;
+- (NSDictionary *) objectAtIndex: (NSUInteger) index;
+- (void) insertObject:(id)anObject atIndex:(NSUInteger)index;
+*/ 
+ 
 @property (strong, nonatomic) NSString * objectTitle;
 @property (assign, nonatomic) BOOL resetPlaying;
+@property (assign, nonatomic) BOOL startPlaying;
+
 
 @end

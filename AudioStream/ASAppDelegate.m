@@ -29,6 +29,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    // alloc data model
+    dataModel = [[ASDataModel alloc] init];
+    
+    // alloc stream
+    streamThread = [[ASStreamThread alloc] init];
+    streamThread.dataModel = dataModel;
+    
+
     // set up audio session
     CheckError(AudioSessionInitialize(NULL,
                                       kCFRunLoopDefaultMode,
@@ -42,13 +51,6 @@
                                        &category),
                "Couldn't set category on audio session");
 
-    // alloc data model
-    dataModel = [[ASDataModel alloc] init];
-       
-    // alloc stream 
-    streamThread = [[ASStreamThread alloc] init];
-    streamThread.dataModel = dataModel;
-    
 
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
@@ -65,6 +67,7 @@
         detailViewController.dataModel = dataModel;
         detailViewController.streamThread = streamThread;
         [dataModel addObserver:detailViewController forKeyPath:@"objectTitle" options:0 context:NULL];
+        [dataModel addObserver:detailViewController forKeyPath:@"startPlaying" options:0 context:NULL];
         [dataModel addObserver:detailViewController forKeyPath:@"resetPlaying" options:0 context:NULL];
         
         ASEditViewController *evc = [[[ASEditViewController alloc] initWithNibName:@"ASEditViewController" bundle:nil] autorelease];

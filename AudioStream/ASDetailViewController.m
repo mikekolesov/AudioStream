@@ -11,7 +11,7 @@
 
 @interface ASDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
-- (void)configureView;
+//- (void)configureView;
 @end
 
 @implementation ASDetailViewController
@@ -25,12 +25,13 @@
 @synthesize activity;
 @synthesize streamBitRate;
 @synthesize streamFormat;
+@synthesize volumeView;
 
 - (void)dealloc
 {
     [editViewController release];
-    [_detailItem release];
-    [_detailDescriptionLabel release];
+    //[_detailItem release];
+    //[_detailDescriptionLabel release];
     [_masterPopoverController release];
     [dataModel release];
     [streamThread release];
@@ -40,6 +41,7 @@
 
 #pragma mark - Managing the detail item
 
+/*
 - (void)setDetailItem:(id)newDetailItem
 {
     if (_detailItem != newDetailItem) {
@@ -54,24 +56,29 @@
         [self.masterPopoverController dismissPopoverAnimated:YES];
     }        
 }
-
-- (void)configureView
-{
-    // Update the user interface for the detail item.
-
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
-    }
-}
+*/
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [self configureView];
+    // setup system volume slider
+    NSArray *subviewArray = [volumeView subviews];
+    for (id arrayItem in subviewArray) {
+        if ([arrayItem isKindOfClass:[UISlider class]]) {
+            UISlider *volumeSlider = arrayItem;
+            
+            // customize slider to default images
+            [volumeSlider setThumbImage:nil forState:UIControlStateNormal];
+            [volumeSlider setThumbImage:nil forState:UIControlStateDisabled];
+            [volumeSlider setMinimumTrackImage:nil forState:UIControlStateNormal];
+            [volumeSlider setMinimumTrackImage:nil forState:UIControlStateDisabled];
+            [volumeSlider setMaximumTrackImage:nil forState:UIControlStateNormal];
+            [volumeSlider setMaximumTrackImage:nil forState:UIControlStateDisabled];
+        }
+    }
     
-
 }
 
 
@@ -79,7 +86,7 @@
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    self.detailDescriptionLabel = nil;
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -91,7 +98,8 @@
         [playStopButton setTitle:@"Stop" forState:UIControlStateNormal];
         [streamBitRate setText:streamThread.bitRate];
         [streamFormat setText:streamThread.contentType];
-    } else {
+    }
+    else {
         [streamTitleLabel setText:@"..."];
         [playStopButton setTitle:@"Play" forState:UIControlStateNormal];
         [streamBitRate setText:@"..."];
@@ -114,7 +122,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //self.title = NSLocalizedString(@"Detail", @"Detail");
         self.title = @"Station";
         
         // change back title
@@ -207,7 +214,7 @@
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSLog(@"Heard the var change!");
+    NSLog(@"Heard the var change, by DetailViewController");
     NSLog(@"Is Main thread? %d", [[NSThread currentThread] isMainThread] );
     
     if ([keyPath isEqualToString:@"objectTitle"]) {
@@ -223,6 +230,16 @@
         [streamBitRate setText:@"..."];
         [streamFormat setText:@"..."];
     }
+    else if ([keyPath isEqualToString:@"startPlaying"]) {
+        NSLog(@"startPlaying");
+        if ([dataModel isSelectedObjectPlaying]) {
+            [streamTitleLabel setText:streamThread.streamTitle];
+            [playStopButton setTitle:@"Stop" forState: UIControlStateNormal];
+            [streamBitRate setText: streamThread.bitRate];
+            [streamFormat setText: streamThread.contentType];
+        }
+    }
+
     else {
         // some another
     }

@@ -82,9 +82,9 @@ int AudioPartInit(bool allowMixing);
 int AudioPartParser( const void * buf, ssize_t bytesRecvd );
 int AudioPartFinish( bool immediate );
 int AudioPartNewStream ( AudioFileTypeID inStreamTypeHint, int bitRate );
-bool AudioPartIsPreparing();
-void AudioPartInitClean();
-bool AudioPartIsEngineError();
-char* AudioPartEngineErrorDescription();
+bool AudioPartIsPreparing( void );
+void AudioPartInitClean( void );
+bool AudioPartIsEngineError( void );
+char* AudioPartEngineErrorDescription( void );
 
 #endif

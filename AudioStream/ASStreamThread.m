@@ -51,6 +51,7 @@
     [alert release];
 }
 
+
 -(void) startWithURL:(NSString *) url
 {
     preparing = TRUE;
@@ -503,7 +504,8 @@
 
 - (void) cutStreamTitle
 {
-    NSString *md = [[NSString alloc] initWithBytes:metaData length:metaSize encoding:NSASCIIStringEncoding];
+    //NSString *md = [[NSString alloc] initWithBytes:metaData length:metaSize encoding:NSASCIIStringEncoding];
+    NSString *md = [[NSString alloc] initWithBytes:metaData length:metaSize encoding:NSUTF8StringEncoding];
     //NSLog(@"FullMetaString=<%@>", md);
     NSRange tagBeggining ={0};
     NSRange tagEnding = {0};

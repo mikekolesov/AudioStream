@@ -468,12 +468,12 @@ int AudioPartFinish( bool immediate )
     return 0;
 }
 
-bool AudioPartIsPreparing()
+bool AudioPartIsPreparing( void )
 {
     return myAudioPartData->preparing;
 }
 
-void AudioPartInitClean()
+void AudioPartInitClean( void )
 {
     pthread_mutex_unlock(&myAudioPartData->mutex);
     pthread_mutex_destroy(&myAudioPartData->mutex);
@@ -482,13 +482,16 @@ void AudioPartInitClean()
     free(myAudioPartData);
 }
 
-bool AudioPartIsEngineError()
+bool AudioPartIsEngineError( void )
 {
     return myAudioPartData->engineError;
 }
 
-char* AudioPartEngineErrorDescription()
+char* AudioPartEngineErrorDescription( void )
 {
     return myAudioPartData->engineErrorDescription;
 }
+
+
+
 
