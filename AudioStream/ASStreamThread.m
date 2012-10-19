@@ -162,8 +162,11 @@
     NSURL *url = [NSURL URLWithString: urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL: url];
     
-    //allow background http streaming
+    // allow background http streaming
     [req setNetworkServiceType:NSURLNetworkServiceTypeVoIP];
+    
+    // set short timeout
+    req.timeoutInterval = 15.0;
     
     // for getting song title
     [req addValue: @"1" forHTTPHeaderField: @"Icy-MetaData"];
@@ -276,6 +279,13 @@
     }
     else {
         NSLog(@"Bitrate is %d", br);
+    }
+   
+    // escape posible dub field
+    NSArray *brArray = [bitRate componentsSeparatedByString:@","];
+    if (brArray.count > 1) {
+        NSString *firstBr = [brArray objectAtIndex:0];
+        self.bitRate = firstBr;
     }
     
      //[bitRate retain];
@@ -502,9 +512,9 @@
     callbackFinished = YES;
 }
 
+
 - (void) cutStreamTitle
 {
-    //NSString *md = [[NSString alloc] initWithBytes:metaData length:metaSize encoding:NSASCIIStringEncoding];
     NSString *md = [[NSString alloc] initWithBytes:metaData length:metaSize encoding:NSUTF8StringEncoding];
     //NSLog(@"FullMetaString=<%@>", md);
     NSRange tagBeggining ={0};

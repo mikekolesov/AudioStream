@@ -27,6 +27,7 @@
 		4C0E44DE15F21D2C00865541 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44DA15F21D2C00865541 /* Icon-72@2x.png */; };
 		4C0E44DF15F21D2C00865541 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44DB15F21D2C00865541 /* Icon@2x.png */; };
 		4C0E44E115F223A000865541 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44E015F223A000865541 /* Icon.png */; };
+		4C1C8773161E047200810172 /* AudioStreamList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C1C8772161E047200810172 /* AudioStreamList.plist */; };
 		4C69B89115E3B8B300EADFCF /* ASEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */; };
 		4C69B89215E3B8B300EADFCF /* ASEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */; };
 		4CB7B070161AEE76008F842A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB7B06F161AEE76008F842A /* MediaPlayer.framework */; };
@@ -64,6 +65,7 @@
 		4C0E44DA15F21D2C00865541 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		4C0E44DB15F21D2C00865541 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		4C0E44E015F223A000865541 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		4C1C8772161E047200810172 /* AudioStreamList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AudioStreamList.plist; sourceTree = "<group>"; };
 		4C69B88E15E3B8B300EADFCF /* ASEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASEditViewController.h; sourceTree = "<group>"; };
 		4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASEditViewController.m; sourceTree = "<group>"; };
 		4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASEditViewController.xib; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		4C01E4A415C66DB600E94343 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4C1C8772161E047200810172 /* AudioStreamList.plist */,
 				4C0E44E015F223A000865541 /* Icon.png */,
 				4C0E44D915F21D2C00865541 /* Icon-72.png */,
 				4C0E44DA15F21D2C00865541 /* Icon-72@2x.png */,
@@ -229,6 +232,7 @@
 				4C0E44E115F223A000865541 /* Icon.png in Resources */,
 				4CFBB50415FBAC5F00297852 /* StationList in Resources */,
 				4CF12E981611A8FE00FB184C /* ASCustomTableViewCell.xib in Resources */,
+				4C1C8773161E047200810172 /* AudioStreamList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

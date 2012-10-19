@@ -91,7 +91,8 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    // +FIXME show stream name
+    int selectedIndex = [dataModel indexOfSelectedObject];
+    [streamName setText:[dataModel valueForKey:@"StreamName" atObjectByIndex:selectedIndex]];
     
     if ([dataModel isSelectedObjectPlaying]) {
         [streamTitleLabel setText:streamThread.streamTitle];
@@ -128,7 +129,7 @@
         UIBarButtonItem *bb = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
         self.navigationItem.backBarButtonItem = bb;
         
-        UIBarButtonItem * settingsButton = [[[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(editSettings)] autorelease];
+        UIBarButtonItem * settingsButton = [[[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editSettings)] autorelease];
         self.navigationItem.rightBarButtonItem = settingsButton;
     }
     return self;
@@ -176,7 +177,6 @@
         
         [activity stopAnimating];
         playStopButton.hidden = NO;
-        
     }
     else {
         NSLog(@"Timer goes on... preparing %d, finishing %d", streamThread.preparing, streamThread.finishing);
@@ -194,20 +194,19 @@
     playStopButton.hidden = YES;
     [activity startAnimating];
     
-    
+    int selectedIndex = [dataModel indexOfSelectedObject];
+
     if (streamThread.playing) {
         
         if ([dataModel isSelectedObjectPlaying])
             [streamThread stop];
         else {
             [streamThread stop];
-            //FIX ME. url from datamodel
-            [streamThread startWithURL:[editViewController.streamURLString text]];
+            [streamThread startWithURL:[dataModel valueForKey:@"StreamURL" atObjectByIndex:selectedIndex]];
         }
     }
     else {
-        //NSDictionary *dic = [dataModel sel..]
-        [streamThread startWithURL:[editViewController.streamURLString text]];
+        [streamThread startWithURL:[dataModel valueForKey:@"StreamURL" atObjectByIndex:selectedIndex]];
     }
 }
 

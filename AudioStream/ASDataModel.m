@@ -13,14 +13,32 @@
 @synthesize objectTitle;
 @synthesize resetPlaying;
 @synthesize startPlaying;
+@synthesize isModified;
 
 -(id) init
 {
     self = [super init];
     if (self != nil) {
-        streamObjects = [[NSMutableArray alloc] init];
         selectedIndex = -1;
         playingIndex = -1;
+        isModified = NO;
+        
+        // setup path for settings file
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDir = [paths objectAtIndex:0];
+        filePath = [NSString stringWithFormat:@"%@/AudioStreamList.plist", docDir];
+        [filePath retain];
+        
+        NSError *err = nil;
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if (![fileManager fileExistsAtPath:filePath]) {
+            // copy presets file from bundle
+            NSString *filePathInBundle = [[NSBundle mainBundle] pathForResource:@"AudioStreamList.plist" ofType:nil];
+            [fileManager copyItemAtPath:filePathInBundle toPath:filePath error:&err];
+        }
+        
+        streamObjects = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
+    
     }
     return self;
 }
@@ -29,6 +47,7 @@
 {
     [streamObjects removeAllObjects];
     [streamObjects release];
+    [filePath release];
     [super dealloc];
 }
 
@@ -45,10 +64,13 @@
 {
     NSMutableDictionary *dic = [[[NSMutableDictionary alloc] init] autorelease];
     [dic setValue:@"New Stream" forKey:@"StreamName"];
-    [dic setValue:@"http://192.168.1.5:8002/listen" forKey:@"StreamURL"];
+    [dic setValue:@"http://" forKey:@"StreamURL"];
         
     // insert always to top (at index 0)
     [streamObjects insertObject:dic atIndex:0];
+    
+    // save into the file
+    [streamObjects writeToFile:filePath atomically:YES];
     
     // make new empty object selected by default
     selectedIndex = 0;
@@ -57,7 +79,6 @@
     }
     
 }
-
 
 - (void) makeSelectedObjectPlaying
 {
@@ -117,6 +138,16 @@
     return str;
 }
 
+- (void) setValue: (NSString *) newValue forKey: (NSString *) keyName atObjectByIndex: (NSUInteger) index
+{
+    NSMutableDictionary *mdic = [streamObjects objectAtIndex:index];
+    [mdic setValue:newValue forKey:keyName];
+    
+    // save into the file
+    [streamObjects writeToFile:filePath atomically:YES];
+}
+
+
 - (NSUInteger) indexOfPlayingObject
 {
     return playingIndex;
@@ -127,7 +158,7 @@
 {
     // trying delete object which is playing now
     if (playingIndex == index) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Operation not permited" message:@"You have to stop the stream\n before delete it" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Operation Not Permited" message:@"Stop this stream\n before delete it" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
         alert.tag = 1;
         [alert show];
         [alert release];
@@ -152,6 +183,9 @@
     
     if (confirmed) {
         [streamObjects removeObjectAtIndex:index];
+        
+        // save into the file
+        [streamObjects writeToFile:filePath atomically:YES];
         
         if (playingIndex > (int)index)
             playingIndex--; // shift playing index 
@@ -181,14 +215,14 @@
     }
 }
 
+- (int) indexOfSelectedObject
+{
+    return selectedIndex;
+}
+
 
 
 /*
-- (NSUInteger) indexOfSelectedObject
-{
-    return [streamObjects indexOfObject:selDic];
-}
-
 
 - (void) resetSelectedState
 {

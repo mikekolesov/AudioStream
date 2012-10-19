@@ -52,14 +52,26 @@
     
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)] autorelease];
-    self.navigationItem.rightBarButtonItem = addButton;
+//    UIBarButtonItem *addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)] autorelease];
+//    self.navigationItem.rightBarButtonItem = addButton;
+    
+    UIBarButtonItem *newButton = [[[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStyleBordered target:self action:@selector(insertNewObject:)] autorelease];
+    self.navigationItem.rightBarButtonItem = newButton;
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    // check if "EditViewController Save method" has been modified data model
+    if (dataModel.isModified) {
+        [self.tableView reloadData];
+        dataModel.isModified = NO;
+    }
 }
 
 

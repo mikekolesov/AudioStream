@@ -20,8 +20,6 @@
 - (IBAction) playOrStop:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIButton *playStopButton;
-//@property (strong, nonatomic) id detailItem;
-//@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UILabel *streamTitleLabel;
 @property (strong, nonatomic) ASEditViewController *editViewController;
 @property (strong, nonatomic) ASDataModel *dataModel;

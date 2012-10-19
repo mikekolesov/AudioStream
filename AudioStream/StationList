@@ -1,3 +1,5 @@
+// Наше Радио
+http://94.25.53.133:80/nashe-96
 
 // Radio Hermotage 90.1 FM Sain-Petersberg
 http://91.190.117.131:8000/live
@@ -5,7 +7,8 @@ http://91.190.117.131:8000/64
 
 // Radio Record
 http://online.radiorecord.ru:8101/rr_128
-http://online.radiorecord.ru:8101/rr_320
+http://online.radiorecord.ru:8100/rr_320
+http://online.radiorecord.ru:8100/rr_64
 http://online.radiorecord.ru:8100/rr_aac
 http://online.radiorecord.ru:8100/rr_ogg
 http://online.radiorecord.ru:8102/brks_128
@@ -13,12 +16,14 @@ http://online.radiorecord.ru:8102/brks_aac
 http://online.radiorecord.ru:8102/club_128
 
 //SKY.FM SMOOTH LOUNGE
-http://u16b.sky.fm:80/sky_smoothlounge_aac 
+http://pub4.sky.fm:80/sky_smoothlounge_aac
 
 //SKY.FM Modern Rock Alternative
-http://u16b.sky.fm:80/sky_hardrock_aacplus 
+http://pub4.sky.fm:80/sky_hardrock_aacplus 
 
-// Deti FM
+// Детское радио
+http://radio01-cn03.akadostream.ru:8114/detifm192.mp3
+http://radio02-cn03.akadostream.ru:8114/detifm192.mp3
 http://79.143.70.114:8000/detifm-onair-64k.aac 
 http://79.143.70.114:8000/detifm-dvbs-64k.aac 
 

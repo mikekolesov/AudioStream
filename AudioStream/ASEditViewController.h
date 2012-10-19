@@ -10,9 +10,11 @@
 #import "ASStreamThread.h"
 #import "ASDataModel.h"
 
-@interface ASEditViewController : UIViewController
+@interface ASEditViewController : UIViewController <UITextFieldDelegate>
 {
     NSTimer *timer;
+    UIView *noKeyboard;
+    UIBarButtonItem * saveButton;
 }
 
 - (IBAction) soundCheck: (id) sender;

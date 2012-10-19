@@ -1,12 +1,12 @@
 
-Tasks v1.0 (non-commercial)
-----------
-Add storing to file and loading at start up
+Tasks v1.0 branch
+-----------------
+Add 'playing' image
 
 Add iCloud support
 Add Mail support and open in-app capability 
 
-Design app icon with audio styled
+Design app icon with audio wave styled
 Replace temporary app icon with audio styled one
 
 Prepare and submit v1.0 to AppStore
@@ -25,11 +25,9 @@ Add other icon's sizes (for the spotlight and so on)
 
 Bug fixing & improving
 
-In-App purchase of update to v2.x (after 2.0 release)
 
-
-Planning in v2.0 (new branch, commercial)
-----------------
+Planning in v2.0 branch
+-----------------------
 Fullscreen iPad support
 
 Ogg Vorbis stream support (Tremor decoder)
@@ -38,5 +36,7 @@ Landscape mode support
 
 Add backup and restore previous version of file
 Add restore 'factory' file
+
+Add Dub button of stream 
 
 New view controller with UIWebView to show stream server status page

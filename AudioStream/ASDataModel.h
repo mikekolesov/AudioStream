@@ -14,9 +14,7 @@
     int selectedIndex;
     int playingIndex;
     int confirmed;
-    
-    NSDictionary *selDic;
-    NSDictionary *playDic;
+    NSString *filePath;
 }
 
 - (void) addNewEmptyObject;
@@ -26,9 +24,10 @@
 - (void) selectObjectAtIndex: (NSUInteger) index;
 - (NSUInteger) countOfObjects;
 - (NSString *) valueForKey: (NSString *) keyName atObjectByIndex: (NSUInteger) index;
+- (void) setValue: (NSString *) newValue forKey: (NSString *) keyName atObjectByIndex: (NSUInteger) index;
 - (NSUInteger) indexOfPlayingObject;
 - (BOOL) removeObjectAtIndex:(NSUInteger)index;
-
+- (int) indexOfSelectedObject;
 
 /*
 - (NSUInteger) indexOfSelectedObject;
@@ -40,6 +39,6 @@
 @property (strong, nonatomic) NSString * objectTitle;
 @property (assign, nonatomic) BOOL resetPlaying;
 @property (assign, nonatomic) BOOL startPlaying;
-
+@property (assign, nonatomic) BOOL isModified;
 
 @end
