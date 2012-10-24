@@ -60,7 +60,7 @@
   
     if (releaseThread) {
         // cleaning previous thread breaking
-        [thread release];
+        [thread release]; 
         releaseThread = NO;
     }
     
@@ -221,7 +221,12 @@
     }
 
 
-    [self parseStreamType];
+    if (![self parseStreamType]) {
+        NSString *msg = [NSString stringWithFormat:@"Unsupported content type: %@", self.contentType];
+        [self displayError:@"Audio Error" withMessage:msg];
+        [self cancelStream];
+        return;
+    }
 
     [self parseStreamBitrate];
     
@@ -238,7 +243,7 @@
     callbackFinished = YES;
 }
 
-- (void) parseStreamType
+- (BOOL) parseStreamType
 {
     // parse stream type
     NSLog(@"Type of stream is <%@>", contentType);
@@ -253,17 +258,21 @@
     else if ( [contentType isEqualToString:@"text/html"]) {
         // no audio stream avalable. server mountpoint is down?
         textHtml = YES; // check later in connectionDidFinishLoading
+        return NO;
     }
     else {
         // unsupported type or custom mpeg/aacp naming?
         NSLog(@"unsupported content-type: %@", contentType);
         
         // try mp3 as default value if unknown
-        streamType = kAudioFileMP3Type;
+        //streamType = kAudioFileMP3Type;
         
+        return NO;
     }
-    
+        
     //[contentType retain];
+    
+    return YES;
 }
 
 -(void) parseStreamBitrate
@@ -339,7 +348,13 @@
                     NSArray *separatedField = [field componentsSeparatedByString:@":"];
                     if ([[separatedField objectAtIndex:0] isEqualToString:@"content-type"]) {
                         contentType = [separatedField objectAtIndex:1];
-                        [self parseStreamType];
+                        if (![self parseStreamType]) {
+                            NSString *msg = [NSString stringWithFormat:@"Unsupported content type: %@", self.contentType];
+                            [self displayError:@"Audio Error" withMessage:msg];
+                            [self cancelStream];
+                            [shoutHeader release];
+                            return;
+                        }
                     }
                     if ([[separatedField objectAtIndex:0] isEqualToString:@"icy-br"]) {
                         bitRate = [separatedField objectAtIndex:1];

@@ -177,6 +177,8 @@
         
         [activity stopAnimating];
         playStopButton.hidden = NO;
+        self.navigationController.navigationBar.userInteractionEnabled = YES;
+
     }
     else {
         NSLog(@"Timer goes on... preparing %d, finishing %d", streamThread.preparing, streamThread.finishing);
@@ -192,7 +194,9 @@
     NSLog(@"Timer added");
     
     playStopButton.hidden = YES;
+    self.navigationController.navigationBar.userInteractionEnabled = NO;
     [activity startAnimating];
+
     
     int selectedIndex = [dataModel indexOfSelectedObject];
 
