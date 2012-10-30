@@ -55,7 +55,7 @@
 @property (assign, nonatomic) BOOL playing;
 @property (assign, nonatomic) BOOL finishing;
 @property (copy, nonatomic) NSString *streamTitle;
-@property (retain, nonatomic) NSString *urlString;
+@property (copy, nonatomic) NSString *urlString;
 @property (assign, nonatomic) BOOL allowMixing;
 @property (copy, nonatomic) NSString *contentType;
 @property (copy, nonatomic) NSString *bitRate;

@@ -62,6 +62,7 @@
         masterViewController.detailViewController = detailViewController;
         masterViewController.dataModel = dataModel;
         masterViewController.streamThread = streamThread;
+        [dataModel addObserver:masterViewController forKeyPath:@"startPlaying" options:0 context:NULL];
         [dataModel addObserver:masterViewController forKeyPath:@"resetPlaying" options:0 context:NULL];
         
         detailViewController.dataModel = dataModel;

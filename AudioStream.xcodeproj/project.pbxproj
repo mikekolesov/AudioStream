@@ -30,6 +30,8 @@
 		4C1C8773161E047200810172 /* AudioStreamList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C1C8772161E047200810172 /* AudioStreamList.plist */; };
 		4C69B89115E3B8B300EADFCF /* ASEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */; };
 		4C69B89215E3B8B300EADFCF /* ASEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */; };
+		4CA3A558163FEC050079129D /* Icon Copyright in Resources */ = {isa = PBXBuildFile; fileRef = 4CA3A557163FEC050079129D /* Icon Copyright */; };
+		4CA3A57316402A310079129D /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA3A57216402A310079129D /* arrow_left.png */; };
 		4CB7B070161AEE76008F842A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB7B06F161AEE76008F842A /* MediaPlayer.framework */; };
 		4CF12E981611A8FE00FB184C /* ASCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF12E961611A8FE00FB184C /* ASCustomTableViewCell.xib */; };
 		4CFBB50415FBAC5F00297852 /* StationList in Resources */ = {isa = PBXBuildFile; fileRef = 4CFBB50315FBAC5F00297852 /* StationList */; };
@@ -69,6 +71,8 @@
 		4C69B88E15E3B8B300EADFCF /* ASEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASEditViewController.h; sourceTree = "<group>"; };
 		4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASEditViewController.m; sourceTree = "<group>"; };
 		4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASEditViewController.xib; sourceTree = "<group>"; };
+		4CA3A557163FEC050079129D /* Icon Copyright */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Icon Copyright"; sourceTree = "<group>"; };
+		4CA3A57216402A310079129D /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
 		4CB7B06F161AEE76008F842A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		4CF12E971611A8FE00FB184C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASCustomTableViewCell.xib; sourceTree = "<group>"; };
 		4CFBB50315FBAC5F00297852 /* StationList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = StationList; path = AudioStream/StationList; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 		4C01E4A415C66DB600E94343 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4CA3A57216402A310079129D /* arrow_left.png */,
 				4C1C8772161E047200810172 /* AudioStreamList.plist */,
 				4C0E44E015F223A000865541 /* Icon.png */,
 				4C0E44D915F21D2C00865541 /* Icon-72.png */,
@@ -163,6 +168,7 @@
 				4C01E4A615C66DB600E94343 /* InfoPlist.strings */,
 				4C01E4A915C66DB600E94343 /* main.m */,
 				4C01E4AB15C66DB600E94343 /* AudioStream-Prefix.pch */,
+				4CA3A557163FEC050079129D /* Icon Copyright */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -233,6 +239,8 @@
 				4CFBB50415FBAC5F00297852 /* StationList in Resources */,
 				4CF12E981611A8FE00FB184C /* ASCustomTableViewCell.xib in Resources */,
 				4C1C8773161E047200810172 /* AudioStreamList.plist in Resources */,
+				4CA3A558163FEC050079129D /* Icon Copyright in Resources */,
+				4CA3A57316402A310079129D /* arrow_left.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -56,7 +56,7 @@
 {
     preparing = TRUE;
         
-    urlString = url;
+    self.urlString = url;
   
     if (releaseThread) {
         // cleaning previous thread breaking
@@ -159,7 +159,7 @@
     }
     
     // configure network connection
-    NSURL *url = [NSURL URLWithString: urlString];
+    NSURL *url = [NSURL URLWithString: self.urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL: url];
     
     // allow background http streaming

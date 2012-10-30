@@ -148,7 +148,7 @@
 }
 
 
-- (NSUInteger) indexOfPlayingObject
+- (int) indexOfPlayingObject
 {
     return playingIndex;
 }

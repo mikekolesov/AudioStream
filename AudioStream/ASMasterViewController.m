@@ -32,6 +32,11 @@
             self.clearsSelectionOnViewWillAppear = NO;
             self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
         }
+        
+        // prepare play indicator image view
+        UIImage *img = [UIImage imageNamed:@"arrow_left.png"];
+        playIndicator = [[UIImageView alloc] initWithImage:img];
+
     }
     return self;
 }
@@ -41,6 +46,7 @@
     [_detailViewController release];
     [dataModel release];
     [streamThread release];
+    [playIndicator release];
     [super dealloc];
 }
 
@@ -97,12 +103,12 @@
     
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
         // new button called this method
-        NSLog(@"klasse UIBarButtonItem");
+        NSLog(@"class UIBarButtonItem");
         [dataModel addNewEmptyObject];
     }
     else {
         // dataModel called this method
-        NSLog(@"klasse data");
+        NSLog(@"class data");
         //[dataModel addNewObjectWith...];
     }
 
@@ -142,6 +148,14 @@
     }
 
     cell.textLabel.text = [dataModel valueForKey:@"StreamName" atObjectByIndex:indexPath.row];
+    
+    if ([dataModel indexOfPlayingObject] == indexPath.row) {
+        cell.accessoryView = playIndicator;
+    }
+    else {
+        cell.accessoryView = nil;                    
+    }
+    
     return cell;
 }
 
@@ -195,8 +209,11 @@
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"resetPlaying"]) {
-        //
+    if ([keyPath isEqualToString:@"startPlaying"]) {
+        [self.tableView reloadData];
+    }
+    else if ([keyPath isEqualToString:@"resetPlaying"]) {
+        [self.tableView reloadData];
     }
 }
 

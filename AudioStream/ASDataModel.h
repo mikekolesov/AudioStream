@@ -25,7 +25,7 @@
 - (NSUInteger) countOfObjects;
 - (NSString *) valueForKey: (NSString *) keyName atObjectByIndex: (NSUInteger) index;
 - (void) setValue: (NSString *) newValue forKey: (NSString *) keyName atObjectByIndex: (NSUInteger) index;
-- (NSUInteger) indexOfPlayingObject;
+- (int) indexOfPlayingObject;
 - (BOOL) removeObjectAtIndex:(NSUInteger)index;
 - (int) indexOfSelectedObject;
 

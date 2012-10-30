@@ -13,7 +13,9 @@
 
 @class ASDetailViewController;
 
-@interface ASMasterViewController : UITableViewController
+@interface ASMasterViewController : UITableViewController {
+    UIImageView *playIndicator;
+}
 
 @property (strong, nonatomic) ASDetailViewController *detailViewController;
 @property (strong, nonatomic) ASDataModel *dataModel;
