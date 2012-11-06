@@ -4,51 +4,39 @@
 <array>
 	<dict>
 		<key>StreamName</key>
-		<string>Classical Piano Trios</string>
-		<key>StreamURL</key>
-		<string>http://pub4.sky.fm/sky_classicalpianotrios</string>
-	</dict>
-	<dict>
-		<key>StreamName</key>
-		<string>Mostly Classical</string>
+		<string>Classical Music</string>
 		<key>StreamURL</key>
 		<string>http://pub4.sky.fm/sky_classical</string>
 	</dict>
 	<dict>
 		<key>StreamName</key>
-		<string>Детское радио</string>
+		<string>Deti FM</string>
 		<key>StreamURL</key>
 		<string>http://79.143.70.114:8000/detifm-onair-64k.aac</string>
 	</dict>
 	<dict>
 		<key>StreamName</key>
-		<string>Наше Радио</string>
+		<string>Nashe</string>
 		<key>StreamURL</key>
 		<string>http://94.25.53.133/nashe-96</string>
 	</dict>
 	<dict>
 		<key>StreamName</key>
-		<string>Радио Эрмитаж (128)</string>
+		<string>Radio Hermitage</string>
 		<key>StreamURL</key>
 		<string>http://91.190.117.131:8000/live</string>
 	</dict>
 	<dict>
 		<key>StreamName</key>
-		<string>Sky FM. SmoothLounge</string>
+		<string>Smooth Lounge</string>
 		<key>StreamURL</key>
 		<string>http://pub4.sky.fm/sky_smoothlounge_aac</string>
 	</dict>
 	<dict>
 		<key>StreamName</key>
-		<string>Radio Record (128)</string>
+		<string>Radio Record</string>
 		<key>StreamURL</key>
 		<string>http://online.radiorecord.ru:8101/rr_128</string>
-	</dict>
-	<dict>
-		<key>StreamName</key>
-		<string>Radio Record AAC (48)</string>
-		<key>StreamURL</key>
-		<string>http://online.radiorecord.ru:8100/rr_aac_48</string>
 	</dict>
 </array>
 </plist>

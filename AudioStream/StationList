@@ -1,13 +1,12 @@
 // Наше Радио
 http://94.25.53.133:80/nashe-96
 
-// Radio Hermotage 90.1 FM Sain-Petersberg
+// Radio Hermitage 90.1 FM Saint-Petersberg
 http://91.190.117.131:8000/live
 http://91.190.117.131:8000/64
 
 // Radio Record
 http://online.radiorecord.ru:8101/rr_128
-http://online.radiorecord.ru:8100/rr_320
 http://online.radiorecord.ru:8100/rr_64
 http://online.radiorecord.ru:8100/rr_aac
 http://online.radiorecord.ru:8100/rr_ogg
@@ -25,11 +24,7 @@ http://pub4.sky.fm:80/sky_hardrock_aacplus
 http://radio01-cn03.akadostream.ru:8114/detifm192.mp3
 http://radio02-cn03.akadostream.ru:8114/detifm192.mp3
 http://79.143.70.114:8000/detifm-onair-64k.aac 
-http://79.143.70.114:8000/detifm-dvbs-64k.aac 
-
-// Radio VKontakte
-http://radiovkontakte.ru:8000/rvkaac
-http://radiovkontakte.ru:8000/rvkmp3 
+http://79.143.70.114:8000/detifm-dvbs-64k.aac  
 
 // Chanal 7 SHOUTast
 http://serveur.wanastream.com:24100 
@@ -38,9 +33,3 @@ http://serveur.wanastream.com:24100
 http://listen.radiogora.ru:8000/electro192 
 http://listen.radiogora.ru:8000/electro320 
     
-//AAN PURE ROCK SHOUTast
-http://174.37.159.206:9000/ 
-    
-//A-All Metal Radio SHOUTast
-http://173.192.224.123:8543/
-

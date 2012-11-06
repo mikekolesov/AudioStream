@@ -1,22 +1,20 @@
 
 Tasks v1.0 branch
 -----------------
-Add iCloud support
-Add Mail support and open in-app capability 
-
-Design app icon with audio wave styled
-Replace temporary app icon with audio styled one
+Check for new iOS 6.0 (if real device will be available)
 
 Prepare and submit v1.0 to AppStore
 
 
 Planning in v1.x branch
 -----------------------
+Add iCloud support
+Add Mail support and open in-app capability 
+
 Add Remote Control support
 
 Localization (+Russian Language)
 
-Check and add support for new iOS 6.0 (if real device will be available)
 Check and add support for most old compatible iOS 4.x (if real device will be available)
 
 Add other icon's sizes (for the spotlight and so on)

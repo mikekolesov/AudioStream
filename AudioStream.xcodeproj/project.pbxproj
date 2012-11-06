@@ -22,19 +22,19 @@
 		4C01E4CB15C66ECE00E94343 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01E4CA15C66ECE00E94343 /* AudioToolbox.framework */; };
 		4C01E4CE15C6719F00E94343 /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4CD15C6719F00E94343 /* AudioPart.c */; };
 		4C01E4E715CBDE1500E94343 /* ASStreamThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4E615CBDE1500E94343 /* ASStreamThread.m */; };
-		4C020FFD15E62AD20087C9A2 /* Project Plan in Resources */ = {isa = PBXBuildFile; fileRef = 4C020FFC15E62AD20087C9A2 /* Project Plan */; };
-		4C0E44DD15F21D2C00865541 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44D915F21D2C00865541 /* Icon-72.png */; };
-		4C0E44DE15F21D2C00865541 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44DA15F21D2C00865541 /* Icon-72@2x.png */; };
-		4C0E44DF15F21D2C00865541 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44DB15F21D2C00865541 /* Icon@2x.png */; };
-		4C0E44E115F223A000865541 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E44E015F223A000865541 /* Icon.png */; };
-		4C1C8773161E047200810172 /* AudioStreamList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C1C8772161E047200810172 /* AudioStreamList.plist */; };
+		4C2191FB1651545300D6D533 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2191FA1651545300D6D533 /* Icon@2x.png */; };
+		4C2191FD165264F400D6D533 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2191FC165264F400D6D533 /* Icon.png */; };
+		4C2191FF1652663300D6D533 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2191FE1652663300D6D533 /* Icon-72.png */; };
+		4C219201165266F600D6D533 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C219200165266F600D6D533 /* Icon-72@2x.png */; };
 		4C69B89115E3B8B300EADFCF /* ASEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */; };
 		4C69B89215E3B8B300EADFCF /* ASEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */; };
+		4C999D0B164FC33D001B602F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C999D0A164FC33D001B602F /* Default@2x.png */; };
+		4C999D0D164FD7F6001B602F /* AudioStreamList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C999D0C164FD7F6001B602F /* AudioStreamList.plist */; };
+		4C999D0F164FDA19001B602F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C999D0E164FDA19001B602F /* Default.png */; };
 		4CA3A558163FEC050079129D /* Icon Copyright in Resources */ = {isa = PBXBuildFile; fileRef = 4CA3A557163FEC050079129D /* Icon Copyright */; };
 		4CA3A57316402A310079129D /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA3A57216402A310079129D /* arrow_left.png */; };
 		4CB7B070161AEE76008F842A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB7B06F161AEE76008F842A /* MediaPlayer.framework */; };
 		4CF12E981611A8FE00FB184C /* ASCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF12E961611A8FE00FB184C /* ASCustomTableViewCell.xib */; };
-		4CFBB50415FBAC5F00297852 /* StationList in Resources */ = {isa = PBXBuildFile; fileRef = 4CFBB50315FBAC5F00297852 /* StationList */; };
 		4CFD5CD6160B635600934805 /* ASDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD5CD5160B635500934805 /* ASDataModel.m */; };
 /* End PBXBuildFile section */
 
@@ -63,14 +63,18 @@
 		4C01E4E515CBDE1500E94343 /* ASStreamThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ASStreamThread.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C01E4E615CBDE1500E94343 /* ASStreamThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ASStreamThread.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C020FFC15E62AD20087C9A2 /* Project Plan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Project Plan"; path = "AudioStream/Project Plan"; sourceTree = "<group>"; };
-		4C0E44D915F21D2C00865541 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
-		4C0E44DA15F21D2C00865541 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
-		4C0E44DB15F21D2C00865541 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		4C0E44E015F223A000865541 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		4C1C8772161E047200810172 /* AudioStreamList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AudioStreamList.plist; sourceTree = "<group>"; };
+		4C2191FA1651545300D6D533 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		4C2191FC165264F400D6D533 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		4C2191FE1652663300D6D533 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		4C219200165266F600D6D533 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		4C2192021652676B00D6D533 /* AppStoreIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppStoreIcon.png; sourceTree = "<group>"; };
+		4C2192041652705000D6D533 /* AppStoreIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppStoreIcon@2x.png"; sourceTree = "<group>"; };
 		4C69B88E15E3B8B300EADFCF /* ASEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASEditViewController.h; sourceTree = "<group>"; };
 		4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASEditViewController.m; sourceTree = "<group>"; };
 		4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASEditViewController.xib; sourceTree = "<group>"; };
+		4C999D0A164FC33D001B602F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		4C999D0C164FD7F6001B602F /* AudioStreamList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AudioStreamList.plist; sourceTree = "<group>"; };
+		4C999D0E164FDA19001B602F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4CA3A557163FEC050079129D /* Icon Copyright */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Icon Copyright"; sourceTree = "<group>"; };
 		4CA3A57216402A310079129D /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
 		4CB7B06F161AEE76008F842A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -158,12 +162,16 @@
 		4C01E4A415C66DB600E94343 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4C2192041652705000D6D533 /* AppStoreIcon@2x.png */,
+				4C2192021652676B00D6D533 /* AppStoreIcon.png */,
+				4C219200165266F600D6D533 /* Icon-72@2x.png */,
+				4C2191FE1652663300D6D533 /* Icon-72.png */,
+				4C2191FA1651545300D6D533 /* Icon@2x.png */,
+				4C2191FC165264F400D6D533 /* Icon.png */,
+				4C999D0C164FD7F6001B602F /* AudioStreamList.plist */,
 				4CA3A57216402A310079129D /* arrow_left.png */,
-				4C1C8772161E047200810172 /* AudioStreamList.plist */,
-				4C0E44E015F223A000865541 /* Icon.png */,
-				4C0E44D915F21D2C00865541 /* Icon-72.png */,
-				4C0E44DA15F21D2C00865541 /* Icon-72@2x.png */,
-				4C0E44DB15F21D2C00865541 /* Icon@2x.png */,
+				4C999D0E164FDA19001B602F /* Default.png */,
+				4C999D0A164FC33D001B602F /* Default@2x.png */,
 				4C01E4A515C66DB600E94343 /* AudioStream-Info.plist */,
 				4C01E4A615C66DB600E94343 /* InfoPlist.strings */,
 				4C01E4A915C66DB600E94343 /* main.m */,
@@ -231,16 +239,16 @@
 				4C01E4BD15C66DB600E94343 /* ASDetailViewController_iPhone.xib in Resources */,
 				4C01E4C015C66DB600E94343 /* ASDetailViewController_iPad.xib in Resources */,
 				4C69B89215E3B8B300EADFCF /* ASEditViewController.xib in Resources */,
-				4C020FFD15E62AD20087C9A2 /* Project Plan in Resources */,
-				4C0E44DD15F21D2C00865541 /* Icon-72.png in Resources */,
-				4C0E44DE15F21D2C00865541 /* Icon-72@2x.png in Resources */,
-				4C0E44DF15F21D2C00865541 /* Icon@2x.png in Resources */,
-				4C0E44E115F223A000865541 /* Icon.png in Resources */,
-				4CFBB50415FBAC5F00297852 /* StationList in Resources */,
 				4CF12E981611A8FE00FB184C /* ASCustomTableViewCell.xib in Resources */,
-				4C1C8773161E047200810172 /* AudioStreamList.plist in Resources */,
 				4CA3A558163FEC050079129D /* Icon Copyright in Resources */,
 				4CA3A57316402A310079129D /* arrow_left.png in Resources */,
+				4C999D0B164FC33D001B602F /* Default@2x.png in Resources */,
+				4C999D0D164FD7F6001B602F /* AudioStreamList.plist in Resources */,
+				4C999D0F164FDA19001B602F /* Default.png in Resources */,
+				4C2191FB1651545300D6D533 /* Icon@2x.png in Resources */,
+				4C2191FD165264F400D6D533 /* Icon.png in Resources */,
+				4C2191FF1652663300D6D533 /* Icon-72.png in Resources */,
+				4C219201165266F600D6D533 /* Icon-72@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
