@@ -10,19 +10,19 @@
 	</dict>
 	<dict>
 		<key>StreamName</key>
-		<string>Deti FM</string>
+		<string>Детское радио</string>
 		<key>StreamURL</key>
 		<string>http://79.143.70.114:8000/detifm-onair-64k.aac</string>
 	</dict>
 	<dict>
 		<key>StreamName</key>
-		<string>Nashe</string>
+		<string>Наше</string>
 		<key>StreamURL</key>
 		<string>http://94.25.53.133/nashe-96</string>
 	</dict>
 	<dict>
 		<key>StreamName</key>
-		<string>Radio Hermitage</string>
+		<string>Радио Эрмитаж</string>
 		<key>StreamURL</key>
 		<string>http://91.190.117.131:8000/live</string>
 	</dict>
@@ -34,7 +34,7 @@
 	</dict>
 	<dict>
 		<key>StreamName</key>
-		<string>Radio Record</string>
+		<string>Радио Рекорд</string>
 		<key>StreamURL</key>
 		<string>http://online.radiorecord.ru:8101/rr_128</string>
 	</dict>
