@@ -113,30 +113,11 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-   
-    // set alive handler for voip socket (for sure)
-    // + info.plist has been set with audio and voip background keys
-    BOOL backAlive = [[UIApplication sharedApplication] setKeepAliveTimeout: 600.0 handler: ^{
-        NSLog(@"keepAliveHandler called");
-        [self noop];
-        }];
-    
-    if ( backAlive ) {
-        NSLog(@"setKeepAliveTimeout handler set");
-    }
-    else {
-        NSLog(@"setKeepAliveTimeout handler not set");
-    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-
-    // unset voip alive handler
-    NSLog(@"clearKeepAliveTimeout");
-    [[UIApplication sharedApplication] clearKeepAliveTimeout];
-    
+    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

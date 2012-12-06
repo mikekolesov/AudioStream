@@ -163,7 +163,7 @@
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL: url];
     
     // allow background http streaming
-    [req setNetworkServiceType:NSURLNetworkServiceTypeVoIP];
+    [req setNetworkServiceType:NSURLNetworkServiceTypeBackground];
     
     // set short timeout
     req.timeoutInterval = 15.0;

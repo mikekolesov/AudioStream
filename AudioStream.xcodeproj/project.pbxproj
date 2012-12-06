@@ -22,6 +22,8 @@
 		4C01E4CB15C66ECE00E94343 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01E4CA15C66ECE00E94343 /* AudioToolbox.framework */; };
 		4C01E4CE15C6719F00E94343 /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4CD15C6719F00E94343 /* AudioPart.c */; };
 		4C01E4E715CBDE1500E94343 /* ASStreamThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4E615CBDE1500E94343 /* ASStreamThread.m */; };
+		4C0BE37D165A5E4C0053E0A7 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 4C2192021652676B00D6D533 /* iTunesArtwork */; };
+		4C0BE37F165A5E530053E0A7 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 4C2192041652705000D6D533 /* iTunesArtwork@2x */; };
 		4C2191FB1651545300D6D533 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2191FA1651545300D6D533 /* Icon@2x.png */; };
 		4C2191FD165264F400D6D533 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2191FC165264F400D6D533 /* Icon.png */; };
 		4C2191FF1652663300D6D533 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2191FE1652663300D6D533 /* Icon-72.png */; };
@@ -253,6 +255,8 @@
 				4CF4F6731654F4F500CF9C73 /* Default-568h@2x.png in Resources */,
 				4C34519D1658B3A4005FA588 /* Default@2x.png in Resources */,
 				4C34519F1658B703005FA588 /* Default.png in Resources */,
+				4C0BE37D165A5E4C0053E0A7 /* iTunesArtwork in Resources */,
+				4C0BE37F165A5E530053E0A7 /* iTunesArtwork@2x in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,7 +339,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Kolesov (J45A5G6R6Q)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -350,6 +355,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "490CAFF3-F3EF-45B1-B80F-F75E07B0F578";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -362,7 +368,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Kolesov (J45A5G6R6Q)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -372,6 +379,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "490CAFF3-F3EF-45B1-B80F-F75E07B0F578";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -400,9 +408,48 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
+		};
+		4C5049C0165A69C3004FB62F /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Kolesov";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BBEAA887-5D0F-4DD6-B24E-4AF3A58E4ABC";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AppStore;
+		};
+		4C5049C1165A69C3004FB62F /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AudioStream/AudioStream-Prefix.pch";
+				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStore;
 		};
 /* End XCBuildConfiguration section */
 
@@ -412,6 +459,7 @@
 			buildConfigurations = (
 				4C01E4C115C66DB600E94343 /* Debug */,
 				4C01E4C215C66DB600E94343 /* Release */,
+				4C5049C0165A69C3004FB62F /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -421,6 +469,7 @@
 			buildConfigurations = (
 				4C01E4C415C66DB600E94343 /* Debug */,
 				4C01E4C515C66DB600E94343 /* Release */,
+				4C5049C1165A69C3004FB62F /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
