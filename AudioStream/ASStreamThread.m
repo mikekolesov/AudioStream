@@ -46,9 +46,14 @@
 
 -(void) displayError: (NSString*)title withMessage: (NSString*)msg
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-    [alert release];
+    // move UI things to main thread
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        [alert release];
+        
+    });
 }
 
 
@@ -582,7 +587,7 @@
     callbackFinished = NO;
     
     NSLog( @"Error: %@", [error localizedDescription] );
-    NSString *errmsg = [NSString stringWithFormat:@"%@ Check URL port and address", [error localizedDescription]];
+    NSString *errmsg = [NSString stringWithFormat:@"%@", [error localizedDescription]];
     [self displayError:@"Connection Error" withMessage:errmsg];
     [self cancelStream];
        
