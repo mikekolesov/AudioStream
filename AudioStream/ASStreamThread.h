@@ -49,8 +49,8 @@
 - (void) stop;
 - (void) updateStreamTitle: (id) title;
 
-@property (retain, nonatomic) ASDataModel *dataModel; 
-@property (retain, nonatomic) NSThread *thread;
+@property (strong, nonatomic) ASDataModel *dataModel; 
+@property (strong, nonatomic) NSThread *thread;
 @property (assign, nonatomic) BOOL preparing;
 @property (assign, nonatomic) BOOL playing;
 @property (assign, nonatomic) BOOL finishing;
@@ -59,7 +59,7 @@
 @property (assign, nonatomic) BOOL allowMixing;
 @property (copy, nonatomic) NSString *contentType;
 @property (copy, nonatomic) NSString *bitRate;
-@property (retain, nonatomic) NSString *icyMetaInt;
+@property (strong, nonatomic) NSString *icyMetaInt;
 
 
 @end

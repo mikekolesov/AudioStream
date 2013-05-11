@@ -37,12 +37,6 @@
     return self;
 }
 
--(void) dealloc
-{
-    [dataModel release];
-    [streamTitle release];
-    [super dealloc];
-}
 
 -(void) displayError: (NSString*)title withMessage: (NSString*)msg
 {
@@ -51,7 +45,6 @@
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
-        [alert release];
         
     });
 }
@@ -65,7 +58,7 @@
   
     if (releaseThread) {
         // cleaning previous thread breaking
-        [thread release]; 
+        thread = nil;
         releaseThread = NO;
     }
     
@@ -100,7 +93,6 @@
     
     // Exit run loop
     [conn unscheduleFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    [conn release];
     
     NSLog(@"thread finished? %d", [thread isFinished]);
    
@@ -118,7 +110,6 @@
 
     }
       
-    [thread release];
     
     allowMixing = NO;
     finishing = NO;
@@ -131,26 +122,25 @@
 -(void) streamThread
 {
     NSLog(@"Enter streamThread");
-    NSAutoreleasePool *topPool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
     
     // set pthread name to show in debugger
-    pthread_setname_np([[[NSThread currentThread] name] UTF8String]);
+        pthread_setname_np([[[NSThread currentThread] name] UTF8String]);
+        
+        if ([self runAudioStream] == -1) {
+            allowMixing = NO;
+            preparing = NO;
+            releaseThread = YES;
+            [dataModel resetPlayingState];
+            return; // breaking thread
+        }
+        
+        runLoop = [[NSRunLoop currentRunLoop] getCFRunLoop];
+        
+        // block here to monitor and handle NSURLConnection methods
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
     
-    if ([self runAudioStream] == -1) {
-        [topPool release];
-        allowMixing = NO;
-        preparing = NO;
-        releaseThread = YES;
-        [dataModel resetPlayingState];
-        return; // breaking thread
     }
-    
-    runLoop = [[NSRunLoop currentRunLoop] getCFRunLoop];
-    
-    // block here to monitor and handle NSURLConnection methods
-    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
-    
-    [topPool release];
     NSLog(@"Exit streamThread");
 }
 
@@ -357,7 +347,6 @@
                             NSString *msg = [NSString stringWithFormat:@"Unsupported content type: %@", self.contentType];
                             [self displayError:@"Audio Error" withMessage:msg];
                             [self cancelStream];
-                            [shoutHeader release];
                             return;
                         }
                     }
@@ -371,7 +360,6 @@
                     }
 
                 }
-                [shoutHeader release];
                 
                 // shift to data
                 allData += endOfHeader.location + endOfHeader.length;
@@ -393,7 +381,6 @@
             return;
         }
         
-        [dataWithHeader release];
         checkIfShoutcast = NO; // check for the first time only
     }
     
@@ -556,7 +543,6 @@
     if (playing)
         [self performSelectorOnMainThread:@selector(updateStreamTitle:) withObject:streamTitle waitUntilDone:NO];
     
-    [md release];
 }
 
 - (void) updateStreamTitle: (id) title
@@ -600,7 +586,6 @@
     [conn cancel];
     
     [conn unscheduleFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    [conn release];
     
     if (playing) // finishing audio playback
         AudioPartFinish(YES);

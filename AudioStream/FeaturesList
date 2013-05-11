@@ -1,6 +1,8 @@
 
-Planning in v1.1 branch
+Planning features list
 -----------------------
+
+
 Add iCloud support
 Add Mail support and open in-app capability 
 
@@ -8,10 +10,6 @@ Add Remote Control support
 
 Localization (+Russian Language)
 
-
-
-Planning in v2.0 branch
------------------------
 Fullscreen iPad support
 
 Ogg Vorbis stream support (Tremor decoder)

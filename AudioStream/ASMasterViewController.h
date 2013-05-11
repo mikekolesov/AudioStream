@@ -20,6 +20,6 @@
 @property (strong, nonatomic) ASDetailViewController *detailViewController;
 @property (strong, nonatomic) ASDataModel *dataModel;
 @property (strong, nonatomic) ASStreamThread *streamThread;
-@property (assign, nonatomic) IBOutlet UITableViewCell *customCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *customCell;
 
 @end

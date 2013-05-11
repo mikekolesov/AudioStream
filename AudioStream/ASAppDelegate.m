@@ -17,15 +17,6 @@
 @synthesize dataModel;
 @synthesize streamThread;
 
-- (void)dealloc
-{
-    [_window release];
-    [_navigationController release];
-    [_splitViewController release];
-    [streamThread release];
-    [dataModel release];
-    [super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -42,7 +33,7 @@
     CheckError(AudioSessionInitialize(NULL,
                                       kCFRunLoopDefaultMode,
                                       MyInterruptionListener,
-                                      self.streamThread),
+                                      (__bridge void *)(self.streamThread)),
                "couldn't initialize audio session");
     
     UInt32 category = kAudioSessionCategory_MediaPlayback;
@@ -52,12 +43,12 @@
                "Couldn't set category on audio session");
 
 
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        ASMasterViewController *masterViewController = [[[ASMasterViewController alloc] initWithNibName:@"ASMasterViewController_iPhone" bundle:nil] autorelease];
-        self.navigationController = [[[UINavigationController alloc] initWithRootViewController:masterViewController] autorelease];
-        ASDetailViewController *detailViewController = [[[ASDetailViewController alloc] initWithNibName:@"ASDetailViewController_iPhone" bundle:nil] autorelease];
+        ASMasterViewController *masterViewController = [[ASMasterViewController alloc] initWithNibName:@"ASMasterViewController_iPhone" bundle:nil];
+        self.navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
+        ASDetailViewController *detailViewController = [[ASDetailViewController alloc] initWithNibName:@"ASDetailViewController_iPhone" bundle:nil];
         
         masterViewController.detailViewController = detailViewController;
         masterViewController.dataModel = dataModel;
@@ -71,7 +62,7 @@
         [dataModel addObserver:detailViewController forKeyPath:@"startPlaying" options:0 context:NULL];
         [dataModel addObserver:detailViewController forKeyPath:@"resetPlaying" options:0 context:NULL];
         
-        ASEditViewController *evc = [[[ASEditViewController alloc] initWithNibName:@"ASEditViewController" bundle:nil] autorelease];
+        ASEditViewController *evc = [[ASEditViewController alloc] initWithNibName:@"ASEditViewController" bundle:nil];
         evc.dataModel = dataModel;
         evc.streamThread = streamThread;
         masterViewController.detailViewController.editViewController = evc;
@@ -79,15 +70,15 @@
         self.window.rootViewController = self.navigationController;
         
     } else {
-        ASMasterViewController *masterViewController = [[[ASMasterViewController alloc] initWithNibName:@"ASMasterViewController_iPad" bundle:nil] autorelease];
-        UINavigationController *masterNavigationController = [[[UINavigationController alloc] initWithRootViewController:masterViewController] autorelease];
+        ASMasterViewController *masterViewController = [[ASMasterViewController alloc] initWithNibName:@"ASMasterViewController_iPad" bundle:nil];
+        UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
         
-        ASDetailViewController *detailViewController = [[[ASDetailViewController alloc] initWithNibName:@"ASDetailViewController_iPad" bundle:nil] autorelease];
-        UINavigationController *detailNavigationController = [[[UINavigationController alloc] initWithRootViewController:detailViewController] autorelease];
+        ASDetailViewController *detailViewController = [[ASDetailViewController alloc] initWithNibName:@"ASDetailViewController_iPad" bundle:nil];
+        UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
     	
     	masterViewController.detailViewController = detailViewController;
     	
-        self.splitViewController = [[[UISplitViewController alloc] init] autorelease];
+        self.splitViewController = [[UISplitViewController alloc] init];
         self.splitViewController.delegate = detailViewController;
         self.splitViewController.viewControllers = @[masterNavigationController, detailNavigationController];
         
@@ -151,7 +142,7 @@ static void CheckError(OSStatus error, const char *operation)
 
 static void MyInterruptionListener (void *inUserData, UInt32 inInterruptionState) {
 	
-    ASStreamThread *stream = (ASStreamThread *) inUserData;
+    ASStreamThread *stream = (__bridge ASStreamThread *) inUserData;
     
 	printf ("Interrupted! inInterruptionState=%ld\n", inInterruptionState);
     

@@ -27,7 +27,6 @@
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *docDir = [paths objectAtIndex:0];
         filePath = [NSString stringWithFormat:@"%@/AudioStreamList.plist", docDir];
-        [filePath retain];
         
         NSError *err = nil;
         NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -46,9 +45,6 @@
 - (void) dealloc
 {
     [streamObjects removeAllObjects];
-    [streamObjects release];
-    [filePath release];
-    [super dealloc];
 }
 
 - (NSString *) description
@@ -62,7 +58,7 @@
 
 - (void) addNewEmptyObject
 {
-    NSMutableDictionary *dic = [[[NSMutableDictionary alloc] init] autorelease];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setValue:@"New Stream" forKey:@"StreamName"];
     [dic setValue:@"http://" forKey:@"StreamURL"];
         
@@ -161,7 +157,6 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Operation Not Permited" message:@"Stop this stream\n before delete it" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
         alert.tag = 1;
         [alert show];
-        [alert release];
         
         return NO;
     }
@@ -174,7 +169,6 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete confirmation" message:mes delegate:self cancelButtonTitle:@"Yes" otherButtonTitles: @"No", nil];
     alert.tag = 2;
     [alert show];
-    [alert release];
     
     // wait for confirm (0 or 1)
     while (confirmed == -1) {

@@ -20,10 +20,10 @@
 - (IBAction) soundCheck: (id) sender;
 - (IBAction) doneKeyboard:(id)sender;
 
-@property (retain, nonatomic) IBOutlet UITextField *streamName;
-@property (retain, nonatomic) IBOutlet UITextField *streamURLString;
-@property (retain, nonatomic) IBOutlet UIButton *checkButton;
-@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+@property (strong, nonatomic) IBOutlet UITextField *streamName;
+@property (strong, nonatomic) IBOutlet UITextField *streamURLString;
+@property (strong, nonatomic) IBOutlet UIButton *checkButton;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (strong, nonatomic) ASDataModel *dataModel;
 @property (strong, nonatomic) ASStreamThread *streamThread;
 

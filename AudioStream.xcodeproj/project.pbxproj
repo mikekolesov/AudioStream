@@ -65,7 +65,7 @@
 		4C01E4CD15C6719F00E94343 /* AudioPart.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AudioPart.c; sourceTree = "<group>"; };
 		4C01E4E515CBDE1500E94343 /* ASStreamThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ASStreamThread.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C01E4E615CBDE1500E94343 /* ASStreamThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ASStreamThread.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4C020FFC15E62AD20087C9A2 /* Project Plan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Project Plan"; path = "AudioStream/Project Plan"; sourceTree = "<group>"; };
+		4C020FFC15E62AD20087C9A2 /* FeaturesList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FeaturesList; path = AudioStream/FeaturesList; sourceTree = "<group>"; };
 		4C2191FA1651545300D6D533 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		4C2191FC165264F400D6D533 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		4C2191FE1652663300D6D533 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		4C01E48E15C66DB600E94343 = {
 			isa = PBXGroup;
 			children = (
-				4C020FFC15E62AD20087C9A2 /* Project Plan */,
+				4C020FFC15E62AD20087C9A2 /* FeaturesList */,
 				4CFBB50315FBAC5F00297852 /* StationList */,
 				4C01E4A315C66DB600E94343 /* AudioStream */,
 				4C01E49C15C66DB600E94343 /* Frameworks */,
@@ -389,6 +389,7 @@
 		4C01E4C415C66DB600E94343 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioStream/AudioStream-Prefix.pch";
 				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
@@ -402,6 +403,7 @@
 		4C01E4C515C66DB600E94343 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioStream/AudioStream-Prefix.pch";
 				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
@@ -441,6 +443,7 @@
 		4C5049C1165A69C3004FB62F /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioStream/AudioStream-Prefix.pch";
 				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";

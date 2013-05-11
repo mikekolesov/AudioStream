@@ -29,13 +29,8 @@
 
 - (void)dealloc
 {
-    [editViewController release];
     //[_detailItem release];
     //[_detailDescriptionLabel release];
-    [_masterPopoverController release];
-    [dataModel release];
-    [streamThread release];
-    [super dealloc];
     NSLog(@"DetailViewController dealloc");
 }
 
@@ -126,10 +121,10 @@
         self.title = @"Station";
         
         // change back title
-        UIBarButtonItem *bb = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+        UIBarButtonItem *bb = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
         self.navigationItem.backBarButtonItem = bb;
         
-        UIBarButtonItem * settingsButton = [[[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editSettings)] autorelease];
+        UIBarButtonItem * settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editSettings)];
         self.navigationItem.rightBarButtonItem = settingsButton;
     }
     return self;

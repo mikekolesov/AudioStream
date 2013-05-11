@@ -27,7 +27,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *streamBitRate;
 @property (strong, nonatomic) IBOutlet UILabel *streamFormat;
 @property (strong, nonatomic) ASStreamThread *streamThread;
-@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (strong, nonatomic) IBOutlet UIView *volumeView;
 
 @end

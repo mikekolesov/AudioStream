@@ -28,7 +28,7 @@
         //self.title = @"Loading...";
         
         // change back title
-        UIBarButtonItem *bb = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+        UIBarButtonItem *bb = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
         self.navigationItem.backBarButtonItem = bb;
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -45,14 +45,6 @@
 }
 
 
-- (void)dealloc
-{
-    [_detailViewController release];
-    [dataModel release];
-    [streamThread release];
-    [playIndicator release];
-    [super dealloc];
-}
 
 
 - (void)viewDidLoad
@@ -66,7 +58,7 @@
 //    self.navigationItem.rightBarButtonItem = addButton;
     
     // comment code below to generate launch image
-    UIBarButtonItem *newButton = [[[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStyleBordered target:self action:@selector(insertNewObject:)] autorelease];
+    UIBarButtonItem *newButton = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStyleBordered target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = newButton;
     // last line of launch image comment
 }

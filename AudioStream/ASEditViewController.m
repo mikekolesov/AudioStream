@@ -34,7 +34,7 @@
 - (void) saveSettings
 {
     if ([dataModel isSelectedObjectPlaying]) {
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Operation Not Permited" message:@"Stop this stream \nbefore changing its settings" delegate:self cancelButtonTitle: @"Dismiss" otherButtonTitles: nil] autorelease];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Operation Not Permited" message:@"Stop this stream \nbefore changing its settings" delegate:self cancelButtonTitle: @"Dismiss" otherButtonTitles: nil];
         [alert show];
         return;
     }
@@ -75,8 +75,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    [noKeyboard release];
-    [saveButton release];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -170,7 +168,7 @@
 {
     // prevent changing if in playing state
     if ([dataModel isSelectedObjectPlaying]) {
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Operation Not Permited" message:@"Stop stream to change settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil] autorelease];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Operation Not Permited" message:@"Stop stream to change settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
         [alert show];
         return NO;
     }
