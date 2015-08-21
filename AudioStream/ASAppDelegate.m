@@ -44,50 +44,31 @@
 
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        ASMasterViewController *masterViewController = [[ASMasterViewController alloc] initWithNibName:@"ASMasterViewController_iPhone" bundle:nil];
-        self.navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
-        ASDetailViewController *detailViewController = [[ASDetailViewController alloc] initWithNibName:@"ASDetailViewController_iPhone" bundle:nil];
-        
-        masterViewController.detailViewController = detailViewController;
-        masterViewController.dataModel = dataModel;
-        masterViewController.streamThread = streamThread;
-        [dataModel addObserver:masterViewController forKeyPath:@"startPlaying" options:0 context:NULL];
-        [dataModel addObserver:masterViewController forKeyPath:@"resetPlaying" options:0 context:NULL];
-        
-        detailViewController.dataModel = dataModel;
-        detailViewController.streamThread = streamThread;
-        [dataModel addObserver:detailViewController forKeyPath:@"objectTitle" options:0 context:NULL];
-        [dataModel addObserver:detailViewController forKeyPath:@"startPlaying" options:0 context:NULL];
-        [dataModel addObserver:detailViewController forKeyPath:@"resetPlaying" options:0 context:NULL];
-        
-        ASEditViewController *evc = [[ASEditViewController alloc] initWithNibName:@"ASEditViewController" bundle:nil];
-        evc.dataModel = dataModel;
-        evc.streamThread = streamThread;
-        masterViewController.detailViewController.editViewController = evc;
-        
-        self.window.rootViewController = self.navigationController;
-        
-    } else {
-        ASMasterViewController *masterViewController = [[ASMasterViewController alloc] initWithNibName:@"ASMasterViewController_iPad" bundle:nil];
-        UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
-        
-        ASDetailViewController *detailViewController = [[ASDetailViewController alloc] initWithNibName:@"ASDetailViewController_iPad" bundle:nil];
-        UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
-    	
-    	masterViewController.detailViewController = detailViewController;
-    	
-        self.splitViewController = [[UISplitViewController alloc] init];
-        self.splitViewController.delegate = detailViewController;
-        self.splitViewController.viewControllers = @[masterNavigationController, detailNavigationController];
-        
-        self.window.rootViewController = self.splitViewController;
-    }
+   
+    ASMasterViewController *masterViewController = [[ASMasterViewController alloc] initWithNibName:@"ASMasterViewController_iPhone" bundle:nil];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
+    ASDetailViewController *detailViewController = [[ASDetailViewController alloc] initWithNibName:@"ASDetailViewController_iPhone" bundle:nil];
     
+    masterViewController.detailViewController = detailViewController;
+    masterViewController.dataModel = dataModel;
+    masterViewController.streamThread = streamThread;
+    [dataModel addObserver:masterViewController forKeyPath:@"startPlaying" options:0 context:NULL];
+    [dataModel addObserver:masterViewController forKeyPath:@"resetPlaying" options:0 context:NULL];
+    
+    detailViewController.dataModel = dataModel;
+    detailViewController.streamThread = streamThread;
+    [dataModel addObserver:detailViewController forKeyPath:@"objectTitle" options:0 context:NULL];
+    [dataModel addObserver:detailViewController forKeyPath:@"startPlaying" options:0 context:NULL];
+    [dataModel addObserver:detailViewController forKeyPath:@"resetPlaying" options:0 context:NULL];
+    
+    ASEditViewController *evc = [[ASEditViewController alloc] initWithNibName:@"ASEditViewController" bundle:nil];
+    evc.dataModel = dataModel;
+    evc.streamThread = streamThread;
+    masterViewController.detailViewController.editViewController = evc;
+    
+    self.window.rootViewController = self.navigationController;
+   
     [self.window makeKeyAndVisible];
-    
-    
     
     return YES;
 }

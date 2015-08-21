@@ -49,7 +49,7 @@
 		4C01E4A915C66DB600E94343 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4C01E4AB15C66DB600E94343 /* AudioStream-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AudioStream-Prefix.pch"; sourceTree = "<group>"; };
 		4C01E4AC15C66DB600E94343 /* ASAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASAppDelegate.h; sourceTree = "<group>"; };
-		4C01E4AD15C66DB600E94343 /* ASAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASAppDelegate.m; sourceTree = "<group>"; };
+		4C01E4AD15C66DB600E94343 /* ASAppDelegate.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ASAppDelegate.m; sourceTree = "<group>"; tabWidth = 4; };
 		4C01E4AF15C66DB600E94343 /* ASMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASMasterViewController.h; sourceTree = "<group>"; };
 		4C01E4B015C66DB600E94343 /* ASMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASMasterViewController.m; sourceTree = "<group>"; };
 		4C01E4B215C66DB600E94343 /* ASDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASDetailViewController.h; sourceTree = "<group>"; };
