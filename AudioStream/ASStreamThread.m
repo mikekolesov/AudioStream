@@ -161,7 +161,7 @@
     [req setNetworkServiceType:NSURLNetworkServiceTypeBackground];
     
     // set short timeout
-    req.timeoutInterval = 15.0;
+    req.timeoutInterval = 100.0;
     
     // for getting song title
     [req addValue: @"1" forHTTPHeaderField: @"Icy-MetaData"];

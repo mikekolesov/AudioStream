@@ -31,11 +31,6 @@
         UIBarButtonItem *bb = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
         self.navigationItem.backBarButtonItem = bb;
         
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            self.clearsSelectionOnViewWillAppear = NO;
-            self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
-        }
-        
         // prepare play indicator image view
         UIImage *img = [UIImage imageNamed:@"arrow_left.png"];
         playIndicator = [[UIImageView alloc] initWithImage:img];

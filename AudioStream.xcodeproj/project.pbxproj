@@ -16,9 +16,7 @@
 		4C01E4B115C66DB600E94343 /* ASMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4B015C66DB600E94343 /* ASMasterViewController.m */; };
 		4C01E4B415C66DB600E94343 /* ASDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4B315C66DB600E94343 /* ASDetailViewController.m */; };
 		4C01E4B715C66DB600E94343 /* ASMasterViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C01E4B515C66DB600E94343 /* ASMasterViewController_iPhone.xib */; };
-		4C01E4BA15C66DB600E94343 /* ASMasterViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C01E4B815C66DB600E94343 /* ASMasterViewController_iPad.xib */; };
 		4C01E4BD15C66DB600E94343 /* ASDetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C01E4BB15C66DB600E94343 /* ASDetailViewController_iPhone.xib */; };
-		4C01E4C015C66DB600E94343 /* ASDetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C01E4BE15C66DB600E94343 /* ASDetailViewController_iPad.xib */; };
 		4C01E4CB15C66ECE00E94343 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01E4CA15C66ECE00E94343 /* AudioToolbox.framework */; };
 		4C01E4CE15C6719F00E94343 /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4CD15C6719F00E94343 /* AudioPart.c */; };
 		4C01E4E715CBDE1500E94343 /* ASStreamThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4E615CBDE1500E94343 /* ASStreamThread.m */; };
@@ -57,15 +55,12 @@
 		4C01E4B215C66DB600E94343 /* ASDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASDetailViewController.h; sourceTree = "<group>"; };
 		4C01E4B315C66DB600E94343 /* ASDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASDetailViewController.m; sourceTree = "<group>"; };
 		4C01E4B615C66DB600E94343 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMasterViewController_iPhone.xib; sourceTree = "<group>"; };
-		4C01E4B915C66DB600E94343 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMasterViewController_iPad.xib; sourceTree = "<group>"; };
 		4C01E4BC15C66DB600E94343 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASDetailViewController_iPhone.xib; sourceTree = "<group>"; };
-		4C01E4BF15C66DB600E94343 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASDetailViewController_iPad.xib; sourceTree = "<group>"; };
 		4C01E4CA15C66ECE00E94343 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4C01E4CC15C6717700E94343 /* AudioPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPart.h; sourceTree = "<group>"; };
 		4C01E4CD15C6719F00E94343 /* AudioPart.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AudioPart.c; sourceTree = "<group>"; };
 		4C01E4E515CBDE1500E94343 /* ASStreamThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ASStreamThread.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C01E4E615CBDE1500E94343 /* ASStreamThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ASStreamThread.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4C020FFC15E62AD20087C9A2 /* FeaturesList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FeaturesList; path = AudioStream/FeaturesList; sourceTree = "<group>"; };
 		4C2191FA1651545300D6D533 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		4C2191FC165264F400D6D533 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		4C2191FE1652663300D6D533 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -107,7 +102,6 @@
 		4C01E48E15C66DB600E94343 = {
 			isa = PBXGroup;
 			children = (
-				4C020FFC15E62AD20087C9A2 /* FeaturesList */,
 				4CFBB50315FBAC5F00297852 /* StationList */,
 				4C01E4A315C66DB600E94343 /* AudioStream */,
 				4C01E49C15C66DB600E94343 /* Frameworks */,
@@ -138,20 +132,15 @@
 		4C01E4A315C66DB600E94343 /* AudioStream */ = {
 			isa = PBXGroup;
 			children = (
+				CE3BCD231B87904A003D80B7 /* Views */,
 				4C01E4AC15C66DB600E94343 /* ASAppDelegate.h */,
 				4C01E4AD15C66DB600E94343 /* ASAppDelegate.m */,
 				4C01E4AF15C66DB600E94343 /* ASMasterViewController.h */,
 				4C01E4B015C66DB600E94343 /* ASMasterViewController.m */,
-				4C01E4B515C66DB600E94343 /* ASMasterViewController_iPhone.xib */,
-				4CF12E961611A8FE00FB184C /* ASCustomTableViewCell.xib */,
-				4C01E4B815C66DB600E94343 /* ASMasterViewController_iPad.xib */,
 				4C01E4B215C66DB600E94343 /* ASDetailViewController.h */,
 				4C01E4B315C66DB600E94343 /* ASDetailViewController.m */,
-				4C01E4BB15C66DB600E94343 /* ASDetailViewController_iPhone.xib */,
-				4C01E4BE15C66DB600E94343 /* ASDetailViewController_iPad.xib */,
 				4C69B88E15E3B8B300EADFCF /* ASEditViewController.h */,
 				4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */,
-				4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */,
 				4C01E4E515CBDE1500E94343 /* ASStreamThread.h */,
 				4C01E4E615CBDE1500E94343 /* ASStreamThread.m */,
 				4C01E4CC15C6717700E94343 /* AudioPart.h */,
@@ -186,6 +175,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CE3BCD231B87904A003D80B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4CF12E961611A8FE00FB184C /* ASCustomTableViewCell.xib */,
+				4C01E4B515C66DB600E94343 /* ASMasterViewController_iPhone.xib */,
+				4C01E4BB15C66DB600E94343 /* ASDetailViewController_iPhone.xib */,
+				4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -213,7 +213,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AS;
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Michael Kolesov";
 			};
 			buildConfigurationList = 4C01E49315C66DB600E94343 /* Build configuration list for PBXProject "AudioStream" */;
@@ -240,9 +240,7 @@
 			files = (
 				4C01E4A815C66DB600E94343 /* InfoPlist.strings in Resources */,
 				4C01E4B715C66DB600E94343 /* ASMasterViewController_iPhone.xib in Resources */,
-				4C01E4BA15C66DB600E94343 /* ASMasterViewController_iPad.xib in Resources */,
 				4C01E4BD15C66DB600E94343 /* ASDetailViewController_iPhone.xib in Resources */,
-				4C01E4C015C66DB600E94343 /* ASDetailViewController_iPad.xib in Resources */,
 				4C69B89215E3B8B300EADFCF /* ASEditViewController.xib in Resources */,
 				4CF12E981611A8FE00FB184C /* ASCustomTableViewCell.xib in Resources */,
 				4CA3A558163FEC050079129D /* Icon Copyright in Resources */,
@@ -297,28 +295,12 @@
 			name = ASMasterViewController_iPhone.xib;
 			sourceTree = "<group>";
 		};
-		4C01E4B815C66DB600E94343 /* ASMasterViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4C01E4B915C66DB600E94343 /* en */,
-			);
-			name = ASMasterViewController_iPad.xib;
-			sourceTree = "<group>";
-		};
 		4C01E4BB15C66DB600E94343 /* ASDetailViewController_iPhone.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4C01E4BC15C66DB600E94343 /* en */,
 			);
 			name = ASDetailViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		4C01E4BE15C66DB600E94343 /* ASDetailViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4C01E4BF15C66DB600E94343 /* en */,
-			);
-			name = ASDetailViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 		4CF12E961611A8FE00FB184C /* ASCustomTableViewCell.xib */ = {
@@ -336,14 +318,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Kolesov (J45A5G6R6Q)";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -351,10 +341,14 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "490CAFF3-F3EF-45B1-B80F-F75E07B0F578";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -365,19 +359,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Kolesov (J45A5G6R6Q)";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "490CAFF3-F3EF-45B1-B80F-F75E07B0F578";
 				SDKROOT = iphoneos;
@@ -390,11 +394,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioStream/AudioStream-Prefix.pch";
 				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.newcompany.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -404,11 +411,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioStream/AudioStream-Prefix.pch";
 				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.newcompany.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
@@ -419,19 +429,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Kolesov";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BBEAA887-5D0F-4DD6-B24E-4AF3A58E4ABC";
 				SDKROOT = iphoneos;
@@ -444,11 +464,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AudioStream/AudioStream-Prefix.pch";
 				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.newcompany.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
