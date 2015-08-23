@@ -16,7 +16,7 @@
 #include <pthread.h>
 #include <AudioToolbox/AudioToolbox.h>
 
-#define PRINTERROR(LABEL)	printf("%s err %4.4s %ld\n", LABEL, (char*)&err, err)
+#define PRINTERROR(LABEL)	printf("%s err %4.4s %d\n", LABEL, (char*)&err, (int)err)
 
 #define kNumAQBufs  4			// number of audio queue buffers we allocate
 #define kAQMaxPacketDescs 512		// number of packet descriptions in our array

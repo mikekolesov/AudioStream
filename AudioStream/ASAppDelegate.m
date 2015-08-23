@@ -125,7 +125,7 @@ static void MyInterruptionListener (void *inUserData, UInt32 inInterruptionState
 	
     ASStreamThread *stream = (__bridge ASStreamThread *) inUserData;
     
-	printf ("Interrupted! inInterruptionState=%ld\n", inInterruptionState);
+	printf ("Interrupted! inInterruptionState=%u\n", (unsigned int)inInterruptionState);
     
     
 	switch (inInterruptionState) {
