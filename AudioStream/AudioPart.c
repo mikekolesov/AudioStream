@@ -78,7 +78,7 @@ void MyPropertyListenerProc(void *							inClientData,
 			Boolean writable;
 			err = AudioFileStreamGetPropertyInfo(inAudioFileStream, kAudioFileStreamProperty_MagicCookieData, &cookieSize, &writable);
 			if (err) { PRINTERROR("info kAudioFileStreamProperty_MagicCookieData"); break; }
-			printf("cookieSize %ld\n", cookieSize);
+			printf("cookieSize %u\n", (unsigned int)cookieSize);
             
 			// get the cookie data
 			void* cookieData = calloc(1, cookieSize);
@@ -115,7 +115,7 @@ void MyPacketsProc(	void *							inClientData,
         myData->finishingReady = true;
         return;
     }
-    printf("got data.  bytes: %ld  packets: %ld\n", inNumberBytes, inNumberPackets);
+    printf("got data.  bytes: %u  packets: %u\n", (unsigned int)inNumberBytes, (unsigned int)inNumberPackets);
 	// the following code assumes we're streaming VBR data. for CBR data, you'd need another code branch here.
     
 	for (int i = 0; i < inNumberPackets; ++i) {
@@ -258,8 +258,8 @@ OSStatus MyEnqueueBuffer(MyData* myData)
 	
 	// enqueue buffer
 	AudioQueueBufferRef fillBuf = myData->audioQueueBuffer[myData->fillBufferIndex];
-	fillBuf->mAudioDataByteSize = myData->bytesFilled;
-    err = AudioQueueEnqueueBuffer(myData->audioQueue, fillBuf, myData->packetsFilled, myData->packetDescs);
+	fillBuf->mAudioDataByteSize = (UInt32)myData->bytesFilled;
+    err = AudioQueueEnqueueBuffer(myData->audioQueue, fillBuf, (UInt32)myData->packetsFilled, myData->packetDescs);
 	if (err) {
         PRINTERROR("AudioQueueEnqueueBuffer");
         myData->failed = true;
@@ -422,7 +422,7 @@ int AudioPartParser( const void * buf, ssize_t bytesRecvd )
     } 
 		
     // parse the data. this will call MyPropertyListenerProc and MyPacketsProc
-    err = AudioFileStreamParseBytes(myAudioPartData->audioFileStream, bytesRecvd, buf, 0);
+    err = AudioFileStreamParseBytes(myAudioPartData->audioFileStream, (UInt32)bytesRecvd, buf, 0);
     if (err) {
         PRINTERROR("AudioFileStreamParseBytes");
         return -1;

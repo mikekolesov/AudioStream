@@ -49,8 +49,8 @@
 
 - (NSString *) description
 {
-    NSString *desc = [NSString stringWithFormat:@"Object count %d\n%@",
-                      streamObjects.count,
+    NSString *desc = [NSString stringWithFormat:@"Object count %lu\n%@",
+                      (unsigned long)streamObjects.count,
                       streamObjects.description];
     return desc;
 }
@@ -118,7 +118,7 @@
 
 - (void) selectObjectAtIndex: (NSUInteger)index
 {
-    selectedIndex = index;
+    selectedIndex = (int)index;
 }
 
 - (NSUInteger) countOfObjects

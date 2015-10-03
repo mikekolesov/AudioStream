@@ -321,7 +321,7 @@
     allData = [data bytes];
     allDataLen = [data length];
     
-    NSLog( @"Data, %d", allDataLen );
+    NSLog( @"Data, %lu", (unsigned long)allDataLen );
     
     if (checkIfShoutcast) { // parse SHOUTcast http header
         NSString *dataWithHeader = [[NSString alloc] initWithBytes:allData length:allDataLen encoding:NSASCIIStringEncoding];
@@ -439,7 +439,7 @@
                         // cutting first part of metadata
                         metaData = calloc(1, metaSize);
                         memcpy(metaData, allData + dataRest + 1, allDataLen - 1 - dataRest);
-                        tornMetaSize = metaSize - (allDataLen - 1 - dataRest); // save size of second torn portion of metadata
+                        tornMetaSize = (int)metaSize - ((int)allDataLen - 1 - dataRest); // save size of second torn portion of metadata
                         tornMetaData = YES;
                         
                         // cutting audio data
