@@ -4,21 +4,9 @@
 <array>
 	<dict>
 		<key>StreamName</key>
-		<string>Classical Music</string>
-		<key>StreamURL</key>
-		<string>http://pub4.sky.fm/sky_classical</string>
-	</dict>
-	<dict>
-		<key>StreamName</key>
 		<string>Детское радио</string>
 		<key>StreamURL</key>
 		<string>http://79.143.70.114:8000/detifm-onair-64k.aac</string>
-	</dict>
-	<dict>
-		<key>StreamName</key>
-		<string>Наше</string>
-		<key>StreamURL</key>
-		<string>http://94.25.53.133/nashe-96</string>
 	</dict>
 	<dict>
 		<key>StreamName</key>
@@ -28,15 +16,9 @@
 	</dict>
 	<dict>
 		<key>StreamName</key>
-		<string>Smooth Lounge</string>
-		<key>StreamURL</key>
-		<string>http://pub4.sky.fm/sky_smoothlounge_aac</string>
-	</dict>
-	<dict>
-		<key>StreamName</key>
 		<string>Радио Рекорд</string>
 		<key>StreamURL</key>
-		<string>http://online.radiorecord.ru:8101/rr_128</string>
+		<string>http://air.radiorecord.ru:8101/rr_128</string>
 	</dict>
 </array>
 </plist>

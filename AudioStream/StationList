@@ -6,13 +6,13 @@ http://91.190.117.131:8000/live
 http://91.190.117.131:8000/64
 
 // Radio Record
-http://online.radiorecord.ru:8101/rr_128
-http://online.radiorecord.ru:8100/rr_64
-http://online.radiorecord.ru:8100/rr_aac
-http://online.radiorecord.ru:8100/rr_ogg
-http://online.radiorecord.ru:8102/brks_128
-http://online.radiorecord.ru:8102/brks_aac
-http://online.radiorecord.ru:8102/club_128
+http://air.radiorecord.ru:8101/rr_128
+http://air.radiorecord.ru:8100/rr_64
+http://air.radiorecord.ru:8100/rr_aac
+http://air.radiorecord.ru:8100/rr_ogg
+http://air.radiorecord.ru:8102/brks_128
+http://air.radiorecord.ru:8102/brks_aac
+http://air.radiorecord.ru:8102/club_128
 
 //SKY.FM SMOOTH LOUNGE
 http://pub4.sky.fm:80/sky_smoothlounge_aac
