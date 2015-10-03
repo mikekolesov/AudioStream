@@ -24,23 +24,25 @@
     // alloc data model
     dataModel = [[ASDataModel alloc] init];
     
-    // alloc stream
+    // alloc and setup stream
     streamThread = [[ASStreamThread alloc] init];
     streamThread.dataModel = dataModel;
-    
+    [streamThread setupStream];
 
     // set up audio session
-    CheckError(AudioSessionInitialize(NULL,
-                                      kCFRunLoopDefaultMode,
-                                      MyInterruptionListener,
-                                      (__bridge void *)(self.streamThread)),
-               "couldn't initialize audio session");
     
-    UInt32 category = kAudioSessionCategory_MediaPlayback;
-    CheckError(AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,
-                                       sizeof(category),
-                                       &category),
-               "Couldn't set category on audio session");
+    
+//    CheckError(AudioSessionInitialize(NULL,
+//                                      kCFRunLoopDefaultMode,
+//                                      MyInterruptionListener,
+//                                      (__bridge void *)(self.streamThread)),
+//               "couldn't initialize audio session");
+//    
+//    UInt32 category = kAudioSessionCategory_MediaPlayback;
+//    CheckError(AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,
+//                                       sizeof(category),
+//                                       &category),
+//               "Couldn't set category on audio session");
 
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -103,57 +105,51 @@
 }
 
 // generic error handler - if err is nonzero, prints error message
-static void CheckError(OSStatus error, const char *operation)
-{
-	if (error == noErr) return;
-	
-	char str[20];
-	// see if it appears to be a 4-char-code
-	*(UInt32 *)(str + 1) = CFSwapInt32HostToBig(error);
-	if (isprint(str[1]) && isprint(str[2]) && isprint(str[3]) && isprint(str[4])) {
-		str[0] = str[5] = '\'';
-		str[6] = '\0';
-	} else
-		// no, format it as an integer
-		sprintf(str, "%d", (int)error);
-    
-	fprintf(stderr, "Error: %s (%s)\n", operation, str);
-
-}
-
-static void MyInterruptionListener (void *inUserData, UInt32 inInterruptionState) {
-	
-    ASStreamThread *stream = (__bridge ASStreamThread *) inUserData;
-    
-	printf ("Interrupted! inInterruptionState=%u\n", (unsigned int)inInterruptionState);
-    
-    
-	switch (inInterruptionState) {
-		case kAudioSessionBeginInterruption:
-            printf("kAudioSession_Begin_Interruption\n");
-            [stream stop];
-            break;
-            
-		case kAudioSessionEndInterruption:
-            printf("kAudioSession_End_Interruption\n");
-
-            NSLog(@"set allow mixing");
-            stream.allowMixing = TRUE;
-            
-            [stream startWithURL: stream.urlString];
-
-            break;
-            
-		default:
-			break;
-	};
-}
-
-- (int) noop // like no-op
-{
-    int a, b, c;
-    a = 1; b = 2; c = a + b;
-    return c;
-}
+//static void CheckError(OSStatus error, const char *operation)
+//{
+//	if (error == noErr) return;
+//	
+//	char str[20];
+//	// see if it appears to be a 4-char-code
+//	*(UInt32 *)(str + 1) = CFSwapInt32HostToBig(error);
+//	if (isprint(str[1]) && isprint(str[2]) && isprint(str[3]) && isprint(str[4])) {
+//		str[0] = str[5] = '\'';
+//		str[6] = '\0';
+//	} else
+//		// no, format it as an integer
+//		sprintf(str, "%d", (int)error);
+//    
+//	fprintf(stderr, "Error: %s (%s)\n", operation, str);
+//
+//}
+//
+//static void MyInterruptionListener (void *inUserData, UInt32 inInterruptionState) {
+//	
+//    ASStreamThread *stream = (__bridge ASStreamThread *) inUserData;
+//    
+//	printf ("Interrupted! inInterruptionState=%u\n", (unsigned int)inInterruptionState);
+//    
+//    
+//	switch (inInterruptionState) {
+//		case kAudioSessionBeginInterruption:
+//            printf("kAudioSession_Begin_Interruption\n");
+//            [stream stop];
+//            break;
+//            
+//		case kAudioSessionEndInterruption:
+//            printf("kAudioSession_End_Interruption\n");
+//
+//            NSLog(@"set allow mixing");
+//            stream.allowMixing = TRUE;
+//            
+//            [stream startWithURL: stream.urlString];
+//
+//            break;
+//            
+//		default:
+//			break;
+//	};
+//}
+//
 
 @end

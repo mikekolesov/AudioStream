@@ -45,6 +45,7 @@
     int tornMetaSize;           // size of torn (second) portion of metadata
 }
 
+- (void) setupStream;
 - (void) startWithURL: (NSString *) url;
 - (void) stop;
 - (void) updateStreamTitle: (id) title;

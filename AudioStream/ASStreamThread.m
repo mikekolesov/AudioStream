@@ -9,7 +9,7 @@
 #import "ASStreamThread.h"
 #import "AudioPart.h"
 #import <pthread.h>
-
+#import <AVFoundation/AVAudioSession.h>
 
 @implementation ASStreamThread
 
@@ -37,6 +37,35 @@
     return self;
 }
 
+-(void) setupStream
+{
+   NSError *error = nil;
+   
+   [[AVAudioSession sharedInstance] setActive:YES error:&error];
+   if (error) {
+      NSLog(@"AVAudioSession setActive error: %@", error.localizedDescription);
+      return;
+   }
+   
+   [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
+   if (error) {
+      NSLog(@"AVAudioSession setCategory error: %@", error.localizedDescription);
+      return;
+   }
+   
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:AVAudioSessionInterruptionNotification object:nil];
+}
+
+
+- (void) dealloc
+{
+   [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void) notificationHandler:(NSNotification*)notification
+{
+   NSLog(@"AVAudioSession notification %@", notification);
+}
 
 -(void) displayError: (NSString*)title withMessage: (NSString*)msg
 {
