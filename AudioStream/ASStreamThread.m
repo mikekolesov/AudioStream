@@ -11,9 +11,48 @@
 #import <pthread.h>
 #import <AVFoundation/AVAudioSession.h>
 
+
+@interface ASStreamThread () <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
+{
+    NSThread *thread;           // stream thread object
+    BOOL releaseThread;         // release thread if error occured before
+    
+    CFRunLoopRef runLoop;       // secondary thread run loop
+    
+    NSURLConnection *conn;      // stream connection
+    NSString *urlString;        // stream url string
+    
+    BOOL preparing;             // start/stop preparing flag
+    BOOL finishing;             // flag to finish audio processing
+    BOOL callbackFinished;       // exit of connection callback
+    
+    BOOL playing;
+    
+    BOOL checkIfShoutcast;      // check if server is SHOUTcast
+    BOOL textHtml;              // text instead of audio in response
+    
+    NSString *contentType;      // http-style type of stream
+    NSString *bitRate;          // icy-br NSString value
+    int br;                     // icy-br int value
+    AudioFileTypeID streamType; // stream type for core audio
+    int metaInterval;           // icy-metaint int value
+    NSString *icyMetaInt;       // icy-metaint NSString value
+    
+    int dataRest;               // audio data remaining before metadata
+    char *metaData;             // C style metadata
+    UInt32 metaSize;            // size of metadata
+    NSString *streamTitle;      // value of SteamTitle tag
+    
+    BOOL tornMetaData;          // flag set when metadata tears between packets
+    int tornMetaSize;           // size of torn (second) portion of metadata
+}
+
+@property (strong, nonatomic) NSThread *thread;
+
+@end
+
 @implementation ASStreamThread
 
-@synthesize dataModel;
 @synthesize thread;
 @synthesize preparing;
 @synthesize playing;
@@ -100,7 +139,10 @@
     else {
         [self displayError:@"Start Error" withMessage: @"Thread init failed"];
         preparing = NO;
-        [dataModel resetPlayingState];
+        
+        if ([self.delegate respondsToSelector:@selector(streamThreadDidCancel)]) {
+            [self.delegate streamThreadDidCancel];
+        }
     }
    
 }
@@ -145,7 +187,9 @@
     playing = NO;
     preparing = NO;
     
-    [dataModel resetPlayingState];
+    if ([self.delegate respondsToSelector:@selector(streamThreadDidCancel)]) {
+        [self.delegate streamThreadDidCancel];
+    }
 }
 
 -(void) streamThread
@@ -160,7 +204,11 @@
             allowMixing = NO;
             preparing = NO;
             releaseThread = YES;
-            [dataModel resetPlayingState];
+
+            if ([self.delegate respondsToSelector:@selector(streamThreadDidCancel)]) {
+                [self.delegate streamThreadDidCancel];
+            }
+            
             return; // breaking thread
         }
         
@@ -204,7 +252,11 @@
         NSLog( @"Connection init failed" );
         [self displayError:@"Connection Error" withMessage:@"Connection init failed"];
         AudioPartInitClean();
-        [dataModel resetPlayingState];
+        
+        if ([self.delegate respondsToSelector:@selector(streamThreadDidCancel)]) {
+            [self.delegate streamThreadDidCancel];
+        }
+        
         return -1;
     }
     else {
@@ -534,7 +586,10 @@
         if (!AudioPartIsPreparing()) {
             preparing = FALSE;
             playing = YES;
-            [dataModel makeSelectedObjectPlaying];
+            
+            if ([self.delegate respondsToSelector:@selector(streamThreadDidStartPlaying)]) {
+                [self.delegate streamThreadDidStartPlaying];
+            }
         }
     }
     
@@ -576,9 +631,9 @@
 
 - (void) updateStreamTitle: (id) title
 {
-    // invokes key-value observing
-    dataModel.objectTitle = title;
-    NSLog(@"Updated to title: %@", dataModel.objectTitle);
+    if ([self.delegate respondsToSelector:@selector(streamThreadDidUpdateTitle:)]) {
+        [self.delegate streamThreadDidUpdateTitle:(NSString*)title];
+    }
 }
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
@@ -630,7 +685,9 @@
     playing = NO;
     preparing = NO;
     
-    [dataModel resetPlayingState];
+    if ([self.delegate respondsToSelector:@selector(streamThreadDidCancel)]) {
+        [self.delegate streamThreadDidCancel];
+    }
 }
 
 @end

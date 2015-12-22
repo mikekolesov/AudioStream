@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ASStreamThread.h"
 
-@interface ASDataModel : NSObject <UIAlertViewDelegate>
+@interface ASDataModel : NSObject <ASStreamThreadDelegate>
 {
     NSMutableArray* streamObjects;
     int selectedIndex;

@@ -8,6 +8,10 @@
 
 #import "ASDataModel.h"
 
+@interface ASDataModel () <UIAlertViewDelegate>
+
+@end
+
 @implementation ASDataModel
 
 @synthesize objectTitle;
@@ -238,6 +242,26 @@
 
 
 */
+
+#pragma mark - ASStreamThread delegate
+
+-(void) streamThreadDidStartPlaying
+{
+    [self makeSelectedObjectPlaying];
+}
+
+
+-(void) streamThreadDidUpdateTitle:(NSString *)title
+{
+    // invokes key-value observing
+    self.objectTitle = title;
+    NSLog(@"Updated to title: %@", self.objectTitle);
+}
+
+-(void) streamThreadDidCancel
+{
+    [self resetPlayingState];
+}
 
 @end
 

@@ -26,7 +26,7 @@
     
     // alloc and setup stream
     streamThread = [[ASStreamThread alloc] init];
-    streamThread.dataModel = dataModel;
+    streamThread.delegate = dataModel;
     [streamThread setupStream];
 
     // set up audio session
