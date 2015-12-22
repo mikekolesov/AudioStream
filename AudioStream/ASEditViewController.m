@@ -8,7 +8,11 @@
 
 #import "ASEditViewController.h"
 #import "ASAppDelegate.h"
+#import "AudioStreamEngine.h"
 
+@interface ASEditViewController ()
+@property (strong, nonatomic) AudioStreamEngine *audioStreamEngine;
+@end
 
 @implementation ASEditViewController
 
@@ -17,7 +21,7 @@
 @synthesize checkButton;
 @synthesize activity;
 @synthesize dataModel;
-@synthesize streamThread;
+@synthesize audioStreamEngine;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,6 +68,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    audioStreamEngine = [AudioStreamEngine sharedInstance];
     
     streamName.delegate = self;
     streamURLString.delegate = self;
@@ -112,13 +118,13 @@
 - (void) timerCallback
 {    
     // check audio part state
-    if ( !(streamThread.preparing || streamThread.finishing) ) {
+    if ( !(audioStreamEngine.preparing || audioStreamEngine.finishing) ) {
         [timer invalidate];
         NSLog(@"Timer invalidated");
         checkButton.enabled = TRUE;
         NSLog(@"Check button enabled");
         
-        if (streamThread.playing)
+        if (audioStreamEngine.playing)
             [checkButton setTitle:@"Stop" forState: UIControlStateNormal];
         else
             [checkButton setTitle:@"Sound Check" forState: UIControlStateNormal];
@@ -128,7 +134,7 @@
         
     }
     else {
-    NSLog(@"Timer goes on... preparing %d, finishing %d", streamThread.preparing, streamThread.finishing);
+    NSLog(@"Timer goes on... preparing %d, finishing %d", audioStreamEngine.preparing, audioStreamEngine.finishing);
     }
 }
 
@@ -145,17 +151,17 @@
     [activity startAnimating];
         
     
-    if (streamThread.playing) {
+    if (audioStreamEngine.playing) {
         
         if ([dataModel isSelectedObjectPlaying])
-            [streamThread stop];
+            [audioStreamEngine stop];
         else {
-            [streamThread stop];
-            [streamThread startWithURL:[streamURLString text]];
+            [audioStreamEngine stop];
+            [audioStreamEngine startWithURL:[streamURLString text]];
         }
     }
     else
-        [streamThread startWithURL:[streamURLString text]];
+        [audioStreamEngine startWithURL:[streamURLString text]];
 }
 
 - (IBAction) doneKeyboard:(id)sender

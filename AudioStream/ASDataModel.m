@@ -245,20 +245,20 @@
 
 #pragma mark - ASStreamThread delegate
 
--(void) streamThreadDidStartPlaying
+-(void) audioStreamEngineDidStartPlaying
 {
     [self makeSelectedObjectPlaying];
 }
 
 
--(void) streamThreadDidUpdateTitle:(NSString *)title
+-(void) audioStreamEngineDidUpdateTitle:(NSString *)title
 {
     // invokes key-value observing
     self.objectTitle = title;
     NSLog(@"Updated to title: %@", self.objectTitle);
 }
 
--(void) streamThreadDidCancel
+-(void) audioStreamEngineDidCancel
 {
     [self resetPlayingState];
 }

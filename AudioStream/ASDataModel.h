@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ASStreamThread.h"
+#import "AudioStreamEngine.h"
 
-@interface ASDataModel : NSObject <ASStreamThreadDelegate>
+@interface ASDataModel : NSObject <AudioStreamEngineDelegate>
 {
     NSMutableArray* streamObjects;
     int selectedIndex;

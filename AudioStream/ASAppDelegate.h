@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ASStreamThread.h"
 #import "ASDataModel.h"
 
 @interface ASAppDelegate : UIResponder <UIApplicationDelegate>
@@ -15,7 +14,6 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navigationController;
 @property (strong, nonatomic) UISplitViewController *splitViewController;
-@property (strong, nonatomic) ASStreamThread *streamThread;
 @property (strong, nonatomic) ASDataModel *dataModel;
 
 @end

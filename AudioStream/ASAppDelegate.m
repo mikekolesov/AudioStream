@@ -10,12 +10,11 @@
 #import "ASMasterViewController.h"
 #import "ASDetailViewController.h"
 #import "ASEditViewController.h"
-
+#import "AudioStreamEngine.h"
 
 @implementation ASAppDelegate
 
 @synthesize dataModel;
-@synthesize streamThread;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -24,26 +23,10 @@
     // alloc data model
     dataModel = [[ASDataModel alloc] init];
     
-    // alloc and setup stream
-    streamThread = [[ASStreamThread alloc] init];
-    streamThread.delegate = dataModel;
-    [streamThread setupStream];
-
-    // set up audio session
-    
-    
-//    CheckError(AudioSessionInitialize(NULL,
-//                                      kCFRunLoopDefaultMode,
-//                                      MyInterruptionListener,
-//                                      (__bridge void *)(self.streamThread)),
-//               "couldn't initialize audio session");
-//    
-//    UInt32 category = kAudioSessionCategory_MediaPlayback;
-//    CheckError(AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,
-//                                       sizeof(category),
-//                                       &category),
-//               "Couldn't set category on audio session");
-
+    // alloc and setup audioStreamEngine
+    AudioStreamEngine *audioStreamEngine = [AudioStreamEngine sharedInstance];
+    audioStreamEngine.delegate = dataModel;
+    [audioStreamEngine setupStream];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
    
@@ -53,19 +36,16 @@
     
     masterViewController.detailViewController = detailViewController;
     masterViewController.dataModel = dataModel;
-    masterViewController.streamThread = streamThread;
     [dataModel addObserver:masterViewController forKeyPath:@"startPlaying" options:0 context:NULL];
     [dataModel addObserver:masterViewController forKeyPath:@"resetPlaying" options:0 context:NULL];
     
     detailViewController.dataModel = dataModel;
-    detailViewController.streamThread = streamThread;
     [dataModel addObserver:detailViewController forKeyPath:@"objectTitle" options:0 context:NULL];
     [dataModel addObserver:detailViewController forKeyPath:@"startPlaying" options:0 context:NULL];
     [dataModel addObserver:detailViewController forKeyPath:@"resetPlaying" options:0 context:NULL];
     
     ASEditViewController *evc = [[ASEditViewController alloc] initWithNibName:@"ASEditViewController" bundle:nil];
     evc.dataModel = dataModel;
-    evc.streamThread = streamThread;
     masterViewController.detailViewController.editViewController = evc;
     
     self.window.rootViewController = self.navigationController;

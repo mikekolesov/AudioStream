@@ -8,10 +8,11 @@
 
 #import "ASDetailViewController.h"
 #import "ASEditViewController.h"
+#import "AudioStreamEngine.h"
 
 @interface ASDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
-//- (void)configureView;
+@property (strong, nonatomic) AudioStreamEngine *audioStreamEngine;
 @end
 
 @implementation ASDetailViewController
@@ -20,12 +21,12 @@
 @synthesize streamTitleLabel;
 @synthesize dataModel;
 @synthesize streamName;
-@synthesize streamThread;
 @synthesize editViewController;
 @synthesize activity;
 @synthesize streamBitRate;
 @synthesize streamFormat;
 @synthesize volumeView;
+@synthesize audioStreamEngine;
 
 - (void)dealloc
 {
@@ -57,6 +58,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    audioStreamEngine = [AudioStreamEngine sharedInstance];
     
     // setup system volume slider
     NSArray *subviewArray = [volumeView subviews];
@@ -90,10 +93,10 @@
     [streamName setText:[dataModel valueForKey:@"StreamName" atObjectByIndex:selectedIndex]];
     
     if ([dataModel isSelectedObjectPlaying]) {
-        [streamTitleLabel setText:streamThread.streamTitle];
+        [streamTitleLabel setText:audioStreamEngine.streamTitle];
         [playStopButton setTitle:@"Stop" forState:UIControlStateNormal];
-        [streamBitRate setText:streamThread.bitRate];
-        [streamFormat setText:streamThread.contentType];
+        [streamBitRate setText:audioStreamEngine.bitRate];
+        [streamFormat setText:audioStreamEngine.contentType];
     }
     else {
         [streamTitleLabel setText:@"..."];
@@ -155,17 +158,17 @@
 - (void) timerCallback
 {
     // check audio part state
-    if ( !(streamThread.preparing || streamThread.finishing) ) {
+    if ( !(audioStreamEngine.preparing || audioStreamEngine.finishing) ) {
         [timer invalidate];
         NSLog(@"Timer invalidated");
         playStopButton.enabled = TRUE;
         NSLog(@"Check button enabled");
         
-        if (streamThread.playing) {
-            [streamTitleLabel setText:streamThread.streamTitle];
+        if (audioStreamEngine.playing) {
+            [streamTitleLabel setText:audioStreamEngine.streamTitle];
             [playStopButton setTitle:@"Stop" forState: UIControlStateNormal];
-            [streamBitRate setText: streamThread.bitRate];
-            [streamFormat setText: streamThread.contentType];
+            [streamBitRate setText: audioStreamEngine.bitRate];
+            [streamFormat setText: audioStreamEngine.contentType];
         }
         else
             [playStopButton setTitle:@"Play" forState: UIControlStateNormal];
@@ -176,7 +179,7 @@
 
     }
     else {
-        NSLog(@"Timer goes on... preparing %d, finishing %d", streamThread.preparing, streamThread.finishing);
+        NSLog(@"Timer goes on... preparing %d, finishing %d", audioStreamEngine.preparing, audioStreamEngine.finishing);
     }
 }
 
@@ -195,17 +198,17 @@
     
     int selectedIndex = [dataModel indexOfSelectedObject];
 
-    if (streamThread.playing) {
+    if (audioStreamEngine.playing) {
         
         if ([dataModel isSelectedObjectPlaying])
-            [streamThread stop];
+            [audioStreamEngine stop];
         else {
-            [streamThread stop];
-            [streamThread startWithURL:[dataModel valueForKey:@"StreamURL" atObjectByIndex:selectedIndex]];
+            [audioStreamEngine stop];
+            [audioStreamEngine startWithURL:[dataModel valueForKey:@"StreamURL" atObjectByIndex:selectedIndex]];
         }
     }
     else {
-        [streamThread startWithURL:[dataModel valueForKey:@"StreamURL" atObjectByIndex:selectedIndex]];
+        [audioStreamEngine startWithURL:[dataModel valueForKey:@"StreamURL" atObjectByIndex:selectedIndex]];
     }
 }
 
@@ -231,10 +234,10 @@
     else if ([keyPath isEqualToString:@"startPlaying"]) {
         NSLog(@"startPlaying");
         if ([dataModel isSelectedObjectPlaying]) {
-            [streamTitleLabel setText:streamThread.streamTitle];
+            [streamTitleLabel setText:audioStreamEngine.streamTitle];
             [playStopButton setTitle:@"Stop" forState: UIControlStateNormal];
-            [streamBitRate setText: streamThread.bitRate];
-            [streamFormat setText: streamThread.contentType];
+            [streamBitRate setText: audioStreamEngine.bitRate];
+            [streamFormat setText: audioStreamEngine.contentType];
         }
     }
 

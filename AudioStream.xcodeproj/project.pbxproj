@@ -19,7 +19,7 @@
 		4C01E4BD15C66DB600E94343 /* ASDetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C01E4BB15C66DB600E94343 /* ASDetailViewController_iPhone.xib */; };
 		4C01E4CB15C66ECE00E94343 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01E4CA15C66ECE00E94343 /* AudioToolbox.framework */; };
 		4C01E4CE15C6719F00E94343 /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4CD15C6719F00E94343 /* AudioPart.c */; };
-		4C01E4E715CBDE1500E94343 /* ASStreamThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4E615CBDE1500E94343 /* ASStreamThread.m */; };
+		4C01E4E715CBDE1500E94343 /* AudioStreamEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4E615CBDE1500E94343 /* AudioStreamEngine.m */; };
 		4C0BE37D165A5E4C0053E0A7 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 4C2192021652676B00D6D533 /* iTunesArtwork */; };
 		4C0BE37F165A5E530053E0A7 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 4C2192041652705000D6D533 /* iTunesArtwork@2x */; };
 		4C2191FB1651545300D6D533 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2191FA1651545300D6D533 /* Icon@2x.png */; };
@@ -60,8 +60,8 @@
 		4C01E4CA15C66ECE00E94343 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4C01E4CC15C6717700E94343 /* AudioPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPart.h; sourceTree = "<group>"; };
 		4C01E4CD15C6719F00E94343 /* AudioPart.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AudioPart.c; sourceTree = "<group>"; };
-		4C01E4E515CBDE1500E94343 /* ASStreamThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ASStreamThread.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		4C01E4E615CBDE1500E94343 /* ASStreamThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ASStreamThread.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4C01E4E515CBDE1500E94343 /* AudioStreamEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AudioStreamEngine.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		4C01E4E615CBDE1500E94343 /* AudioStreamEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AudioStreamEngine.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C2191FA1651545300D6D533 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		4C2191FC165264F400D6D533 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		4C2191FE1652663300D6D533 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -145,8 +145,8 @@
 				4C01E4B315C66DB600E94343 /* ASDetailViewController.m */,
 				4C69B88E15E3B8B300EADFCF /* ASEditViewController.h */,
 				4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */,
-				4C01E4E515CBDE1500E94343 /* ASStreamThread.h */,
-				4C01E4E615CBDE1500E94343 /* ASStreamThread.m */,
+				4C01E4E515CBDE1500E94343 /* AudioStreamEngine.h */,
+				4C01E4E615CBDE1500E94343 /* AudioStreamEngine.m */,
 				4C01E4CC15C6717700E94343 /* AudioPart.h */,
 				4C01E4CD15C6719F00E94343 /* AudioPart.c */,
 				4CFD5CD4160B635500934805 /* ASDataModel.h */,
@@ -274,7 +274,7 @@
 				4C01E4B115C66DB600E94343 /* ASMasterViewController.m in Sources */,
 				4C01E4B415C66DB600E94343 /* ASDetailViewController.m in Sources */,
 				4C01E4CE15C6719F00E94343 /* AudioPart.c in Sources */,
-				4C01E4E715CBDE1500E94343 /* ASStreamThread.m in Sources */,
+				4C01E4E715CBDE1500E94343 /* AudioStreamEngine.m in Sources */,
 				4C69B89115E3B8B300EADFCF /* ASEditViewController.m in Sources */,
 				4CFD5CD6160B635600934805 /* ASDataModel.m in Sources */,
 			);

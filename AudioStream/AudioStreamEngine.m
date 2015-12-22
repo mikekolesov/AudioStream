@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Michael Kolesov. All rights reserved.
 //
 
-#import "ASStreamThread.h"
+#import "AudioStreamEngine.h"
 #import "AudioPart.h"
 #import <pthread.h>
 #import <AVFoundation/AVAudioSession.h>
 
 
-@interface ASStreamThread () <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
+@interface AudioStreamEngine () <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 {
     NSThread *thread;           // stream thread object
     BOOL releaseThread;         // release thread if error occured before
@@ -51,7 +51,7 @@
 
 @end
 
-@implementation ASStreamThread
+@implementation AudioStreamEngine
 
 @synthesize thread;
 @synthesize preparing;
@@ -63,6 +63,21 @@
 @synthesize contentType;
 @synthesize bitRate;
 @synthesize icyMetaInt;
+
+
++ (AudioStreamEngine*) sharedInstance
+{
+    static dispatch_once_t __ase_predicate;
+    static AudioStreamEngine *__ase_sharedInstance = nil;
+    
+    dispatch_once(&__ase_predicate, ^{
+        
+        __ase_sharedInstance = [[self alloc] init];
+        
+    });
+    
+    return __ase_sharedInstance;
+}
 
 - (id) init
 {
@@ -132,7 +147,7 @@
     
     thread = [[NSThread alloc] initWithTarget:self selector:@selector(streamThread) object:nil];
     if (thread != nil ) {
-        [thread setName:@"StreamThread"];
+        [thread setName:@"AudioStreamEngine"];
         NSLog(@"Thread name:%@", thread.name);
         [thread start];
     }
@@ -140,8 +155,8 @@
         [self displayError:@"Start Error" withMessage: @"Thread init failed"];
         preparing = NO;
         
-        if ([self.delegate respondsToSelector:@selector(streamThreadDidCancel)]) {
-            [self.delegate streamThreadDidCancel];
+        if ([self.delegate respondsToSelector:@selector(audioStreamEngineDidCancel)]) {
+            [self.delegate audioStreamEngineDidCancel];
         }
     }
    
@@ -187,8 +202,8 @@
     playing = NO;
     preparing = NO;
     
-    if ([self.delegate respondsToSelector:@selector(streamThreadDidCancel)]) {
-        [self.delegate streamThreadDidCancel];
+    if ([self.delegate respondsToSelector:@selector(audioStreamEngineDidCancel)]) {
+        [self.delegate audioStreamEngineDidCancel];
     }
 }
 
@@ -205,8 +220,8 @@
             preparing = NO;
             releaseThread = YES;
 
-            if ([self.delegate respondsToSelector:@selector(streamThreadDidCancel)]) {
-                [self.delegate streamThreadDidCancel];
+            if ([self.delegate respondsToSelector:@selector(audioStreamEngineDidCancel)]) {
+                [self.delegate audioStreamEngineDidCancel];
             }
             
             return; // breaking thread
@@ -253,8 +268,8 @@
         [self displayError:@"Connection Error" withMessage:@"Connection init failed"];
         AudioPartInitClean();
         
-        if ([self.delegate respondsToSelector:@selector(streamThreadDidCancel)]) {
-            [self.delegate streamThreadDidCancel];
+        if ([self.delegate respondsToSelector:@selector(audioStreamEngineDidCancel)]) {
+            [self.delegate audioStreamEngineDidCancel];
         }
         
         return -1;
@@ -587,8 +602,8 @@
             preparing = FALSE;
             playing = YES;
             
-            if ([self.delegate respondsToSelector:@selector(streamThreadDidStartPlaying)]) {
-                [self.delegate streamThreadDidStartPlaying];
+            if ([self.delegate respondsToSelector:@selector(audioStreamEngineDidStartPlaying)]) {
+                [self.delegate audioStreamEngineDidStartPlaying];
             }
         }
     }
@@ -631,8 +646,8 @@
 
 - (void) updateStreamTitle: (id) title
 {
-    if ([self.delegate respondsToSelector:@selector(streamThreadDidUpdateTitle:)]) {
-        [self.delegate streamThreadDidUpdateTitle:(NSString*)title];
+    if ([self.delegate respondsToSelector:@selector(audioStreamEngineDidUpdateTitle:)]) {
+        [self.delegate audioStreamEngineDidUpdateTitle:(NSString*)title];
     }
 }
 
@@ -685,8 +700,8 @@
     playing = NO;
     preparing = NO;
     
-    if ([self.delegate respondsToSelector:@selector(streamThreadDidCancel)]) {
-        [self.delegate streamThreadDidCancel];
+    if ([self.delegate respondsToSelector:@selector(audioStreamEngineDidCancel)]) {
+        [self.delegate audioStreamEngineDidCancel];
     }
 }
 

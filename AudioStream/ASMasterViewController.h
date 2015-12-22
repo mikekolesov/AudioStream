@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "ASDataModel.h"
-#import "ASStreamThread.h"
 
 @class ASDetailViewController;
 
@@ -19,7 +18,6 @@
 
 @property (strong, nonatomic) ASDetailViewController *detailViewController;
 @property (strong, nonatomic) ASDataModel *dataModel;
-@property (strong, nonatomic) ASStreamThread *streamThread;
 @property (weak, nonatomic) IBOutlet UITableViewCell *customCell;
 
 @end

@@ -9,17 +9,19 @@
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-@protocol ASStreamThreadDelegate <NSObject>
+@protocol AudioStreamEngineDelegate <NSObject>
 
 @optional
--(void) streamThreadDidStartPlaying;
--(void) streamThreadDidCancel;
--(void) streamThreadDidUpdateTitle:(NSString*)title;
+-(void) audioStreamEngineDidStartPlaying;
+-(void) audioStreamEngineDidCancel;
+-(void) audioStreamEngineDidUpdateTitle:(NSString*)title;
 @end
 
 
 
-@interface ASStreamThread : NSObject
+@interface AudioStreamEngine : NSObject
+
++ (AudioStreamEngine*) sharedInstance;
 
 - (void) setupStream;
 - (void) startWithURL: (NSString *) url;
@@ -35,6 +37,6 @@
 @property (copy, nonatomic) NSString *bitRate;
 @property (strong, nonatomic) NSString *icyMetaInt;
 
-@property (nonatomic, weak) id <ASStreamThreadDelegate> delegate;
+@property (nonatomic, weak) id <AudioStreamEngineDelegate> delegate;
 
 @end

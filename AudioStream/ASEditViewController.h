@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ASStreamThread.h"
 #import "ASDataModel.h"
 
 @interface ASEditViewController : UIViewController <UITextFieldDelegate>
@@ -25,6 +24,5 @@
 @property (strong, nonatomic) IBOutlet UIButton *checkButton;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (strong, nonatomic) ASDataModel *dataModel;
-@property (strong, nonatomic) ASStreamThread *streamThread;
 
 @end

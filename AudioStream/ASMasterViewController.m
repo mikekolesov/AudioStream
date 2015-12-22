@@ -11,11 +11,9 @@
 #import "ASEditViewController.h"
 #import "ASDataModel.h"
 
-
 @implementation ASMasterViewController
 
 @synthesize dataModel;
-@synthesize streamThread;
 @synthesize customCell;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

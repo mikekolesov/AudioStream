@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ASDataModel.h"
-#import "ASStreamThread.h"
 
 @class ASEditViewController;
 
@@ -26,7 +25,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *streamName;
 @property (strong, nonatomic) IBOutlet UILabel *streamBitRate;
 @property (strong, nonatomic) IBOutlet UILabel *streamFormat;
-@property (strong, nonatomic) ASStreamThread *streamThread;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (strong, nonatomic) IBOutlet UIView *volumeView;
 
