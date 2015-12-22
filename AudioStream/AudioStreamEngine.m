@@ -123,13 +123,9 @@
 
 -(void) displayError: (NSString*)title withMessage: (NSString*)msg
 {
-    // move UI things to main thread
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        
-    });
+    if ([self.delegate respondsToSelector:@selector(audioStreamEngineErrorOccured:withMessage:)]) {
+        [self.delegate audioStreamEngineErrorOccured:title withMessage:msg];
+    }
 }
 
 

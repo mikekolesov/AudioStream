@@ -15,6 +15,7 @@
 -(void) audioStreamEngineDidStartPlaying;
 -(void) audioStreamEngineDidCancel;
 -(void) audioStreamEngineDidUpdateTitle:(NSString*)title;
+-(void) audioStreamEngineErrorOccured:(NSString*)title withMessage: (NSString*)msg;
 @end
 
 

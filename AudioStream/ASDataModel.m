@@ -263,6 +263,19 @@
     [self resetPlayingState];
 }
 
+-(void) audioStreamEngineErrorOccured:(NSString *)title withMessage:(NSString *)msg
+{
+    //TODO: move UIAlertView calls from data model later
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        alert.tag = 3;
+        [alert show];
+        
+    });
+}
+
 @end
 
 
