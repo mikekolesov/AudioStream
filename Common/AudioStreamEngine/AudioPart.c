@@ -169,8 +169,6 @@ OSStatus StartQueueIfNeeded(MyData* myData)
 {
 	OSStatus err = noErr;
     int curPreStreamed;
-    UInt32 allow = true;
-
     
 	if (!myData->started) {		// start the queue if it has not been started already
         
@@ -189,6 +187,10 @@ OSStatus StartQueueIfNeeded(MyData* myData)
         
         if (curPreStreamed >= myData->preStreamedBuffers )
         {
+
+#if TARGET_OS_IPHONE
+            UInt32 allow = true;
+            
             if (myData->allowMixing) { // backgroung interrupt workaround. part 1
                 printf("allow mixing workaround\n");
                 allow = true;
@@ -210,6 +212,7 @@ OSStatus StartQueueIfNeeded(MyData* myData)
                 }
                 
             }
+#endif
             
             err = AudioQueueStart(myData->audioQueue, NULL);
             if (err) {
@@ -223,8 +226,7 @@ OSStatus StartQueueIfNeeded(MyData* myData)
             if ( myData->preparing )
                 myData->preparing = false;
 
-
-            
+#if TARGET_OS_IPHONE
             if (myData->allowMixing) { // backgroung interrupt workaround. part 2
                 allow = false;
                 err = AudioSessionSetProperty( kAudioSessionProperty_OverrideCategoryMixWithOthers,
@@ -239,6 +241,7 @@ OSStatus StartQueueIfNeeded(MyData* myData)
 
                 myData->allowMixing = false;
             }
+#endif
             
             myData->started = true;
             printf("started\n");

@@ -9,8 +9,10 @@
 #import "AudioStreamEngine.h"
 #import "AudioPart.h"
 #import <pthread.h>
-#import <AVFoundation/AVAudioSession.h>
 
+#if TARGET_OS_IPHONE
+#import <AVFoundation/AVAudioSession.h>
+#endif
 
 @interface AudioStreamEngine () <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 {
@@ -93,6 +95,7 @@
 
 -(void) setupStream
 {
+#if TARGET_OS_IPHONE
    NSError *error = nil;
    
    [[AVAudioSession sharedInstance] setActive:YES error:&error];
@@ -108,6 +111,7 @@
    }
    
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:AVAudioSessionInterruptionNotification object:nil];
+#endif
 }
 
 

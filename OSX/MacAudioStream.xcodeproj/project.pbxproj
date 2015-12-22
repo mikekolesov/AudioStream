@@ -1,0 +1,318 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BF17D77D1C29B4DE00E081AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF17D77C1C29B4DE00E081AE /* AppDelegate.m */; };
+		BF17D7801C29B4DE00E081AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF17D77F1C29B4DE00E081AE /* main.m */; };
+		BF17D7831C29B4DE00E081AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF17D7821C29B4DE00E081AE /* ViewController.m */; };
+		BF17D7851C29B4DE00E081AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF17D7841C29B4DE00E081AE /* Assets.xcassets */; };
+		BF17D7881C29B4DE00E081AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF17D7861C29B4DE00E081AE /* Main.storyboard */; };
+		BF17D7941C29B54700E081AE /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = BF17D7901C29B54700E081AE /* AudioPart.c */; };
+		BF17D7951C29B54700E081AE /* AudioStreamEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BF17D7931C29B54700E081AE /* AudioStreamEngine.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BF17D7781C29B4DE00E081AE /* MacAudioStream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacAudioStream.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF17D77B1C29B4DE00E081AE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BF17D77C1C29B4DE00E081AE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BF17D77F1C29B4DE00E081AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BF17D7811C29B4DE00E081AE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BF17D7821C29B4DE00E081AE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BF17D7841C29B4DE00E081AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BF17D7871C29B4DE00E081AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BF17D7891C29B4DE00E081AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF17D7901C29B54700E081AE /* AudioPart.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AudioPart.c; sourceTree = "<group>"; };
+		BF17D7911C29B54700E081AE /* AudioPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPart.h; sourceTree = "<group>"; };
+		BF17D7921C29B54700E081AE /* AudioStreamEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamEngine.h; sourceTree = "<group>"; };
+		BF17D7931C29B54700E081AE /* AudioStreamEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamEngine.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BF17D7751C29B4DE00E081AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BF17D76F1C29B4DE00E081AE = {
+			isa = PBXGroup;
+			children = (
+				BF17D78F1C29B54700E081AE /* AudioStreamEngine */,
+				BF17D77A1C29B4DE00E081AE /* MacAudioStream */,
+				BF17D7791C29B4DE00E081AE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BF17D7791C29B4DE00E081AE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF17D7781C29B4DE00E081AE /* MacAudioStream.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF17D77A1C29B4DE00E081AE /* MacAudioStream */ = {
+			isa = PBXGroup;
+			children = (
+				BF17D77B1C29B4DE00E081AE /* AppDelegate.h */,
+				BF17D77C1C29B4DE00E081AE /* AppDelegate.m */,
+				BF17D7811C29B4DE00E081AE /* ViewController.h */,
+				BF17D7821C29B4DE00E081AE /* ViewController.m */,
+				BF17D7841C29B4DE00E081AE /* Assets.xcassets */,
+				BF17D7861C29B4DE00E081AE /* Main.storyboard */,
+				BF17D7891C29B4DE00E081AE /* Info.plist */,
+				BF17D77E1C29B4DE00E081AE /* Supporting Files */,
+			);
+			path = MacAudioStream;
+			sourceTree = "<group>";
+		};
+		BF17D77E1C29B4DE00E081AE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BF17D77F1C29B4DE00E081AE /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BF17D78F1C29B54700E081AE /* AudioStreamEngine */ = {
+			isa = PBXGroup;
+			children = (
+				BF17D7901C29B54700E081AE /* AudioPart.c */,
+				BF17D7911C29B54700E081AE /* AudioPart.h */,
+				BF17D7921C29B54700E081AE /* AudioStreamEngine.h */,
+				BF17D7931C29B54700E081AE /* AudioStreamEngine.m */,
+			);
+			name = AudioStreamEngine;
+			path = ../Common/AudioStreamEngine;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BF17D7771C29B4DE00E081AE /* MacAudioStream */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF17D78C1C29B4DE00E081AE /* Build configuration list for PBXNativeTarget "MacAudioStream" */;
+			buildPhases = (
+				BF17D7741C29B4DE00E081AE /* Sources */,
+				BF17D7751C29B4DE00E081AE /* Frameworks */,
+				BF17D7761C29B4DE00E081AE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacAudioStream;
+			productName = MacAudioStream;
+			productReference = BF17D7781C29B4DE00E081AE /* MacAudioStream.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BF17D7701C29B4DE00E081AE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Michael Kolesov";
+				TargetAttributes = {
+					BF17D7771C29B4DE00E081AE = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = BF17D7731C29B4DE00E081AE /* Build configuration list for PBXProject "MacAudioStream" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BF17D76F1C29B4DE00E081AE;
+			productRefGroup = BF17D7791C29B4DE00E081AE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BF17D7771C29B4DE00E081AE /* MacAudioStream */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BF17D7761C29B4DE00E081AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF17D7851C29B4DE00E081AE /* Assets.xcassets in Resources */,
+				BF17D7881C29B4DE00E081AE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BF17D7741C29B4DE00E081AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF17D7831C29B4DE00E081AE /* ViewController.m in Sources */,
+				BF17D7941C29B54700E081AE /* AudioPart.c in Sources */,
+				BF17D7801C29B4DE00E081AE /* main.m in Sources */,
+				BF17D77D1C29B4DE00E081AE /* AppDelegate.m in Sources */,
+				BF17D7951C29B54700E081AE /* AudioStreamEngine.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BF17D7861C29B4DE00E081AE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF17D7871C29B4DE00E081AE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BF17D78A1C29B4DE00E081AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BF17D78B1C29B4DE00E081AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BF17D78D1C29B4DE00E081AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = MacAudioStream/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = michaelkolesov.MacAudioStream;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BF17D78E1C29B4DE00E081AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = MacAudioStream/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = michaelkolesov.MacAudioStream;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BF17D7731C29B4DE00E081AE /* Build configuration list for PBXProject "MacAudioStream" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF17D78A1C29B4DE00E081AE /* Debug */,
+				BF17D78B1C29B4DE00E081AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF17D78C1C29B4DE00E081AE /* Build configuration list for PBXNativeTarget "MacAudioStream" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF17D78D1C29B4DE00E081AE /* Debug */,
+				BF17D78E1C29B4DE00E081AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BF17D7701C29B4DE00E081AE /* Project object */;
+}
