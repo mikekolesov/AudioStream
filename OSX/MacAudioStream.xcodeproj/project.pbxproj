@@ -11,6 +11,8 @@
 		BF17D7C31C2D693B00E081AE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF17D7C21C2D693B00E081AE /* ViewController.swift */; };
 		BF17D7C51C2D693B00E081AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF17D7C41C2D693B00E081AE /* Assets.xcassets */; };
 		BF17D7C81C2D693C00E081AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF17D7C61C2D693C00E081AE /* Main.storyboard */; };
+		BFAFE4F41C2D750E00A13C76 /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = BFAFE4F01C2D750E00A13C76 /* AudioPart.c */; };
+		BFAFE4F51C2D750E00A13C76 /* AudioStreamEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAFE4F31C2D750E00A13C76 /* AudioStreamEngine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,11 @@
 		BF17D7C41C2D693B00E081AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF17D7C71C2D693C00E081AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BF17D7C91C2D693C00E081AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFAFE4F01C2D750E00A13C76 /* AudioPart.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AudioPart.c; sourceTree = "<group>"; };
+		BFAFE4F11C2D750E00A13C76 /* AudioPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPart.h; sourceTree = "<group>"; };
+		BFAFE4F21C2D750E00A13C76 /* AudioStreamEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamEngine.h; sourceTree = "<group>"; };
+		BFAFE4F31C2D750E00A13C76 /* AudioStreamEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamEngine.m; sourceTree = "<group>"; };
+		BFAFE4F61C2D782600A13C76 /* MacAudioStream-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MacAudioStream-Bridging-Header.h"; path = "MacAudioStream/MacAudioStream-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +43,9 @@
 		BF17D7B41C2D693B00E081AE = {
 			isa = PBXGroup;
 			children = (
+				BFAFE4EF1C2D750E00A13C76 /* AudioStreamEngine */,
 				BF17D7BF1C2D693B00E081AE /* MacAudioStream */,
+				BFAFE4F61C2D782600A13C76 /* MacAudioStream-Bridging-Header.h */,
 				BF17D7BE1C2D693B00E081AE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +68,18 @@
 				BF17D7C91C2D693C00E081AE /* Info.plist */,
 			);
 			path = MacAudioStream;
+			sourceTree = "<group>";
+		};
+		BFAFE4EF1C2D750E00A13C76 /* AudioStreamEngine */ = {
+			isa = PBXGroup;
+			children = (
+				BFAFE4F01C2D750E00A13C76 /* AudioPart.c */,
+				BFAFE4F11C2D750E00A13C76 /* AudioPart.h */,
+				BFAFE4F21C2D750E00A13C76 /* AudioStreamEngine.h */,
+				BFAFE4F31C2D750E00A13C76 /* AudioStreamEngine.m */,
+			);
+			name = AudioStreamEngine;
+			path = ../AudioStreamEngine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,7 +152,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFAFE4F41C2D750E00A13C76 /* AudioPart.c in Sources */,
 				BF17D7C31C2D693B00E081AE /* ViewController.swift in Sources */,
+				BFAFE4F51C2D750E00A13C76 /* AudioStreamEngine.m in Sources */,
 				BF17D7C11C2D693B00E081AE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +263,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = michaelkolesov.MacAudioStream;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT}/MacAudioStream-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -253,6 +277,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = michaelkolesov.MacAudioStream;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT}/MacAudioStream-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -275,6 +300,7 @@
 				BF17D7CE1C2D693C00E081AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
