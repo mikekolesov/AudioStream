@@ -7,33 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BF17D77D1C29B4DE00E081AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF17D77C1C29B4DE00E081AE /* AppDelegate.m */; };
-		BF17D7801C29B4DE00E081AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF17D77F1C29B4DE00E081AE /* main.m */; };
-		BF17D7831C29B4DE00E081AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF17D7821C29B4DE00E081AE /* ViewController.m */; };
-		BF17D7851C29B4DE00E081AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF17D7841C29B4DE00E081AE /* Assets.xcassets */; };
-		BF17D7881C29B4DE00E081AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF17D7861C29B4DE00E081AE /* Main.storyboard */; };
-		BF17D7941C29B54700E081AE /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = BF17D7901C29B54700E081AE /* AudioPart.c */; };
-		BF17D7951C29B54700E081AE /* AudioStreamEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BF17D7931C29B54700E081AE /* AudioStreamEngine.m */; };
+		BF17D7C11C2D693B00E081AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF17D7C01C2D693B00E081AE /* AppDelegate.swift */; };
+		BF17D7C31C2D693B00E081AE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF17D7C21C2D693B00E081AE /* ViewController.swift */; };
+		BF17D7C51C2D693B00E081AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF17D7C41C2D693B00E081AE /* Assets.xcassets */; };
+		BF17D7C81C2D693C00E081AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF17D7C61C2D693C00E081AE /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BF17D7781C29B4DE00E081AE /* MacAudioStream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacAudioStream.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF17D77B1C29B4DE00E081AE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		BF17D77C1C29B4DE00E081AE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		BF17D77F1C29B4DE00E081AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		BF17D7811C29B4DE00E081AE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		BF17D7821C29B4DE00E081AE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		BF17D7841C29B4DE00E081AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BF17D7871C29B4DE00E081AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BF17D7891C29B4DE00E081AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BF17D7901C29B54700E081AE /* AudioPart.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AudioPart.c; sourceTree = "<group>"; };
-		BF17D7911C29B54700E081AE /* AudioPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPart.h; sourceTree = "<group>"; };
-		BF17D7921C29B54700E081AE /* AudioStreamEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamEngine.h; sourceTree = "<group>"; };
-		BF17D7931C29B54700E081AE /* AudioStreamEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamEngine.m; sourceTree = "<group>"; };
+		BF17D7BD1C2D693B00E081AE /* MacAudioStream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacAudioStream.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF17D7C01C2D693B00E081AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BF17D7C21C2D693B00E081AE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BF17D7C41C2D693B00E081AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BF17D7C71C2D693C00E081AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BF17D7C91C2D693C00E081AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BF17D7751C29B4DE00E081AE /* Frameworks */ = {
+		BF17D7BA1C2D693B00E081AE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -43,68 +33,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BF17D76F1C29B4DE00E081AE = {
+		BF17D7B41C2D693B00E081AE = {
 			isa = PBXGroup;
 			children = (
-				BF17D78F1C29B54700E081AE /* AudioStreamEngine */,
-				BF17D77A1C29B4DE00E081AE /* MacAudioStream */,
-				BF17D7791C29B4DE00E081AE /* Products */,
+				BF17D7BF1C2D693B00E081AE /* MacAudioStream */,
+				BF17D7BE1C2D693B00E081AE /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		BF17D7791C29B4DE00E081AE /* Products */ = {
+		BF17D7BE1C2D693B00E081AE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BF17D7781C29B4DE00E081AE /* MacAudioStream.app */,
+				BF17D7BD1C2D693B00E081AE /* MacAudioStream.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BF17D77A1C29B4DE00E081AE /* MacAudioStream */ = {
+		BF17D7BF1C2D693B00E081AE /* MacAudioStream */ = {
 			isa = PBXGroup;
 			children = (
-				BF17D77B1C29B4DE00E081AE /* AppDelegate.h */,
-				BF17D77C1C29B4DE00E081AE /* AppDelegate.m */,
-				BF17D7811C29B4DE00E081AE /* ViewController.h */,
-				BF17D7821C29B4DE00E081AE /* ViewController.m */,
-				BF17D7841C29B4DE00E081AE /* Assets.xcassets */,
-				BF17D7861C29B4DE00E081AE /* Main.storyboard */,
-				BF17D7891C29B4DE00E081AE /* Info.plist */,
-				BF17D77E1C29B4DE00E081AE /* Supporting Files */,
+				BF17D7C01C2D693B00E081AE /* AppDelegate.swift */,
+				BF17D7C21C2D693B00E081AE /* ViewController.swift */,
+				BF17D7C41C2D693B00E081AE /* Assets.xcassets */,
+				BF17D7C61C2D693C00E081AE /* Main.storyboard */,
+				BF17D7C91C2D693C00E081AE /* Info.plist */,
 			);
 			path = MacAudioStream;
-			sourceTree = "<group>";
-		};
-		BF17D77E1C29B4DE00E081AE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				BF17D77F1C29B4DE00E081AE /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BF17D78F1C29B54700E081AE /* AudioStreamEngine */ = {
-			isa = PBXGroup;
-			children = (
-				BF17D7901C29B54700E081AE /* AudioPart.c */,
-				BF17D7911C29B54700E081AE /* AudioPart.h */,
-				BF17D7921C29B54700E081AE /* AudioStreamEngine.h */,
-				BF17D7931C29B54700E081AE /* AudioStreamEngine.m */,
-			);
-			name = AudioStreamEngine;
-			path = ../Common/AudioStreamEngine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BF17D7771C29B4DE00E081AE /* MacAudioStream */ = {
+		BF17D7BC1C2D693B00E081AE /* MacAudioStream */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BF17D78C1C29B4DE00E081AE /* Build configuration list for PBXNativeTarget "MacAudioStream" */;
+			buildConfigurationList = BF17D7CC1C2D693C00E081AE /* Build configuration list for PBXNativeTarget "MacAudioStream" */;
 			buildPhases = (
-				BF17D7741C29B4DE00E081AE /* Sources */,
-				BF17D7751C29B4DE00E081AE /* Frameworks */,
-				BF17D7761C29B4DE00E081AE /* Resources */,
+				BF17D7B91C2D693B00E081AE /* Sources */,
+				BF17D7BA1C2D693B00E081AE /* Frameworks */,
+				BF17D7BB1C2D693B00E081AE /* Resources */,
 			);
 			buildRules = (
 			);
@@ -112,24 +78,25 @@
 			);
 			name = MacAudioStream;
 			productName = MacAudioStream;
-			productReference = BF17D7781C29B4DE00E081AE /* MacAudioStream.app */;
+			productReference = BF17D7BD1C2D693B00E081AE /* MacAudioStream.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		BF17D7701C29B4DE00E081AE /* Project object */ = {
+		BF17D7B51C2D693B00E081AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Michael Kolesov";
 				TargetAttributes = {
-					BF17D7771C29B4DE00E081AE = {
+					BF17D7BC1C2D693B00E081AE = {
 						CreatedOnToolsVersion = 7.2;
 					};
 				};
 			};
-			buildConfigurationList = BF17D7731C29B4DE00E081AE /* Build configuration list for PBXProject "MacAudioStream" */;
+			buildConfigurationList = BF17D7B81C2D693B00E081AE /* Build configuration list for PBXProject "MacAudioStream" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -137,48 +104,45 @@
 				en,
 				Base,
 			);
-			mainGroup = BF17D76F1C29B4DE00E081AE;
-			productRefGroup = BF17D7791C29B4DE00E081AE /* Products */;
+			mainGroup = BF17D7B41C2D693B00E081AE;
+			productRefGroup = BF17D7BE1C2D693B00E081AE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BF17D7771C29B4DE00E081AE /* MacAudioStream */,
+				BF17D7BC1C2D693B00E081AE /* MacAudioStream */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		BF17D7761C29B4DE00E081AE /* Resources */ = {
+		BF17D7BB1C2D693B00E081AE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF17D7851C29B4DE00E081AE /* Assets.xcassets in Resources */,
-				BF17D7881C29B4DE00E081AE /* Main.storyboard in Resources */,
+				BF17D7C51C2D693B00E081AE /* Assets.xcassets in Resources */,
+				BF17D7C81C2D693C00E081AE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BF17D7741C29B4DE00E081AE /* Sources */ = {
+		BF17D7B91C2D693B00E081AE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF17D7831C29B4DE00E081AE /* ViewController.m in Sources */,
-				BF17D7941C29B54700E081AE /* AudioPart.c in Sources */,
-				BF17D7801C29B4DE00E081AE /* main.m in Sources */,
-				BF17D77D1C29B4DE00E081AE /* AppDelegate.m in Sources */,
-				BF17D7951C29B54700E081AE /* AudioStreamEngine.m in Sources */,
+				BF17D7C31C2D693B00E081AE /* ViewController.swift in Sources */,
+				BF17D7C11C2D693B00E081AE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BF17D7861C29B4DE00E081AE /* Main.storyboard */ = {
+		BF17D7C61C2D693C00E081AE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				BF17D7871C29B4DE00E081AE /* Base */,
+				BF17D7C71C2D693C00E081AE /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -186,7 +150,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		BF17D78A1C29B4DE00E081AE /* Debug */ = {
+		BF17D7CA1C2D693C00E081AE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -226,10 +190,11 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		BF17D78B1C29B4DE00E081AE /* Release */ = {
+		BF17D7CB1C2D693C00E081AE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -265,7 +230,7 @@
 			};
 			name = Release;
 		};
-		BF17D78D1C29B4DE00E081AE /* Debug */ = {
+		BF17D7CD1C2D693C00E081AE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -278,7 +243,7 @@
 			};
 			name = Debug;
 		};
-		BF17D78E1C29B4DE00E081AE /* Release */ = {
+		BF17D7CE1C2D693C00E081AE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -294,25 +259,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BF17D7731C29B4DE00E081AE /* Build configuration list for PBXProject "MacAudioStream" */ = {
+		BF17D7B81C2D693B00E081AE /* Build configuration list for PBXProject "MacAudioStream" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BF17D78A1C29B4DE00E081AE /* Debug */,
-				BF17D78B1C29B4DE00E081AE /* Release */,
+				BF17D7CA1C2D693C00E081AE /* Debug */,
+				BF17D7CB1C2D693C00E081AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BF17D78C1C29B4DE00E081AE /* Build configuration list for PBXNativeTarget "MacAudioStream" */ = {
+		BF17D7CC1C2D693C00E081AE /* Build configuration list for PBXNativeTarget "MacAudioStream" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BF17D78D1C29B4DE00E081AE /* Debug */,
-				BF17D78E1C29B4DE00E081AE /* Release */,
+				BF17D7CD1C2D693C00E081AE /* Debug */,
+				BF17D7CE1C2D693C00E081AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = BF17D7701C29B4DE00E081AE /* Project object */;
+	rootObject = BF17D7B51C2D693B00E081AE /* Project object */;
 }

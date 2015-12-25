@@ -36,8 +36,8 @@
 		4CF41D191BC07BE90044B2AA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF41D181BC07BE90044B2AA /* AVFoundation.framework */; };
 		4CF4F6731654F4F500CF9C73 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CF4F6721654F4F500CF9C73 /* Default-568h@2x.png */; };
 		4CFD5CD6160B635600934805 /* ASDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD5CD5160B635500934805 /* ASDataModel.m */; };
-		BF17D76B1C29B36200E081AE /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = BF17D7671C29B36200E081AE /* AudioPart.c */; };
-		BF17D76C1C29B36200E081AE /* AudioStreamEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BF17D76A1C29B36200E081AE /* AudioStreamEngine.m */; };
+		BF17D7D41C2D6F0400E081AE /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = BF17D7D01C2D6F0400E081AE /* AudioPart.c */; };
+		BF17D7D51C2D6F0400E081AE /* AudioStreamEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BF17D7D31C2D6F0400E081AE /* AudioStreamEngine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,10 +79,10 @@
 		4CFBB50315FBAC5F00297852 /* StationList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = StationList; path = AudioStream/StationList; sourceTree = "<group>"; };
 		4CFD5CD4160B635500934805 /* ASDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDataModel.h; sourceTree = "<group>"; };
 		4CFD5CD5160B635500934805 /* ASDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASDataModel.m; sourceTree = "<group>"; };
-		BF17D7671C29B36200E081AE /* AudioPart.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = AudioPart.c; path = ../../Common/AudioStreamEngine/AudioPart.c; sourceTree = "<group>"; };
-		BF17D7681C29B36200E081AE /* AudioPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioPart.h; path = ../../Common/AudioStreamEngine/AudioPart.h; sourceTree = "<group>"; };
-		BF17D7691C29B36200E081AE /* AudioStreamEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioStreamEngine.h; path = ../../Common/AudioStreamEngine/AudioStreamEngine.h; sourceTree = "<group>"; };
-		BF17D76A1C29B36200E081AE /* AudioStreamEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioStreamEngine.m; path = ../../Common/AudioStreamEngine/AudioStreamEngine.m; sourceTree = "<group>"; };
+		BF17D7D01C2D6F0400E081AE /* AudioPart.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AudioPart.c; sourceTree = "<group>"; };
+		BF17D7D11C2D6F0400E081AE /* AudioPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPart.h; sourceTree = "<group>"; };
+		BF17D7D21C2D6F0400E081AE /* AudioStreamEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamEngine.h; sourceTree = "<group>"; };
+		BF17D7D31C2D6F0400E081AE /* AudioStreamEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamEngine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				4CFBB50315FBAC5F00297852 /* StationList */,
-				BF17D76E1C29B37F00E081AE /* AudioStreamEngine */,
+				BF17D7CF1C2D6F0400E081AE /* AudioStreamEngine */,
 				4C01E4A315C66DB600E94343 /* AudioStream */,
 				4C01E49C15C66DB600E94343 /* Frameworks */,
 				4C01E49A15C66DB600E94343 /* Products */,
@@ -176,16 +176,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BF17D76E1C29B37F00E081AE /* AudioStreamEngine */ = {
+		BF17D7CF1C2D6F0400E081AE /* AudioStreamEngine */ = {
 			isa = PBXGroup;
 			children = (
-				BF17D7671C29B36200E081AE /* AudioPart.c */,
-				BF17D7681C29B36200E081AE /* AudioPart.h */,
-				BF17D7691C29B36200E081AE /* AudioStreamEngine.h */,
-				BF17D76A1C29B36200E081AE /* AudioStreamEngine.m */,
+				BF17D7D01C2D6F0400E081AE /* AudioPart.c */,
+				BF17D7D11C2D6F0400E081AE /* AudioPart.h */,
+				BF17D7D21C2D6F0400E081AE /* AudioStreamEngine.h */,
+				BF17D7D31C2D6F0400E081AE /* AudioStreamEngine.m */,
 			);
 			name = AudioStreamEngine;
-			path = AudioStream;
+			path = ../AudioStreamEngine;
 			sourceTree = "<group>";
 		};
 		CE3BCD231B87904A003D80B7 /* Views */ = {
@@ -280,12 +280,12 @@
 			files = (
 				4C01E4AA15C66DB600E94343 /* main.m in Sources */,
 				4C01E4AE15C66DB600E94343 /* ASAppDelegate.m in Sources */,
-				BF17D76C1C29B36200E081AE /* AudioStreamEngine.m in Sources */,
+				BF17D7D51C2D6F0400E081AE /* AudioStreamEngine.m in Sources */,
 				4C01E4B115C66DB600E94343 /* ASMasterViewController.m in Sources */,
 				4C01E4B415C66DB600E94343 /* ASDetailViewController.m in Sources */,
 				4C69B89115E3B8B300EADFCF /* ASEditViewController.m in Sources */,
 				4CFD5CD6160B635600934805 /* ASDataModel.m in Sources */,
-				BF17D76B1C29B36200E081AE /* AudioPart.c in Sources */,
+				BF17D7D41C2D6F0400E081AE /* AudioPart.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
