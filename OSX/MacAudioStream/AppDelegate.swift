@@ -11,16 +11,32 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
+    var statusItem: NSStatusItem!
+    var statusButton: NSStatusBarButton!
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // Insert code here to initialize your application
+        
+        activateStatusBarItem()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
 
-
+    func activateStatusBarItem() {
+        
+        let statusBar = NSStatusBar.systemStatusBar()
+        
+        statusItem = statusBar.statusItemWithLength(NSVariableStatusItemLength);
+        statusButton = statusItem.button
+        statusButton?.title = "Audio!"
+        statusButton?.target = self
+        statusButton?.action = Selector(statusAction())
+    }
+    
+    func statusAction() {
+        print("status!!!")
+    }
+    
 }
 
