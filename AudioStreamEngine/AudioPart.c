@@ -2,9 +2,8 @@
 //  AudioPart.c
 //  AudioStream
 //
-//  Created by Michael Kolesov on 7/30/12.
-//  Copyright (c) 2012 Michael Kolesov. All Rights Reserved.
-//  Based on Apple code example. Copyright (c) 2007 Apple Inc. All Rights Reserved. 
+//  Copyright (c) 2012-2015 Michael Kolesov. All Rights Reserved.
+//
 
 #include "AudioPart.h"
 
