@@ -3,7 +3,7 @@
 //  AudioStream
 //
 //  Created by Michael Kolesov on 9/20/12.
-//  Copyright (c) 2012 Michael Kolesov. All rights reserved.
+//  Copyright (c) 2012-2015 Michael Kolesov. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
