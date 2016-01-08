@@ -23,7 +23,6 @@
 
 + (AudioStreamEngine*) sharedInstance;
 
-- (void) setupStream;
 - (void) startWithURL: (NSString *) url;
 - (void) stop;
 

@@ -88,11 +88,13 @@
         self.playing = NO;
         self.finishing = NO;
         self->releaseThread = NO;
+        
+        [self setupAudioSession];
     }
     return self;
 }
 
--(void) setupStream
+-(void) setupAudioSession
 {
 #if TARGET_OS_IPHONE
    NSError *error = nil;
