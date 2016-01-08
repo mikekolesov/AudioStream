@@ -12,14 +12,14 @@ class ViewController: NSViewController, AudioStreamEngineDelegate {
 
     @IBOutlet weak var titleLabel: NSTextField!
     
-    var audioStream: AudioStreamEngine!;
+    var audioStream: AudioStreamEngine!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        audioStream = AudioStreamEngine.sharedInstance();
-        audioStream.delegate = self;
+        audioStream = AudioStreamEngine.sharedInstance()
+        audioStream.delegate = self
     }
 
     override var representedObject: AnyObject? {
@@ -32,7 +32,7 @@ class ViewController: NSViewController, AudioStreamEngineDelegate {
         
         print("play")
         if(audioStream.playing) {
-            return;
+            return
         }
         
         audioStream.startWithURL("http://air.radiorecord.ru:8101/rr_128")
@@ -40,7 +40,7 @@ class ViewController: NSViewController, AudioStreamEngineDelegate {
 
     @IBAction func stopAction(sender: AnyObject) {
         print("stop")
-        audioStream.stop();
+        audioStream.stop()
     }
     
     //MARK: AudioStreamEngine delegate
@@ -49,7 +49,7 @@ class ViewController: NSViewController, AudioStreamEngineDelegate {
         
         print(title)
         
-        titleLabel.stringValue = title;
+        titleLabel.stringValue = title
     }
 }
 
