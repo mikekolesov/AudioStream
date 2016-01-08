@@ -1,0 +1,522 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4C01E49E15C66DB600E94343 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01E49D15C66DB600E94343 /* UIKit.framework */; };
+		4C01E4A015C66DB600E94343 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01E49F15C66DB600E94343 /* Foundation.framework */; };
+		4C01E4A215C66DB600E94343 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01E4A115C66DB600E94343 /* CoreGraphics.framework */; };
+		4C01E4A815C66DB600E94343 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C01E4A615C66DB600E94343 /* InfoPlist.strings */; };
+		4C01E4AA15C66DB600E94343 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4A915C66DB600E94343 /* main.m */; };
+		4C01E4AE15C66DB600E94343 /* ASAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4AD15C66DB600E94343 /* ASAppDelegate.m */; };
+		4C01E4B115C66DB600E94343 /* ASMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4B015C66DB600E94343 /* ASMasterViewController.m */; };
+		4C01E4B415C66DB600E94343 /* ASDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C01E4B315C66DB600E94343 /* ASDetailViewController.m */; };
+		4C01E4B715C66DB600E94343 /* ASMasterViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C01E4B515C66DB600E94343 /* ASMasterViewController_iPhone.xib */; };
+		4C01E4BD15C66DB600E94343 /* ASDetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C01E4BB15C66DB600E94343 /* ASDetailViewController_iPhone.xib */; };
+		4C01E4CB15C66ECE00E94343 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C01E4CA15C66ECE00E94343 /* AudioToolbox.framework */; };
+		4C0BE37D165A5E4C0053E0A7 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 4C2192021652676B00D6D533 /* iTunesArtwork */; };
+		4C0BE37F165A5E530053E0A7 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 4C2192041652705000D6D533 /* iTunesArtwork@2x */; };
+		4C2191FB1651545300D6D533 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2191FA1651545300D6D533 /* Icon@2x.png */; };
+		4C2191FD165264F400D6D533 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2191FC165264F400D6D533 /* Icon.png */; };
+		4C2191FF1652663300D6D533 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C2191FE1652663300D6D533 /* Icon-72.png */; };
+		4C219201165266F600D6D533 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C219200165266F600D6D533 /* Icon-72@2x.png */; };
+		4C5B72371C39A01C0038EFF0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C5B72361C39A01C0038EFF0 /* Launch Screen.storyboard */; };
+		4C69B89115E3B8B300EADFCF /* ASEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */; };
+		4C69B89215E3B8B300EADFCF /* ASEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */; };
+		4C999D0D164FD7F6001B602F /* AudioStreamList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C999D0C164FD7F6001B602F /* AudioStreamList.plist */; };
+		4CA3A558163FEC050079129D /* Icon Copyright in Resources */ = {isa = PBXBuildFile; fileRef = 4CA3A557163FEC050079129D /* Icon Copyright */; };
+		4CA3A57316402A310079129D /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA3A57216402A310079129D /* arrow_left.png */; };
+		4CB7B070161AEE76008F842A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB7B06F161AEE76008F842A /* MediaPlayer.framework */; };
+		4CF12E981611A8FE00FB184C /* ASCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CF12E961611A8FE00FB184C /* ASCustomTableViewCell.xib */; };
+		4CF41D191BC07BE90044B2AA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF41D181BC07BE90044B2AA /* AVFoundation.framework */; };
+		4CFD5CD6160B635600934805 /* ASDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD5CD5160B635500934805 /* ASDataModel.m */; };
+		BF17D7D41C2D6F0400E081AE /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = BF17D7D01C2D6F0400E081AE /* AudioPart.c */; };
+		BF17D7D51C2D6F0400E081AE /* AudioStreamEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BF17D7D31C2D6F0400E081AE /* AudioStreamEngine.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4C01E49915C66DB600E94343 /* AudioStream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioStream.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C01E49D15C66DB600E94343 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4C01E49F15C66DB600E94343 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4C01E4A115C66DB600E94343 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4C01E4A515C66DB600E94343 /* AudioStream-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AudioStream-Info.plist"; sourceTree = "<group>"; };
+		4C01E4A715C66DB600E94343 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4C01E4A915C66DB600E94343 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4C01E4AB15C66DB600E94343 /* AudioStream-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AudioStream-Prefix.pch"; sourceTree = "<group>"; };
+		4C01E4AC15C66DB600E94343 /* ASAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASAppDelegate.h; sourceTree = "<group>"; };
+		4C01E4AD15C66DB600E94343 /* ASAppDelegate.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ASAppDelegate.m; sourceTree = "<group>"; tabWidth = 4; };
+		4C01E4AF15C66DB600E94343 /* ASMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASMasterViewController.h; sourceTree = "<group>"; };
+		4C01E4B015C66DB600E94343 /* ASMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASMasterViewController.m; sourceTree = "<group>"; };
+		4C01E4B215C66DB600E94343 /* ASDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASDetailViewController.h; sourceTree = "<group>"; };
+		4C01E4B315C66DB600E94343 /* ASDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASDetailViewController.m; sourceTree = "<group>"; };
+		4C01E4B615C66DB600E94343 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASMasterViewController_iPhone.xib; sourceTree = "<group>"; };
+		4C01E4BC15C66DB600E94343 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASDetailViewController_iPhone.xib; sourceTree = "<group>"; };
+		4C01E4CA15C66ECE00E94343 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4C2191FA1651545300D6D533 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		4C2191FC165264F400D6D533 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		4C2191FE1652663300D6D533 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		4C219200165266F600D6D533 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		4C2192021652676B00D6D533 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		4C2192041652705000D6D533 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
+		4C5B72361C39A01C0038EFF0 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		4C69B88E15E3B8B300EADFCF /* ASEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASEditViewController.h; sourceTree = "<group>"; };
+		4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASEditViewController.m; sourceTree = "<group>"; };
+		4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASEditViewController.xib; sourceTree = "<group>"; };
+		4C999D0C164FD7F6001B602F /* AudioStreamList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AudioStreamList.plist; sourceTree = "<group>"; };
+		4CA3A557163FEC050079129D /* Icon Copyright */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Icon Copyright"; sourceTree = "<group>"; };
+		4CA3A57216402A310079129D /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
+		4CB7B06F161AEE76008F842A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		4CF12E971611A8FE00FB184C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASCustomTableViewCell.xib; sourceTree = "<group>"; };
+		4CF41D181BC07BE90044B2AA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4CFBB50315FBAC5F00297852 /* StationList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = StationList; path = AudioStream/StationList; sourceTree = "<group>"; };
+		4CFD5CD4160B635500934805 /* ASDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDataModel.h; sourceTree = "<group>"; };
+		4CFD5CD5160B635500934805 /* ASDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASDataModel.m; sourceTree = "<group>"; };
+		BF17D7D01C2D6F0400E081AE /* AudioPart.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AudioPart.c; sourceTree = "<group>"; };
+		BF17D7D11C2D6F0400E081AE /* AudioPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPart.h; sourceTree = "<group>"; };
+		BF17D7D21C2D6F0400E081AE /* AudioStreamEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamEngine.h; sourceTree = "<group>"; };
+		BF17D7D31C2D6F0400E081AE /* AudioStreamEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamEngine.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4C01E49615C66DB600E94343 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CF41D191BC07BE90044B2AA /* AVFoundation.framework in Frameworks */,
+				4CB7B070161AEE76008F842A /* MediaPlayer.framework in Frameworks */,
+				4C01E4CB15C66ECE00E94343 /* AudioToolbox.framework in Frameworks */,
+				4C01E49E15C66DB600E94343 /* UIKit.framework in Frameworks */,
+				4C01E4A015C66DB600E94343 /* Foundation.framework in Frameworks */,
+				4C01E4A215C66DB600E94343 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4C01E48E15C66DB600E94343 = {
+			isa = PBXGroup;
+			children = (
+				4CFBB50315FBAC5F00297852 /* StationList */,
+				BF17D7CF1C2D6F0400E081AE /* AudioStreamEngine */,
+				4C01E4A315C66DB600E94343 /* AudioStream */,
+				4C01E49C15C66DB600E94343 /* Frameworks */,
+				4C01E49A15C66DB600E94343 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4C01E49A15C66DB600E94343 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4C01E49915C66DB600E94343 /* AudioStream.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4C01E49C15C66DB600E94343 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4CF41D181BC07BE90044B2AA /* AVFoundation.framework */,
+				4CB7B06F161AEE76008F842A /* MediaPlayer.framework */,
+				4C01E4CA15C66ECE00E94343 /* AudioToolbox.framework */,
+				4C01E49D15C66DB600E94343 /* UIKit.framework */,
+				4C01E49F15C66DB600E94343 /* Foundation.framework */,
+				4C01E4A115C66DB600E94343 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4C01E4A315C66DB600E94343 /* AudioStream */ = {
+			isa = PBXGroup;
+			children = (
+				CE3BCD231B87904A003D80B7 /* Views */,
+				4C01E4AC15C66DB600E94343 /* ASAppDelegate.h */,
+				4C01E4AD15C66DB600E94343 /* ASAppDelegate.m */,
+				4C01E4AF15C66DB600E94343 /* ASMasterViewController.h */,
+				4C01E4B015C66DB600E94343 /* ASMasterViewController.m */,
+				4C01E4B215C66DB600E94343 /* ASDetailViewController.h */,
+				4C01E4B315C66DB600E94343 /* ASDetailViewController.m */,
+				4C69B88E15E3B8B300EADFCF /* ASEditViewController.h */,
+				4C69B88F15E3B8B300EADFCF /* ASEditViewController.m */,
+				4CFD5CD4160B635500934805 /* ASDataModel.h */,
+				4CFD5CD5160B635500934805 /* ASDataModel.m */,
+				4C01E4A415C66DB600E94343 /* Supporting Files */,
+			);
+			path = AudioStream;
+			sourceTree = "<group>";
+		};
+		4C01E4A415C66DB600E94343 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4C2192021652676B00D6D533 /* iTunesArtwork */,
+				4C2192041652705000D6D533 /* iTunesArtwork@2x */,
+				4C2191FC165264F400D6D533 /* Icon.png */,
+				4C2191FE1652663300D6D533 /* Icon-72.png */,
+				4C2191FA1651545300D6D533 /* Icon@2x.png */,
+				4C219200165266F600D6D533 /* Icon-72@2x.png */,
+				4CA3A57216402A310079129D /* arrow_left.png */,
+				4C01E4A515C66DB600E94343 /* AudioStream-Info.plist */,
+				4C01E4A615C66DB600E94343 /* InfoPlist.strings */,
+				4C01E4A915C66DB600E94343 /* main.m */,
+				4C01E4AB15C66DB600E94343 /* AudioStream-Prefix.pch */,
+				4CA3A557163FEC050079129D /* Icon Copyright */,
+				4C999D0C164FD7F6001B602F /* AudioStreamList.plist */,
+				4C5B72361C39A01C0038EFF0 /* Launch Screen.storyboard */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BF17D7CF1C2D6F0400E081AE /* AudioStreamEngine */ = {
+			isa = PBXGroup;
+			children = (
+				BF17D7D01C2D6F0400E081AE /* AudioPart.c */,
+				BF17D7D11C2D6F0400E081AE /* AudioPart.h */,
+				BF17D7D21C2D6F0400E081AE /* AudioStreamEngine.h */,
+				BF17D7D31C2D6F0400E081AE /* AudioStreamEngine.m */,
+			);
+			name = AudioStreamEngine;
+			path = ../AudioStreamEngine;
+			sourceTree = "<group>";
+		};
+		CE3BCD231B87904A003D80B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4CF12E961611A8FE00FB184C /* ASCustomTableViewCell.xib */,
+				4C01E4B515C66DB600E94343 /* ASMasterViewController_iPhone.xib */,
+				4C01E4BB15C66DB600E94343 /* ASDetailViewController_iPhone.xib */,
+				4C69B89015E3B8B300EADFCF /* ASEditViewController.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4C01E49815C66DB600E94343 /* AudioStream */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C01E4C315C66DB600E94343 /* Build configuration list for PBXNativeTarget "AudioStream" */;
+			buildPhases = (
+				4C01E49515C66DB600E94343 /* Sources */,
+				4C01E49615C66DB600E94343 /* Frameworks */,
+				4C01E49715C66DB600E94343 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AudioStream;
+			productName = AudioStream;
+			productReference = 4C01E49915C66DB600E94343 /* AudioStream.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4C01E49015C66DB600E94343 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AS;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Michael Kolesov";
+				TargetAttributes = {
+					4C01E49815C66DB600E94343 = {
+						DevelopmentTeam = JC2628VRF8;
+					};
+				};
+			};
+			buildConfigurationList = 4C01E49315C66DB600E94343 /* Build configuration list for PBXProject "AudioStream" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4C01E48E15C66DB600E94343;
+			productRefGroup = 4C01E49A15C66DB600E94343 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4C01E49815C66DB600E94343 /* AudioStream */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4C01E49715C66DB600E94343 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C01E4A815C66DB600E94343 /* InfoPlist.strings in Resources */,
+				4C01E4B715C66DB600E94343 /* ASMasterViewController_iPhone.xib in Resources */,
+				4C01E4BD15C66DB600E94343 /* ASDetailViewController_iPhone.xib in Resources */,
+				4C5B72371C39A01C0038EFF0 /* Launch Screen.storyboard in Resources */,
+				4C69B89215E3B8B300EADFCF /* ASEditViewController.xib in Resources */,
+				4CF12E981611A8FE00FB184C /* ASCustomTableViewCell.xib in Resources */,
+				4CA3A558163FEC050079129D /* Icon Copyright in Resources */,
+				4CA3A57316402A310079129D /* arrow_left.png in Resources */,
+				4C999D0D164FD7F6001B602F /* AudioStreamList.plist in Resources */,
+				4C2191FB1651545300D6D533 /* Icon@2x.png in Resources */,
+				4C2191FD165264F400D6D533 /* Icon.png in Resources */,
+				4C2191FF1652663300D6D533 /* Icon-72.png in Resources */,
+				4C219201165266F600D6D533 /* Icon-72@2x.png in Resources */,
+				4C0BE37D165A5E4C0053E0A7 /* iTunesArtwork in Resources */,
+				4C0BE37F165A5E530053E0A7 /* iTunesArtwork@2x in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4C01E49515C66DB600E94343 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C01E4AA15C66DB600E94343 /* main.m in Sources */,
+				4C01E4AE15C66DB600E94343 /* ASAppDelegate.m in Sources */,
+				BF17D7D51C2D6F0400E081AE /* AudioStreamEngine.m in Sources */,
+				4C01E4B115C66DB600E94343 /* ASMasterViewController.m in Sources */,
+				4C01E4B415C66DB600E94343 /* ASDetailViewController.m in Sources */,
+				4C69B89115E3B8B300EADFCF /* ASEditViewController.m in Sources */,
+				4CFD5CD6160B635600934805 /* ASDataModel.m in Sources */,
+				BF17D7D41C2D6F0400E081AE /* AudioPart.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4C01E4A615C66DB600E94343 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C01E4A715C66DB600E94343 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4C01E4B515C66DB600E94343 /* ASMasterViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C01E4B615C66DB600E94343 /* en */,
+			);
+			name = ASMasterViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		4C01E4BB15C66DB600E94343 /* ASDetailViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C01E4BC15C66DB600E94343 /* en */,
+			);
+			name = ASDetailViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		4CF12E961611A8FE00FB184C /* ASCustomTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CF12E971611A8FE00FB184C /* en */,
+			);
+			name = ASCustomTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4C01E4C115C66DB600E94343 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Kolesov (J45A5G6R6Q)";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "490CAFF3-F3EF-45B1-B80F-F75E07B0F578";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4C01E4C215C66DB600E94343 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Kolesov (J45A5G6R6Q)";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "490CAFF3-F3EF-45B1-B80F-F75E07B0F578";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4C01E4C415C66DB600E94343 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AudioStream/AudioStream-Prefix.pch";
+				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = self.AudioStream;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4C01E4C515C66DB600E94343 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AudioStream/AudioStream-Prefix.pch";
+				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = self.AudioStream;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		4C5049C0165A69C3004FB62F /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Kolesov";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BBEAA887-5D0F-4DD6-B24E-4AF3A58E4ABC";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AppStore;
+		};
+		4C5049C1165A69C3004FB62F /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AudioStream/AudioStream-Prefix.pch";
+				INFOPLIST_FILE = "AudioStream/AudioStream-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = self.AudioStream;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStore;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4C01E49315C66DB600E94343 /* Build configuration list for PBXProject "AudioStream" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C01E4C115C66DB600E94343 /* Debug */,
+				4C01E4C215C66DB600E94343 /* Release */,
+				4C5049C0165A69C3004FB62F /* AppStore */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C01E4C315C66DB600E94343 /* Build configuration list for PBXNativeTarget "AudioStream" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C01E4C415C66DB600E94343 /* Debug */,
+				4C01E4C515C66DB600E94343 /* Release */,
+				4C5049C1165A69C3004FB62F /* AppStore */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4C01E49015C66DB600E94343 /* Project object */;
+}
