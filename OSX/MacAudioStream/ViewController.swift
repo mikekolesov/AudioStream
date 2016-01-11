@@ -35,7 +35,7 @@ class ViewController: NSViewController, AudioStreamEngineDelegate {
             return
         }
         
-        audioStream.startWithURL("http://air.radiorecord.ru:8101/rr_128")
+        audioStream.startWithURL("http://91.190.117.131:8000/live")
     }
 
     @IBAction func stopAction(sender: AnyObject) {

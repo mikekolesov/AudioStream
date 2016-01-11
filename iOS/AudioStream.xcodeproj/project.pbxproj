@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4C968B021C3FF0A8000C5474 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C968B011C3FF0A8000C5474 /* AppDelegate.swift */; };
-		4C968B041C3FF0A8000C5474 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C968B031C3FF0A8000C5474 /* ViewController.swift */; };
 		4C968B071C3FF0A8000C5474 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C968B051C3FF0A8000C5474 /* Main.storyboard */; };
 		4C968B0A1C3FF0A8000C5474 /* AudioStream.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4C968B081C3FF0A8000C5474 /* AudioStream.xcdatamodeld */; };
 		4C968B0C1C3FF0A8000C5474 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C968B0B1C3FF0A8000C5474 /* Assets.xcassets */; };
 		4C968B1A1C3FF0A9000C5474 /* AudioStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C968B191C3FF0A9000C5474 /* AudioStreamTests.swift */; };
 		4C968B251C3FF0A9000C5474 /* AudioStreamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C968B241C3FF0A9000C5474 /* AudioStreamUITests.swift */; };
+		4CAE48201C444A2D0041F4FD /* StationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAE481F1C444A2D0041F4FD /* StationListController.swift */; };
+		4CAE48221C444AF70041F4FD /* StationDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAE48211C444AF70041F4FD /* StationDetailController.swift */; };
 		4CB683961C3FF294006E19B4 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CB683941C3FF294006E19B4 /* Launch Screen.storyboard */; };
 		4CB6839C1C3FF391006E19B4 /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB683981C3FF391006E19B4 /* AudioPart.c */; };
 		4CB6839D1C3FF391006E19B4 /* AudioStreamEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB6839B1C3FF391006E19B4 /* AudioStreamEngine.m */; };
@@ -34,19 +35,11 @@
 			remoteGlobalIDString = 4C968AFD1C3FF0A8000C5474;
 			remoteInfo = AudioStream;
 		};
-		4CB684091C3FF5BD006E19B4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4CB684041C3FF5BD006E19B4 /* AudioStream.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4C01E49915C66DB600E94343;
-			remoteInfo = AudioStream;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4C968AFE1C3FF0A8000C5474 /* AudioStream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioStream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C968B011C3FF0A8000C5474 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4C968B031C3FF0A8000C5474 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4C968B061C3FF0A8000C5474 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4C968B091C3FF0A8000C5474 /* AudioStream.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AudioStream.xcdatamodel; sourceTree = "<group>"; };
 		4C968B0B1C3FF0A8000C5474 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,6 +50,8 @@
 		4C968B201C3FF0A9000C5474 /* AudioStreamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioStreamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C968B241C3FF0A9000C5474 /* AudioStreamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStreamUITests.swift; sourceTree = "<group>"; };
 		4C968B261C3FF0A9000C5474 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CAE481F1C444A2D0041F4FD /* StationListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationListController.swift; sourceTree = "<group>"; };
+		4CAE48211C444AF70041F4FD /* StationDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationDetailController.swift; sourceTree = "<group>"; };
 		4CB683951C3FF294006E19B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		4CB683981C3FF391006E19B4 /* AudioPart.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AudioPart.c; sourceTree = "<group>"; };
 		4CB683991C3FF391006E19B4 /* AudioPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPart.h; sourceTree = "<group>"; };
@@ -92,7 +87,6 @@
 		4CB684011C3FF5BD006E19B4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		4CB684021C3FF5BD006E19B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4CB684031C3FF5BD006E19B4 /* StationList */ = {isa = PBXFileReference; lastKnownFileType = text; path = StationList; sourceTree = "<group>"; };
-		4CB684041C3FF5BD006E19B4 /* AudioStream.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = AudioStream.xcodeproj; sourceTree = "<group>"; };
 		4CB684071C3FF5BD006E19B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,14 +140,12 @@
 		4C968B001C3FF0A8000C5474 /* AudioStream */ = {
 			isa = PBXGroup;
 			children = (
-				4CB6839E1C3FF40A006E19B4 /* AudioStream-Bridging-Header.h */,
 				4C968B011C3FF0A8000C5474 /* AppDelegate.swift */,
-				4C968B031C3FF0A8000C5474 /* ViewController.swift */,
-				4C968B051C3FF0A8000C5474 /* Main.storyboard */,
-				4CB683941C3FF294006E19B4 /* Launch Screen.storyboard */,
-				4C968B0B1C3FF0A8000C5474 /* Assets.xcassets */,
-				4C968B101C3FF0A8000C5474 /* Info.plist */,
-				4C968B081C3FF0A8000C5474 /* AudioStream.xcdatamodeld */,
+				4CAE48251C444CA10041F4FD /* Storyboards */,
+				4CAE48231C444C4D0041F4FD /* View Controllers */,
+				4CAE48271C444CD40041F4FD /* Model */,
+				4CAE48261C444CC90041F4FD /* Resources */,
+				4CAE48241C444C600041F4FD /* Supporting Files */,
 			);
 			path = AudioStream;
 			sourceTree = "<group>";
@@ -176,6 +168,49 @@
 			path = AudioStreamUITests;
 			sourceTree = "<group>";
 		};
+		4CAE48231C444C4D0041F4FD /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4CAE481F1C444A2D0041F4FD /* StationListController.swift */,
+				4CAE48211C444AF70041F4FD /* StationDetailController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		4CAE48241C444C600041F4FD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4CB6839E1C3FF40A006E19B4 /* AudioStream-Bridging-Header.h */,
+				4C968B101C3FF0A8000C5474 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4CAE48251C444CA10041F4FD /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				4C968B051C3FF0A8000C5474 /* Main.storyboard */,
+				4CB683941C3FF294006E19B4 /* Launch Screen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		4CAE48261C444CC90041F4FD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4C968B0B1C3FF0A8000C5474 /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		4CAE48271C444CD40041F4FD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4C968B081C3FF0A8000C5474 /* AudioStream.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		4CB683971C3FF391006E19B4 /* AudioStreamEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				4CB683E21C3FF5BD006E19B4 /* AudioStream */,
-				4CB684041C3FF5BD006E19B4 /* AudioStream.xcodeproj */,
 				4CB684071C3FF5BD006E19B4 /* README.md */,
 			);
 			path = old_audiostream;
@@ -232,14 +266,6 @@
 				4CB684031C3FF5BD006E19B4 /* StationList */,
 			);
 			path = AudioStream;
-			sourceTree = "<group>";
-		};
-		4CB684051C3FF5BD006E19B4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4CB6840A1C3FF5BD006E19B4 /* AudioStream.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,12 +358,6 @@
 			mainGroup = 4C968AF51C3FF0A8000C5474;
 			productRefGroup = 4C968AFF1C3FF0A8000C5474 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 4CB684051C3FF5BD006E19B4 /* Products */;
-					ProjectRef = 4CB684041C3FF5BD006E19B4 /* AudioStream.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				4C968AFD1C3FF0A8000C5474 /* AudioStream */,
@@ -346,16 +366,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		4CB6840A1C3FF5BD006E19B4 /* AudioStream.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = AudioStream.app;
-			remoteRef = 4CB684091C3FF5BD006E19B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4C968AFC1C3FF0A8000C5474 /* Resources */ = {
@@ -389,7 +399,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C968B041C3FF0A8000C5474 /* ViewController.swift in Sources */,
+				4CAE48201C444A2D0041F4FD /* StationListController.swift in Sources */,
+				4CAE48221C444AF70041F4FD /* StationDetailController.swift in Sources */,
 				4CB6839C1C3FF391006E19B4 /* AudioPart.c in Sources */,
 				4C968B021C3FF0A8000C5474 /* AppDelegate.swift in Sources */,
 				4C968B0A1C3FF0A8000C5474 /* AudioStream.xcdatamodeld in Sources */,

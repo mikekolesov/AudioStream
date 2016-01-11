@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        streamEngine = AudioStreamEngine.sharedInstance()
-        streamEngine.startWithURL("http://air.radiorecord.ru:8101/rr_128")
+//        streamEngine = AudioStreamEngine.sharedInstance()
+//        streamEngine.startWithURL("http://air.radiorecord.ru:8101/rr_128")
         
         return true
     }
