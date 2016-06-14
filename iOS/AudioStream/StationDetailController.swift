@@ -24,16 +24,16 @@ class StationDetailController: UIViewController, AudioStreamEngineDelegate{
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func playTest(sender: AnyObject) {
+    @IBAction func playTest(_ sender: AnyObject) {
         
         streamEngine = AudioStreamEngine.sharedInstance()
         streamEngine.delegate = self
-        streamEngine.startWithURL("http://air.radiorecord.ru:8101/rr_128")
+        streamEngine.start(withURL: "http://air.radiorecord.ru:8101/rr_128")
 
     }
 
     // MARK: - AudioStreamEngine delegate
-    func audioStreamEngineDidUpdateTitle(title: String!) {
+    func audioStreamEngineDidUpdateTitle(_ title: String!) {
         audioNameLabel.text = title
     }
     

@@ -5,13 +5,11 @@
 //  Copyright (c) 2012-2015 Michael Kolesov. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
+
 #import "AudioStreamEngine.h"
 #import "AudioPart.h"
 #import <pthread.h>
-
-#if TARGET_OS_IPHONE
-#import <AVFoundation/AVAudioSession.h>
-#endif
 
 @interface AudioStreamEngine () <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 {
