@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uYK-G8-lln">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uYK-G8-lln">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Station Detail Controller-->
@@ -17,16 +19,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWp-c2-rJ0">
-                                <rect key="frame" x="176" y="197" width="57" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWp-c2-rJ0">
+                                <rect key="frame" x="272" y="285" width="57" height="30"/>
                                 <state key="normal" title="PlayTest"/>
                                 <connections>
                                     <action selector="playTest:" destination="dqv-LH-Tgb" eventType="touchUpInside" id="mnK-Kf-7t7"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4V-nP-ffn">
+                                <rect key="frame" x="100" y="170" width="400" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="L4V-nP-ffn" firstAttribute="width" secondItem="tzb-TV-UE8" secondAttribute="width" multiplier="2/3" id="0ys-06-lkU"/>
+                            <constraint firstItem="FWp-c2-rJ0" firstAttribute="centerY" secondItem="tzb-TV-UE8" secondAttribute="centerY" id="674-tm-GpI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="L4V-nP-ffn" secondAttribute="trailing" constant="110" id="CDa-Ue-CTP"/>
+                            <constraint firstItem="L4V-nP-ffn" firstAttribute="leading" secondItem="tzb-TV-UE8" secondAttribute="leadingMargin" constant="110" id="GzL-yV-lKg"/>
+                            <constraint firstItem="FWp-c2-rJ0" firstAttribute="centerX" secondItem="tzb-TV-UE8" secondAttribute="centerX" id="RGU-r9-goH"/>
+                            <constraint firstItem="L4V-nP-ffn" firstAttribute="centerX" secondItem="tzb-TV-UE8" secondAttribute="centerX" id="hdc-bO-kIK"/>
+                            <constraint firstItem="L4V-nP-ffn" firstAttribute="centerY" secondItem="Eim-j3-kAy" secondAttribute="top" multiplier="0.3" id="i9x-jU-ewx"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="CDa-Ue-CTP"/>
+                                <exclude reference="GzL-yV-lKg"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="audioNameLabel" destination="L4V-nP-ffn" id="zIT-ni-49p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Joa-ij-hkf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

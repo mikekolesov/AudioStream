@@ -8,8 +8,9 @@
 
 import UIKit
 
-class StationDetailController: UIViewController {
+class StationDetailController: UIViewController, AudioStreamEngineDelegate{
 
+    @IBOutlet weak var audioNameLabel: UILabel!
     var streamEngine: AudioStreamEngine!
     
     override func viewDidLoad() {
@@ -26,10 +27,16 @@ class StationDetailController: UIViewController {
     @IBAction func playTest(sender: AnyObject) {
         
         streamEngine = AudioStreamEngine.sharedInstance()
-        streamEngine.startWithURL("http://91.190.117.131:8000/live")
+        streamEngine.delegate = self
+        streamEngine.startWithURL("http://air.radiorecord.ru:8101/rr_128")
 
     }
 
+    // MARK: - AudioStreamEngine delegate
+    func audioStreamEngineDidUpdateTitle(title: String!) {
+        audioNameLabel.text = title
+    }
+    
     /*
     // MARK: - Navigation
 
