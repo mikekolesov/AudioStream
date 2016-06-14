@@ -1,0 +1,318 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BF3CBB761D1060CD00AB426E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3CBB751D1060CD00AB426E /* AppDelegate.swift */; };
+		BF3CBB781D1060CD00AB426E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3CBB771D1060CD00AB426E /* ViewController.swift */; };
+		BF3CBB7B1D1060CD00AB426E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF3CBB791D1060CD00AB426E /* Main.storyboard */; };
+		BF3CBB7D1D1060CD00AB426E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF3CBB7C1D1060CD00AB426E /* Assets.xcassets */; };
+		BF3CBB891D10613B00AB426E /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = BF3CBB851D10613B00AB426E /* AudioPart.c */; };
+		BF3CBB8A1D10613B00AB426E /* AudioStreamEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3CBB881D10613B00AB426E /* AudioStreamEngine.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BF3CBB721D1060CD00AB426E /* AudioStreamTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioStreamTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF3CBB751D1060CD00AB426E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BF3CBB771D1060CD00AB426E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BF3CBB7A1D1060CD00AB426E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BF3CBB7C1D1060CD00AB426E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BF3CBB7E1D1060CD00AB426E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF3CBB851D10613B00AB426E /* AudioPart.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AudioPart.c; sourceTree = "<group>"; };
+		BF3CBB861D10613B00AB426E /* AudioPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPart.h; sourceTree = "<group>"; };
+		BF3CBB871D10613B00AB426E /* AudioStreamEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamEngine.h; sourceTree = "<group>"; };
+		BF3CBB881D10613B00AB426E /* AudioStreamEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamEngine.m; sourceTree = "<group>"; };
+		BF3CBB8B1D10630F00AB426E /* AudioStreamTV-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AudioStreamTV-Bridging-Header.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BF3CBB6F1D1060CD00AB426E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BF3CBB691D1060CD00AB426E = {
+			isa = PBXGroup;
+			children = (
+				BF3CBB841D10613B00AB426E /* AudioStreamEngine */,
+				BF3CBB741D1060CD00AB426E /* AudioStreamTV */,
+				BF3CBB731D1060CD00AB426E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BF3CBB731D1060CD00AB426E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF3CBB721D1060CD00AB426E /* AudioStreamTV.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF3CBB741D1060CD00AB426E /* AudioStreamTV */ = {
+			isa = PBXGroup;
+			children = (
+				BF3CBB751D1060CD00AB426E /* AppDelegate.swift */,
+				BF3CBB771D1060CD00AB426E /* ViewController.swift */,
+				BF3CBB791D1060CD00AB426E /* Main.storyboard */,
+				BF3CBB7C1D1060CD00AB426E /* Assets.xcassets */,
+				BF3CBB7E1D1060CD00AB426E /* Info.plist */,
+				BF3CBB8B1D10630F00AB426E /* AudioStreamTV-Bridging-Header.h */,
+			);
+			path = AudioStreamTV;
+			sourceTree = "<group>";
+		};
+		BF3CBB841D10613B00AB426E /* AudioStreamEngine */ = {
+			isa = PBXGroup;
+			children = (
+				BF3CBB851D10613B00AB426E /* AudioPart.c */,
+				BF3CBB861D10613B00AB426E /* AudioPart.h */,
+				BF3CBB871D10613B00AB426E /* AudioStreamEngine.h */,
+				BF3CBB881D10613B00AB426E /* AudioStreamEngine.m */,
+			);
+			name = AudioStreamEngine;
+			path = ../AudioStreamEngine;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BF3CBB711D1060CD00AB426E /* AudioStreamTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF3CBB811D1060CD00AB426E /* Build configuration list for PBXNativeTarget "AudioStreamTV" */;
+			buildPhases = (
+				BF3CBB6E1D1060CD00AB426E /* Sources */,
+				BF3CBB6F1D1060CD00AB426E /* Frameworks */,
+				BF3CBB701D1060CD00AB426E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AudioStreamTV;
+			productName = AudioStreamTV;
+			productReference = BF3CBB721D1060CD00AB426E /* AudioStreamTV.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BF3CBB6A1D1060CD00AB426E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Mikhail Kolesov";
+				TargetAttributes = {
+					BF3CBB711D1060CD00AB426E = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = AFY6TH93WY;
+						DevelopmentTeamName = "Mikhail Kolesov (Personal Team)";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = BF3CBB6D1D1060CD00AB426E /* Build configuration list for PBXProject "AudioStreamTV" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BF3CBB691D1060CD00AB426E;
+			productRefGroup = BF3CBB731D1060CD00AB426E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BF3CBB711D1060CD00AB426E /* AudioStreamTV */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BF3CBB701D1060CD00AB426E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF3CBB7D1D1060CD00AB426E /* Assets.xcassets in Resources */,
+				BF3CBB7B1D1060CD00AB426E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BF3CBB6E1D1060CD00AB426E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF3CBB891D10613B00AB426E /* AudioPart.c in Sources */,
+				BF3CBB781D1060CD00AB426E /* ViewController.swift in Sources */,
+				BF3CBB8A1D10613B00AB426E /* AudioStreamEngine.m in Sources */,
+				BF3CBB761D1060CD00AB426E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BF3CBB791D1060CD00AB426E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF3CBB7A1D1060CD00AB426E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BF3CBB7F1D1060CD00AB426E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		BF3CBB801D1060CD00AB426E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BF3CBB821D1060CD00AB426E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = AudioStreamTV/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = self.AudioStreamTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT)/AudioStreamTV-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		BF3CBB831D1060CD00AB426E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = AudioStreamTV/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = self.AudioStreamTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT)/AudioStreamTV-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BF3CBB6D1D1060CD00AB426E /* Build configuration list for PBXProject "AudioStreamTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF3CBB7F1D1060CD00AB426E /* Debug */,
+				BF3CBB801D1060CD00AB426E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF3CBB811D1060CD00AB426E /* Build configuration list for PBXNativeTarget "AudioStreamTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF3CBB821D1060CD00AB426E /* Debug */,
+				BF3CBB831D1060CD00AB426E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BF3CBB6A1D1060CD00AB426E /* Project object */;
+}

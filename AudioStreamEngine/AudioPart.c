@@ -187,31 +187,31 @@ OSStatus StartQueueIfNeeded(MyData* myData)
         if (curPreStreamed >= myData->preStreamedBuffers )
         {
 
-#if TARGET_OS_IPHONE
-            UInt32 allow = true;
-            
-            if (myData->allowMixing) { // backgroung interrupt workaround. part 1
-                printf("allow mixing workaround\n");
-                allow = true;
-                err = AudioSessionSetProperty( kAudioSessionProperty_OverrideCategoryMixWithOthers,
-                                                sizeof (allow),
-                                                &allow);
-                if (err) {
-                    PRINTERROR("AudioSessionSetProperty Mix");
-                    myData->failed = true;
-                    myData->engineErrorDescription = "Setting audio session property failed";
-                    return err;
-                }
-                err = AudioSessionSetActive(true);
-                if (err) {
-                    PRINTERROR("AudioSessionSetActive");
-                    myData->failed = true;
-                    myData->engineErrorDescription = "Audio session activation failed";
-                    return err;
-                }
-                
-            }
-#endif
+//#if TARGET_OS_IPHONE
+//            UInt32 allow = true;
+//            
+//            if (myData->allowMixing) { // backgroung interrupt workaround. part 1
+//                printf("allow mixing workaround\n");
+//                allow = true;
+//                err = AudioSessionSetProperty( kAudioSessionProperty_OverrideCategoryMixWithOthers,
+//                                                sizeof (allow),
+//                                                &allow);
+//                if (err) {
+//                    PRINTERROR("AudioSessionSetProperty Mix");
+//                    myData->failed = true;
+//                    myData->engineErrorDescription = "Setting audio session property failed";
+//                    return err;
+//                }
+//                err = AudioSessionSetActive(true);
+//                if (err) {
+//                    PRINTERROR("AudioSessionSetActive");
+//                    myData->failed = true;
+//                    myData->engineErrorDescription = "Audio session activation failed";
+//                    return err;
+//                }
+//                
+//            }
+//#endif
             
             err = AudioQueueStart(myData->audioQueue, NULL);
             if (err) {
@@ -225,22 +225,22 @@ OSStatus StartQueueIfNeeded(MyData* myData)
             if ( myData->preparing )
                 myData->preparing = false;
 
-#if TARGET_OS_IPHONE
-            if (myData->allowMixing) { // backgroung interrupt workaround. part 2
-                allow = false;
-                err = AudioSessionSetProperty( kAudioSessionProperty_OverrideCategoryMixWithOthers,
-                                                sizeof (allow),
-                                                &allow);
-                if (err) {
-                    PRINTERROR("AudioSessionSetProperty NoMix");
-                    myData->failed = true;
-                    myData->engineErrorDescription = "Reseting audio session property failed";
-                    return err;
-                }
-
-                myData->allowMixing = false;
-            }
-#endif
+//#if TARGET_OS_IPHONE
+//            if (myData->allowMixing) { // backgroung interrupt workaround. part 2
+//                allow = false;
+//                err = AudioSessionSetProperty( kAudioSessionProperty_OverrideCategoryMixWithOthers,
+//                                                sizeof (allow),
+//                                                &allow);
+//                if (err) {
+//                    PRINTERROR("AudioSessionSetProperty NoMix");
+//                    myData->failed = true;
+//                    myData->engineErrorDescription = "Reseting audio session property failed";
+//                    return err;
+//                }
+//
+//                myData->allowMixing = false;
+//            }
+//#endif
             
             myData->started = true;
             printf("started\n");
