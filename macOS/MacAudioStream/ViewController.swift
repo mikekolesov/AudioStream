@@ -28,24 +28,24 @@ class ViewController: NSViewController, AudioStreamEngineDelegate {
         }
     }
 
-    @IBAction func playAction(sender: AnyObject) {
+    @IBAction func playAction(_ sender: AnyObject) {
         
         print("play")
         if(audioStream.playing) {
             return
         }
         
-        audioStream.startWithURL("http://91.190.117.131:8000/live")
+        audioStream.start(withURL: "http://91.190.117.131:8000/live")
     }
 
-    @IBAction func stopAction(sender: AnyObject) {
+    @IBAction func stopAction(_ sender: AnyObject) {
         print("stop")
         audioStream.stop()
     }
     
     //MARK: AudioStreamEngine delegate
     
-    func audioStreamEngineDidUpdateTitle(title: String!) {
+    func audioStreamEngineDidUpdateTitle(_ title: String!) {
         
         print(title)
         

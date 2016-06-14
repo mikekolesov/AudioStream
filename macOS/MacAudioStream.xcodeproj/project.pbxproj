@@ -114,6 +114,7 @@
 				TargetAttributes = {
 					BF17D7BC1C2D693B00E081AE = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -264,6 +265,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = michaelkolesov.MacAudioStream;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT}/MacAudioStream-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -278,6 +280,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = michaelkolesov.MacAudioStream;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT}/MacAudioStream-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

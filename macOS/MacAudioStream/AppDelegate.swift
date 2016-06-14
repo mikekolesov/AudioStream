@@ -14,24 +14,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem!
     var statusButton: NSStatusBarButton!
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         activateStatusBarItem()
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
 
     func activateStatusBarItem() {
         
-        let statusBar = NSStatusBar.systemStatusBar()
+        let statusBar = NSStatusBar.system()
         
-        statusItem = statusBar.statusItemWithLength(NSVariableStatusItemLength);
+        statusItem = statusBar.statusItem(withLength: NSVariableStatusItemLength);
         statusButton = statusItem.button
         statusButton?.title = "Audio!"
         statusButton?.target = self
-        statusButton?.action = Selector(statusAction())
+        statusButton?.action = #selector(statusAction)
     }
     
     func statusAction() {
