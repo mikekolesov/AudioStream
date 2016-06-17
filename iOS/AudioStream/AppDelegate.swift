@@ -8,6 +8,9 @@
 
 import UIKit
 import CoreData
+import Fabric
+import Crashlytics
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        streamEngine = AudioStreamEngine.sharedInstance()
 //        streamEngine.startWithURL("http://air.radiorecord.ru:8101/rr_128")
         
+        Fabric.with([Crashlytics.self])
+
         return true
     }
 

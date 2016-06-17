@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Crashlytics
+
 
 class StationDetailController: UIViewController, AudioStreamEngineDelegate{
 
@@ -16,9 +18,18 @@ class StationDetailController: UIViewController, AudioStreamEngineDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let button = UIButton(type: UIButtonType.roundedRect)
+        button.frame = CGRect.init(x: 100, y: 100, width: 100, height: 30)
+        button.setTitle("Crash", for: UIControlState(rawValue: UInt(0)))
+        button.addTarget(self, action: Selector(("crashButtonTapped:")), for: UIControlEvents.touchUpInside)
+        view.addSubview(button)
     }
 
+    @IBAction func crashButtonTapped(sender: AnyObject) {
+        Crashlytics.sharedInstance().crash()
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -18,6 +18,8 @@
 		4CB683961C3FF294006E19B4 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CB683941C3FF294006E19B4 /* Launch Screen.storyboard */; };
 		4CB6839C1C3FF391006E19B4 /* AudioPart.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CB683981C3FF391006E19B4 /* AudioPart.c */; };
 		4CB6839D1C3FF391006E19B4 /* AudioStreamEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB6839B1C3FF391006E19B4 /* AudioStreamEngine.m */; };
+		BFD663B71D14336700D268A2 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD663B51D14336700D268A2 /* Fabric.framework */; };
+		BFD663B81D14336700D268A2 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD663B61D14336700D268A2 /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		4CB684021C3FF5BD006E19B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4CB684031C3FF5BD006E19B4 /* StationList */ = {isa = PBXFileReference; lastKnownFileType = text; path = StationList; sourceTree = "<group>"; };
 		4CB684071C3FF5BD006E19B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BFD663B51D14336700D268A2 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		BFD663B61D14336700D268A2 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFD663B81D14336700D268A2 /* Crashlytics.framework in Frameworks */,
+				BFD663B71D14336700D268A2 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +124,8 @@
 		4C968AF51C3FF0A8000C5474 = {
 			isa = PBXGroup;
 			children = (
+				BFD663B51D14336700D268A2 /* Fabric.framework */,
+				BFD663B61D14336700D268A2 /* Crashlytics.framework */,
 				4C968B001C3FF0A8000C5474 /* AudioStream */,
 				4CB683971C3FF391006E19B4 /* AudioStreamEngine */,
 				4CB683E11C3FF5BD006E19B4 /* old_audiostream */,
@@ -278,6 +286,7 @@
 				4C968AFA1C3FF0A8000C5474 /* Sources */,
 				4C968AFB1C3FF0A8000C5474 /* Frameworks */,
 				4C968AFC1C3FF0A8000C5474 /* Resources */,
+				BF3ACCE51D143293003305F8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -396,6 +405,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BF3ACCE51D143293003305F8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run a81c231aac76b73827712d76b1860e8f4f5cf6f3 36ccf4abac50123b733ff15a19a6d61229ec7266b87fb02ea1c939de7a52e061";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4C968AFA1C3FF0A8000C5474 /* Sources */ = {
@@ -581,6 +606,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = AudioStream/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -595,6 +625,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = AudioStream/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
