@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var streamEngine: AudioStreamEngine!
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
 //        streamEngine = AudioStreamEngine.sharedInstance()
 //        streamEngine.startWithURL("http://air.radiorecord.ru:8101/rr_128")
@@ -79,8 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             // Report any error we got.
             var dict = [String: AnyObject]()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-            dict[NSLocalizedFailureReasonErrorKey] = failureReason
+            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject?
+            dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject?
 
             dict[NSUnderlyingErrorKey] = error as NSError
             let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
