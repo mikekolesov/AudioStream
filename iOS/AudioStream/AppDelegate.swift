@@ -21,9 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-//        streamEngine = AudioStreamEngine.sharedInstance()
-//        streamEngine.startWithURL("http://air.radiorecord.ru:8101/rr_128")
-        
         Fabric.with([Crashlytics.self])
 
         return true
